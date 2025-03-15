@@ -26,7 +26,7 @@
   <header>
     <h1>STEPS Decision Aid Tool</h1>
     <p>
-      STEPS helps policy makers in India plan and scale Field Epidemiology Training Programs by predicting programme uptake,
+      STEPS helps policy makers in India plan and scale Field Epidemiology Training Programs by forecasting programme uptake,
       evaluating economic tradeoffs, and comparing key programme features.
     </p>
   </header>
@@ -62,15 +62,15 @@
   <section id="introTab" class="tabcontent" tabindex="0" style="display: block;">
     <div class="intro-box">
       <p>
-        Field Epidemiology Training Programs (FETP) are key to strengthening public health responses.
+        Field Epidemiology Training Programs (FETP) are essential to strengthening public health responses.
         STEPS uses discrete choice experiment estimates to forecast programme uptake – meaning the predicted likelihood
         that decision makers will endorse a given training configuration – and to assess cost–benefit tradeoffs.
       </p>
       <ul>
         <li><strong>Instructions</strong> – A visually engaging guide to using the tool.</li>
-        <li><strong>Attributes</strong> – A snapshot of the main programme features.</li>
-        <li><strong>Inputs</strong> – Configure your programme options with clear, interactive controls.</li>
-        <li><strong>Adoption Likelihood</strong> – View a forecast of decision maker support.</li>
+        <li><strong>Attributes</strong> – An overview of key programme features with quick tooltips.</li>
+        <li><strong>Inputs</strong> – Configure options using clear, interactive controls.</li>
+        <li><strong>Adoption Likelihood</strong> – See a forecast of decision maker support.</li>
         <li><strong>Costs &amp; Benefits</strong> – Explore a detailed, dynamic economic summary.</li>
         <li><strong>Visualizations</strong> – Interact with maps and dashboards showing regional capacities and cost distributions.</li>
         <li><strong>Saved Scenarios</strong> – Save, compare, and export your configurations.</li>
@@ -83,12 +83,12 @@
     <div class="calculation-info instructions">
       <h4>How to Use STEPS</h4>
       <ol>
-        <li><strong>Review Attributes:</strong> View a quick overview of the key programme features.</li>
-        <li><strong>Configure Inputs:</strong> In the Inputs tab, select options such as Level of Training, Training Model, Stipend, Capacity, Delivery Method, Number of Training Sites, and Fee. Reference values (in parentheses) guide your selection.</li>
-        <li><strong>Adoption Likelihood:</strong> Check the Adoption Likelihood tab to see the forecasted support from decision makers.</li>
-        <li><strong>Costs &amp; Benefits:</strong> Examine the economic summary. Toggle the Cost Breakdown and Benefits Explanation sections for detailed insights.</li>
-        <li><strong>Visualizations:</strong> Explore interactive maps and a dashboard that illustrate regional capacities and cost distributions.</li>
-        <li><strong>Saved Scenarios:</strong> Save your configurations and export comparisons as a PDF.</li>
+        <li><strong>Review Attributes:</strong> Quickly review the key programme features with helpful tooltips.</li>
+        <li><strong>Configure Inputs:</strong> Select options (with reference values shown in parentheses) in the Inputs tab.</li>
+        <li><strong>Adoption Likelihood:</strong> Check the Adoption Likelihood tab to see forecasted decision maker support.</li>
+        <li><strong>Costs &amp; Benefits:</strong> View a dynamic cost–benefit analysis; click the buttons to toggle detailed breakdowns.</li>
+        <li><strong>Visualizations:</strong> Interact with an up-to-date map and dashboard illustrating regional capacities and cost distributions.</li>
+        <li><strong>Saved Scenarios:</strong> Save configurations and export comparisons as a PDF.</li>
       </ol>
     </div>
   </section>
@@ -97,51 +97,72 @@
   <section id="attributesTab" class="tabcontent" tabindex="0">
     <h2>Key Attributes</h2>
     <div class="attributes-grid">
-      <!-- Each attribute card uses a representative icon -->
+      <!-- Use fa-circle-info for hover tooltips -->
       <div class="attribute-card">
-        <div class="attribute-icon"><i class="fa-solid fa-hourglass-half"></i></div>
+        <div class="attribute-icon">
+          <i class="fa-solid fa-hourglass-half"></i>
+          <i class="fa-solid fa-circle-info info-icon" data-tooltip="Select the duration: Frontline (3 months; ref), Intermediate (12 months), or Advanced (24 months)."></i>
+        </div>
         <div class="attribute-content">
           <h4>Level of Training</h4>
           <p>Frontline, Intermediate, or Advanced.</p>
         </div>
       </div>
       <div class="attribute-card">
-        <div class="attribute-icon"><i class="fa-solid fa-chalkboard-teacher"></i></div>
+        <div class="attribute-icon">
+          <i class="fa-solid fa-chalkboard-teacher"></i>
+          <i class="fa-solid fa-circle-info info-icon" data-tooltip="Choose In-service (ref) if participants work while training or Scholarship-based for full-time study."></i>
+        </div>
         <div class="attribute-content">
           <h4>Training Model</h4>
           <p>In-service or Scholarship-based.</p>
         </div>
       </div>
       <div class="attribute-card">
-        <div class="attribute-icon"><i class="fa-solid fa-hand-holding-usd"></i></div>
+        <div class="attribute-icon">
+          <i class="fa-solid fa-hand-holding-usd"></i>
+          <i class="fa-solid fa-circle-info info-icon" data-tooltip="Stipend levels: $200 (ref), $400, $600, or $800."></i>
+        </div>
         <div class="attribute-content">
           <h4>Stipend Amount</h4>
           <p>$200, $400, $600, or $800.</p>
         </div>
       </div>
       <div class="attribute-card">
-        <div class="attribute-icon"><i class="fa-solid fa-users"></i></div>
+        <div class="attribute-icon">
+          <i class="fa-solid fa-users"></i>
+          <i class="fa-solid fa-circle-info info-icon" data-tooltip="Number of trainees per cycle: 100, 500 (ref), 1000, 1500, or 2000 (higher is better)."></i>
+        </div>
         <div class="attribute-content">
           <h4>Annual Training Capacity</h4>
           <p>100, 500, 1000, 1500, or 2000 trainees.</p>
         </div>
       </div>
       <div class="attribute-card">
-        <div class="attribute-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+        <div class="attribute-icon">
+          <i class="fa-solid fa-mobile-screen"></i>
+          <i class="fa-solid fa-circle-info info-icon" data-tooltip="Delivery options: Online (ref), In-person, or Hybrid."></i>
+        </div>
         <div class="attribute-content">
           <h4>Delivery Method</h4>
           <p>Online, In-person, or Hybrid.</p>
         </div>
       </div>
       <div class="attribute-card">
-        <div class="attribute-icon"><i class="fa-solid fa-building-columns"></i></div>
+        <div class="attribute-icon">
+          <i class="fa-solid fa-building-columns"></i>
+          <i class="fa-solid fa-circle-info info-icon" data-tooltip="Distribution: Multiple State Capitals (ref), Single Centralized Hub, Zonal Regional Centers, or Decentralized Rural Nodes."></i>
+        </div>
         <div class="attribute-content">
           <h4>Number of Training Sites</h4>
           <p>Determines geographic spread.</p>
         </div>
       </div>
       <div class="attribute-card">
-        <div class="attribute-icon"><i class="fa-solid fa-dollar-sign"></i></div>
+        <div class="attribute-icon">
+          <i class="fa-solid fa-dollar-sign"></i>
+          <i class="fa-solid fa-circle-info info-icon" data-tooltip="This fee (in USD) is charged upon training completion. Adjust using the slider."></i>
+        </div>
         <div class="attribute-content">
           <h4>Fee per Training Completion</h4>
           <p>Cost charged after training.</p>
@@ -153,7 +174,7 @@
   <!-- Inputs Tab -->
   <section id="inputsTab" class="tabcontent" tabindex="0">
     <div class="input-card">
-      <h2>Configure Programme Options <i class="fa-solid fa-info-circle info-icon-input" data-tooltip="Hover over each label for details."></i></h2>
+      <h2>Configure Programme Options <i class="fa-solid fa-circle-info info-icon-input" data-tooltip="Hover over each label for details."></i></h2>
       <p>Select your options below. All fields are required. <em>(Reference values in parentheses)</em></p>
       <form onsubmit="event.preventDefault();">
         <div class="input-cards">
@@ -173,7 +194,7 @@
           <div class="input-level-card">
             <h3>
               Training Model <span class="reference">(Ref: In-service)</span>
-              <i class="fa-solid fa-chalkboard info-icon-input" data-tooltip="Select In-service (ref) or Scholarship-based."></i>
+              <i class="fa-solid fa-chalkboard-teacher info-icon-input" data-tooltip="Select In-service (ref) or Scholarship-based."></i>
             </h3>
             <div class="options">
               <label><input type="radio" name="trainingModel" value="inservice" checked /> In-service Training</label>
