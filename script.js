@@ -181,7 +181,7 @@ function closeModal() {
   document.getElementById("resultModal").style.display = "none";
 }
 
-/* Render Predicted Uptake (Doughnut Chart) */
+/* Render Adoption Likelihood (Doughnut Chart) */
 var probChartFETP = null;
 function renderFETPProbChart() {
   var sc = buildFETPScenario();
