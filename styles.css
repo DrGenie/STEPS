@@ -1,4 +1,4 @@
-/* RESET & BASEs */
+/* RESET & BASE */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -128,7 +128,7 @@ header p {
   margin-bottom: 6px;
 }
 
-/* Info icon for inputs */
+/* Info icons for inputs */
 .info-icon-input {
   display: inline-block;
   width: 16px;
@@ -276,7 +276,7 @@ header p {
   transform: translateY(-2px);
 }
 
-/* COST BREAKDOWN CARDS in Accordion */
+/* Cost Breakdown Cards */
 .cost-breakdown-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -301,7 +301,7 @@ header p {
   margin: 0;
 }
 
-/* Accordion styles for detailed cost breakdown */
+/* Accordion styles for cost breakdown */
 .accordion-item {
   margin-bottom: 10px;
   border: 1px solid #ccc;
