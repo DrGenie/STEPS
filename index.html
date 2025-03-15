@@ -68,7 +68,7 @@
       </p>
       <ul>
         <li><strong>Instructions</strong> – A visually engaging guide to using the tool.</li>
-        <li><strong>Attributes</strong> – An overview of key programme features with quick tooltips.</li>
+        <li><strong>Attributes</strong> – An overview of key programme features with hover tooltips.</li>
         <li><strong>Inputs</strong> – Configure options using clear, interactive controls.</li>
         <li><strong>Adoption Likelihood</strong> – See a forecast of decision maker support.</li>
         <li><strong>Costs &amp; Benefits</strong> – Explore a detailed, dynamic economic summary.</li>
@@ -86,8 +86,8 @@
         <li><strong>Review Attributes:</strong> Quickly review the key programme features with helpful tooltips.</li>
         <li><strong>Configure Inputs:</strong> Select options (with reference values shown in parentheses) in the Inputs tab.</li>
         <li><strong>Adoption Likelihood:</strong> Check the Adoption Likelihood tab to see forecasted decision maker support.</li>
-        <li><strong>Costs &amp; Benefits:</strong> View a dynamic cost–benefit analysis; click the buttons to toggle detailed breakdowns.</li>
-        <li><strong>Visualizations:</strong> Interact with an up-to-date map and dashboard illustrating regional capacities and cost distributions.</li>
+        <li><strong>Costs &amp; Benefits:</strong> View a dynamic cost–benefit analysis; toggle detailed breakdowns using the buttons.</li>
+        <li><strong>Visualizations:</strong> Interact with a live map and dashboard illustrating regional capacities and cost distributions.</li>
         <li><strong>Saved Scenarios:</strong> Save configurations and export comparisons as a PDF.</li>
       </ol>
     </div>
@@ -97,71 +97,77 @@
   <section id="attributesTab" class="tabcontent" tabindex="0">
     <h2>Key Attributes</h2>
     <div class="attributes-grid">
-      <!-- Use fa-circle-info for hover tooltips -->
+      <!-- Level of Training -->
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-hourglass-half"></i>
-          <i class="fa-solid fa-circle-info info-icon" data-tooltip="Select the duration: Frontline (3 months; ref), Intermediate (12 months), or Advanced (24 months)."></i>
+          <i class="fa-solid fa-info-circle info-icon" data-tooltip="Duration: Frontline (3 months; ref), Intermediate (12 months), or Advanced (24 months)."></i>
         </div>
         <div class="attribute-content">
           <h4>Level of Training</h4>
           <p>Frontline, Intermediate, or Advanced.</p>
         </div>
       </div>
+      <!-- Training Model -->
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-chalkboard-teacher"></i>
-          <i class="fa-solid fa-circle-info info-icon" data-tooltip="Choose In-service (ref) if participants work while training or Scholarship-based for full-time study."></i>
+          <i class="fa-solid fa-info-circle info-icon" data-tooltip="Training Model: In-service (ref) or Scholarship-based."></i>
         </div>
         <div class="attribute-content">
           <h4>Training Model</h4>
           <p>In-service or Scholarship-based.</p>
         </div>
       </div>
+      <!-- Stipend Amount -->
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-hand-holding-usd"></i>
-          <i class="fa-solid fa-circle-info info-icon" data-tooltip="Stipend levels: $200 (ref), $400, $600, or $800."></i>
+          <i class="fa-solid fa-info-circle info-icon" data-tooltip="Stipend: $200 (ref), $400, $600, or $800."></i>
         </div>
         <div class="attribute-content">
           <h4>Stipend Amount</h4>
           <p>$200, $400, $600, or $800.</p>
         </div>
       </div>
+      <!-- Annual Training Capacity -->
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-users"></i>
-          <i class="fa-solid fa-circle-info info-icon" data-tooltip="Number of trainees per cycle: 100, 500 (ref), 1000, 1500, or 2000 (higher is better)."></i>
+          <i class="fa-solid fa-info-circle info-icon" data-tooltip="Trainees per cycle: 100, 500 (ref), 1000, 1500, or 2000 (higher is better)."></i>
         </div>
         <div class="attribute-content">
           <h4>Annual Training Capacity</h4>
           <p>100, 500, 1000, 1500, or 2000 trainees.</p>
         </div>
       </div>
+      <!-- Delivery Method -->
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-mobile-screen"></i>
-          <i class="fa-solid fa-circle-info info-icon" data-tooltip="Delivery options: Online (ref), In-person, or Hybrid."></i>
+          <i class="fa-solid fa-info-circle info-icon" data-tooltip="Delivery: Online (ref), In-person, or Hybrid."></i>
         </div>
         <div class="attribute-content">
           <h4>Delivery Method</h4>
           <p>Online, In-person, or Hybrid.</p>
         </div>
       </div>
+      <!-- Number of Training Sites -->
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-building-columns"></i>
-          <i class="fa-solid fa-circle-info info-icon" data-tooltip="Distribution: Multiple State Capitals (ref), Single Centralized Hub, Zonal Regional Centers, or Decentralized Rural Nodes."></i>
+          <i class="fa-solid fa-info-circle info-icon" data-tooltip="Sites: Multiple State Capitals (ref), Single Centralized Hub, Zonal Regional Centers, or Decentralized Rural Nodes."></i>
         </div>
         <div class="attribute-content">
           <h4>Number of Training Sites</h4>
           <p>Determines geographic spread.</p>
         </div>
       </div>
+      <!-- Fee per Training Completion -->
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-dollar-sign"></i>
-          <i class="fa-solid fa-circle-info info-icon" data-tooltip="This fee (in USD) is charged upon training completion. Adjust using the slider."></i>
+          <i class="fa-solid fa-info-circle info-icon" data-tooltip="Fee: Charged upon completion. Adjust via slider."></i>
         </div>
         <div class="attribute-content">
           <h4>Fee per Training Completion</h4>
@@ -174,7 +180,7 @@
   <!-- Inputs Tab -->
   <section id="inputsTab" class="tabcontent" tabindex="0">
     <div class="input-card">
-      <h2>Configure Programme Options <i class="fa-solid fa-circle-info info-icon-input" data-tooltip="Hover over each label for details."></i></h2>
+      <h2>Configure Programme Options <i class="fa-solid fa-info-circle info-icon-input" data-tooltip="Hover over each label for details."></i></h2>
       <p>Select your options below. All fields are required. <em>(Reference values in parentheses)</em></p>
       <form onsubmit="event.preventDefault();">
         <div class="input-cards">
@@ -205,7 +211,7 @@
           <div class="input-level-card">
             <h3>
               Stipend Amount <span class="reference">(Ref: $200)</span>
-              <i class="fa-solid fa-hand-holding-usd info-icon-input" data-tooltip="Stipend: $200 (ref), $400, $600, or $800."></i>
+              <i class="fa-solid fa-money-check info-icon-input" data-tooltip="Stipend: $200 (ref), $400, $600, or $800."></i>
             </h3>
             <div class="options">
               <label><input type="radio" name="stipendAmount" value="200" checked /> $200</label>
