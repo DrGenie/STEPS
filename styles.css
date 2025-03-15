@@ -1,4 +1,4 @@
-/* RESEssT & BASE */
+/* RESET & BASE */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -84,7 +84,7 @@ header p {
   line-height: 1.5em;
 }
 
-/* CALCULATION INFO BOX & Instructions */
+/* CALCULATION INFO & INSTRUCTIONS */
 .calculation-info {
   background-color: #f2f7ff;
   border-left: 4px solid #003366;
@@ -153,16 +153,16 @@ header p {
 .attributes-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
+  gap: 10px; /* Reduced gap */
   margin-top: 15px;
 }
 .attribute-card {
   background-color: #f9fbfd;
   border: 1px solid #ccd6e5;
   border-radius: 8px;
-  padding: 15px;
+  padding: 10px; /* Reduced padding */
   display: flex;
-  gap: 10px;
+  gap: 8px;
   align-items: center;
 }
 .attribute-icon {
