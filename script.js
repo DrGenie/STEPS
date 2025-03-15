@@ -162,7 +162,9 @@ function computeFETPUptake(sc){
   return altExp / (altExp + optExp);
 }
 
-/** "Calculate & View Results" */
+/** "Calculate & View Results"
+ * Results are displayed below the inputs rather than in a popup.
+ */
 function openFETPScenario(){
   const scenario = buildFETPScenario();
   if(!scenario) return;
@@ -178,20 +180,15 @@ function openFETPScenario(){
     recommendation = "Uptake is high. This configuration appears highly cost-effective.";
   }
   
-  document.getElementById("modalResults").innerHTML = `
+  const resultsHTML = `
     <h4>Calculation Results</h4>
     <p><strong>Predicted Uptake:</strong> ${pct.toFixed(2)}%</p>
     <p><em>Recommendation:</em> ${recommendation}</p>
   `;
-  document.getElementById("resultModal").style.display = "block";
+  document.getElementById("resultsDisplay").innerHTML = resultsHTML;
   
   renderFETPProbChart();
   renderFETPCostsBenefits();
-}
-
-/** Close modal */
-function closeModal(){
-  document.getElementById("resultModal").style.display = "none";
 }
 
 /** Render WTP chart */
@@ -213,7 +210,7 @@ function renderWTPChart(){
     ratio(mainCoefficients.training_intermediate),
     ratio(mainCoefficients.trainingModel_scholarship),
     ratio(mainCoefficients.stipend_levels[400]), // example increment from ref $200 to $400
-    ratio(mainCoefficients.capacity_levels[100]), // difference from 100
+    ratio(mainCoefficients.capacity_levels[100]),
     ratio(mainCoefficients.delivery_inperson),
     ratio(mainCoefficients.cost) * 1000,
     ratio(mainCoefficients.trainingSites.zonalCenters)
