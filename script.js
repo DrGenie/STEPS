@@ -7,6 +7,9 @@
  * 5) Scenario saving and PDF export
  ****************************************************************************/
 
+/* Global variable for Leaflet map */
+var leafletMap;
+
 /* Tab Switching */
 document.addEventListener("DOMContentLoaded", function() {
   var tabs = document.querySelectorAll(".tablink");
@@ -339,14 +342,18 @@ function renderFETPCostsBenefits() {
 
 /* Render Interactive Map using Leaflet */
 function renderMap() {
-  var map = L.map('mapContainer').setView([20.5937, 78.9629], 5);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors'
-  }).addTo(map);
-  L.marker([28.6139, 77.2090]).addTo(map).bindPopup('New Delhi - Multiple State Capitals');
-  L.marker([19.0760, 72.8777]).addTo(map).bindPopup('Mumbai - Single Centralized Hub');
-  L.marker([13.0827, 80.2707]).addTo(map).bindPopup('Chennai - Zonal Regional Center');
-  L.marker([22.5726, 88.3639]).addTo(map).bindPopup('Kolkata - Decentralized Rural Node');
+  if (!leafletMap) {
+    leafletMap = L.map('mapContainer').setView([20.5937, 78.9629], 5);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(leafletMap);
+    L.marker([28.6139, 77.2090]).addTo(leafletMap).bindPopup('New Delhi - Multiple State Capitals');
+    L.marker([19.0760, 72.8777]).addTo(leafletMap).bindPopup('Mumbai - Single Centralized Hub');
+    L.marker([13.0827, 80.2707]).addTo(leafletMap).bindPopup('Chennai - Zonal Regional Center');
+    L.marker([22.5726, 88.3639]).addTo(leafletMap).bindPopup('Kolkata - Decentralized Rural Node');
+  } else {
+    leafletMap.invalidateSize();
+  }
 }
 
 /* Render Dashboard Chart for Cost Distribution */
