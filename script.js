@@ -162,9 +162,7 @@ function computeFETPUptake(sc){
   return altExp / (altExp + optExp);
 }
 
-/** "Calculate & View Results"
- * Results are displayed below the inputs rather than in a popup.
- */
+/** "Calculate & View Results" - results shown in a popup modal */
 function openFETPScenario(){
   const scenario = buildFETPScenario();
   if(!scenario) return;
@@ -180,15 +178,21 @@ function openFETPScenario(){
     recommendation = "Uptake is high. This configuration appears highly cost-effective.";
   }
   
-  const resultsHTML = `
+  const modalHTML = `
     <h4>Calculation Results</h4>
     <p><strong>Predicted Uptake:</strong> ${pct.toFixed(2)}%</p>
     <p><em>Recommendation:</em> ${recommendation}</p>
   `;
-  document.getElementById("resultsDisplay").innerHTML = resultsHTML;
+  document.getElementById("modalResults").innerHTML = modalHTML;
+  document.getElementById("resultModal").style.display = "block";
   
   renderFETPProbChart();
   renderFETPCostsBenefits();
+}
+
+/** Close modal */
+function closeModal(){
+  document.getElementById("resultModal").style.display = "none";
 }
 
 /** Render WTP chart */
@@ -209,7 +213,7 @@ function renderWTPChart(){
     ratio(mainCoefficients.training_advanced),
     ratio(mainCoefficients.training_intermediate),
     ratio(mainCoefficients.trainingModel_scholarship),
-    ratio(mainCoefficients.stipend_levels[400]), // example increment from ref $200 to $400
+    ratio(mainCoefficients.stipend_levels[400]),
     ratio(mainCoefficients.capacity_levels[100]),
     ratio(mainCoefficients.delivery_inperson),
     ratio(mainCoefficients.cost) * 1000,
@@ -314,7 +318,7 @@ function renderFETPCostsBenefits(){
   const pct = uptakeFraction * 100;
   const trainees = sc.annualCapacity;
   
-  // QALY gain per participant based on dropdown
+  // QALY gain per participant from dropdown
   let qVal = 0.05;
   const sel = document.getElementById("qalyFETPSelect");
   if(sel){
@@ -322,7 +326,7 @@ function renderFETPCostsBenefits(){
     else if(sel.value === "high") qVal = 0.08;
   }
   
-  // Dynamic fixed cost: base $35,500 adjusted by $10 per trainee over/under 500
+  // Fixed cost dynamically adjusted based on capacity (base $35,500, ± $10 per trainee from 500)
   const fixedCost = 35500 + (sc.annualCapacity - 500) * 10;
   const totalCost = sc.fee * trainees + fixedCost;
   
