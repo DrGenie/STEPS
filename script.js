@@ -2,7 +2,7 @@
  * SCRIPT.JS
  * 1) Tab switching, slider updates, and accordion toggling
  * 2) DCE model for FETP with updated attributes and realistic restrictions
- * 3) Chart rendering for WTP, predicted uptake, and dynamic cost–benefit analysis
+ * 3) Chart rendering for predicted uptake and cost–benefit analysis
  * 4) Integration with Leaflet for interactive maps and Chart.js for dashboard visualization
  * 5) Scenario saving and PDF export
  ****************************************************************************/
@@ -28,11 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
   for (var j = 0; j < accordions.length; j++) {
     accordions[j].addEventListener("click", function() {
       var content = this.nextElementSibling;
-      if (content.style.display === "block") {
-        content.style.display = "none";
-      } else {
-        content.style.display = "block";
-      }
+      content.style.display = (content.style.display === "block") ? "none" : "block";
     });
   }
 });
@@ -185,62 +181,6 @@ function closeModal() {
   document.getElementById("resultModal").style.display = "none";
 }
 
-/* Render WTP Chart */
-var wtpChart = null;
-function renderWTPChart() {
-  var ctx = document.getElementById("wtpChartMain").getContext("2d");
-  if (!ctx) return;
-  if (wtpChart) wtpChart.destroy();
-  
-  function ratio(coef) { return (coef / -mainCoefficients.cost) * 1; }
-  var labels = ["Training: Advanced", "Training: Intermediate",
-                "Training Model: Scholarship", "Stipend Increment",
-                "Capacity Increase", "Delivery: In-person", "Fee Increment",
-                "Sites: Zonal Centers"];
-  var rawVals = [ratio(mainCoefficients.training_advanced),
-                 ratio(mainCoefficients.training_intermediate),
-                 ratio(mainCoefficients.trainingModel_scholarship),
-                 ratio(mainCoefficients.stipend_levels[400]),
-                 ratio(mainCoefficients.capacity_levels[100]),
-                 ratio(mainCoefficients.delivery_inperson),
-                 ratio(mainCoefficients.cost) * 1000,
-                 ratio(mainCoefficients.trainingSites.zonalCenters)];
-  var errs = rawVals.map(function(v) { return Math.abs(v) * 0.1; });
-  
-  var minVal = Math.min.apply(null, rawVals);
-  var maxVal = Math.max.apply(null, rawVals);
-  var padding = 0.15;
-  var yMin = minVal >= 0 ? 0 : (minVal * (1 + padding));
-  var yMax = maxVal <= 0 ? 0 : (maxVal * (1 + padding));
-  
-  wtpChart = new Chart(ctx, {
-    type: "bar",
-    data: {
-      labels: labels,
-      datasets: [{
-        label: "WTP (USD)",
-        data: rawVals,
-        backgroundColor: rawVals.map(function(v) {
-          return v >= 0 ? "rgba(52,152,219,0.6)" : "rgba(231,76,60,0.6)";
-        }),
-        borderColor: rawVals.map(function(v) {
-          return v >= 0 ? "rgba(52,152,219,1)" : "rgba(231,76,60,1)";
-        }),
-        borderWidth: 1
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: { y: { min: yMin, max: yMax } },
-      plugins: {
-        legend: { display: false },
-        title: { display: true, text: "WTP (USD) for FETP Attributes", font: { size: 16 } }
-      }
-    }
-  });
-}
-
 /* Render Predicted Uptake (Doughnut Chart) */
 var probChartFETP = null;
 function renderFETPProbChart() {
@@ -264,7 +204,7 @@ function renderFETPProbChart() {
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
-        title: { display: true, text: "Predicted Uptake: " + pct.toFixed(2) + "%", font: { size: 16 } }
+        title: { display: true, text: "Adoption Likelihood: " + pct.toFixed(2) + "%", font: { size: 16 } }
       }
     }
   });
@@ -338,6 +278,27 @@ function renderFETPCostsBenefits() {
       }
     }
   });
+}
+
+/* Toggle Cost Breakdown */
+function toggleCostAccordion() {
+  var acc = document.getElementById("detailedCostBreakdown");
+  if (acc.style.display === "block") {
+    acc.style.display = "none";
+  } else {
+    acc.style.display = "block";
+  }
+}
+
+/* Toggle Benefits Explanation */
+function toggleFETPBenefitsAnalysis() {
+  var box = document.getElementById("detailedFETPBenefitsAnalysis");
+  if (!box) return;
+  if (box.style.display === "flex") {
+    box.style.display = "none";
+  } else {
+    box.style.display = "flex";
+  }
 }
 
 /* Render Interactive Map using Leaflet */
