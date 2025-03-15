@@ -45,10 +45,10 @@ function updateFETPCostDisplay(val){
 
 /** DCE Coefficients and attribute mappings */
 /* Updated assumptions:
-   - Frontline is now the reference for Level of Training.
+   - Level of Training: Frontline is the reference.
    - Stipend and Fee levels are set to realistic low values for India.
-   - Annual Capacity coefficients now increase with capacity.
-   - Delivery Method now includes "Online" as reference.
+   - Annual Capacity: higher capacity yields higher coefficient.
+   - Delivery Method: includes Online (ref), In-person, Hybrid.
    - Number of Training Sites: reference is Multiple State Capitals.
 */
 const mainCoefficients = {
@@ -60,7 +60,7 @@ const mainCoefficients = {
   training_advanced: 0.700,
   // Training Model (Reference: In-service)
   trainingModel_scholarship: 0.300,
-  // Stipend Amount (levels in USD)
+  // Stipend Amount (USD levels)
   stipend_levels: {
     200: 0,
     400: 0.10,
@@ -206,16 +206,16 @@ function renderWTPChart(){
     "Training: Advanced", "Training: Intermediate",
     "Training Model: Scholarship", "Stipend Increment",
     "Capacity Increase", "Delivery: In-person", "Fee Increment",
-    "Training Sites: Zonal Centers"
+    "Sites: Zonal Centers"
   ];
   const rawVals = [
     ratio(mainCoefficients.training_advanced),
     ratio(mainCoefficients.training_intermediate),
     ratio(mainCoefficients.trainingModel_scholarship),
     ratio(mainCoefficients.stipend_levels[400]), // example increment from ref $200 to $400
-    ratio(mainCoefficients.capacity_levels[100]), // difference between 100 and ref 100
+    ratio(mainCoefficients.capacity_levels[100]), // difference from 100
     ratio(mainCoefficients.delivery_inperson),
-    ratio(mainCoefficients.cost) * 1000, // scaled
+    ratio(mainCoefficients.cost) * 1000,
     ratio(mainCoefficients.trainingSites.zonalCenters)
   ];
   const errs = rawVals.map(v => Math.abs(v)*0.1);
@@ -315,7 +315,7 @@ function renderFETPCostsBenefits(){
   if(!sc) return;
   const uptakeFraction = computeFETPUptake(sc);
   const pct = uptakeFraction * 100;
-  const trainees = sc.annualCapacity; // number equals selected capacity
+  const trainees = sc.annualCapacity;
   
   // QALY gain per participant based on dropdown
   let qVal = 0.05;
@@ -384,7 +384,7 @@ function renderFETPCostsBenefits(){
   });
 }
 
-/** Toggle detailed cost breakdown accordion */
+/** Toggle cost breakdown accordion */
 function toggleCostAccordion(){
   const acc = document.getElementById("detailedCostBreakdown");
   acc.style.display = (acc.style.display === "none" || acc.style.display === "") ? "block" : "none";
@@ -410,7 +410,7 @@ function saveFETPScenario(){
   const netB = (pct * 1000).toFixed(2);
   sc.netBenefit = netB;
   
-  sc.name = `FETP Scenario ${savedFETPScenarios.length + 1}`;
+  sc.name = `Scenario ${savedFETPScenarios.length + 1}`;
   savedFETPScenarios.push(sc);
   
   const tb = document.querySelector("#FETPScenarioTable tbody");
@@ -433,7 +433,7 @@ function saveFETPScenario(){
 
 function exportFETPComparison(){
   if(!savedFETPScenarios.length){
-    alert("No FETP scenarios saved.");
+    alert("No scenarios saved.");
     return;
   }
   const { jsPDF } = window.jspdf;
