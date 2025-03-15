@@ -26,39 +26,21 @@
   <header>
     <h1>STEPS Decision Aid Tool</h1>
     <p>
-      STEPS helps policy makers in India plan and scale Field Epidemiology Training Programs by predicting programme uptake,
+      STEPS helps policy makers in India plan and scale Field Epidemiology Training Programs by forecasting programme uptake,
       evaluating economic tradeoffs, and comparing key programme features.
     </p>
   </header>
 
   <nav class="tabs" role="tablist">
-    <button class="tablink" data-tab="introTab" aria-selected="true">
-      <i class="fa-solid fa-info-circle"></i><span> Introduction</span>
-    </button>
-    <button class="tablink" data-tab="instructionsTab" aria-selected="false">
-      <i class="fa-solid fa-circle-question"></i><span> Instructions</span>
-    </button>
-    <button class="tablink" data-tab="attributesTab" aria-selected="false">
-      <i class="fa-solid fa-list"></i><span> Attributes</span>
-    </button>
-    <button class="tablink" data-tab="inputsTab" aria-selected="false">
-      <i class="fa-solid fa-sliders"></i><span> Inputs</span>
-    </button>
-    <button class="tablink" data-tab="wtpTab" aria-selected="false">
-      <i class="fa-solid fa-chart-bar"></i><span> WTP Results</span>
-    </button>
-    <button class="tablink" data-tab="probTab" aria-selected="false">
-      <i class="fa-solid fa-chart-pie"></i><span> Predicted Uptake</span>
-    </button>
-    <button class="tablink" data-tab="costsTab" aria-selected="false">
-      <i class="fa-solid fa-calculator"></i><span> Costs &amp; Benefits</span>
-    </button>
-    <button class="tablink" data-tab="visualizationsTab" aria-selected="false">
-      <i class="fa-solid fa-map"></i><span> Visualizations</span>
-    </button>
-    <button class="tablink" data-tab="scenariosTab" aria-selected="false">
-      <i class="fa-solid fa-folder-open"></i><span> Saved Scenarios</span>
-    </button>
+    <button class="tablink" data-tab="introTab" aria-selected="true"> <i class="fa-solid fa-info-circle"></i><span> Introduction</span> </button>
+    <button class="tablink" data-tab="instructionsTab" aria-selected="false"> <i class="fa-solid fa-circle-question"></i><span> Instructions</span> </button>
+    <button class="tablink" data-tab="attributesTab" aria-selected="false"> <i class="fa-solid fa-list"></i><span> Attributes</span> </button>
+    <button class="tablink" data-tab="inputsTab" aria-selected="false"> <i class="fa-solid fa-sliders"></i><span> Inputs</span> </button>
+    <button class="tablink" data-tab="wtpTab" aria-selected="false"> <i class="fa-solid fa-chart-bar"></i><span> WTP Results</span> </button>
+    <button class="tablink" data-tab="probTab" aria-selected="false"> <i class="fa-solid fa-chart-pie"></i><span> Predicted Uptake</span> </button>
+    <button class="tablink" data-tab="costsTab" aria-selected="false"> <i class="fa-solid fa-calculator"></i><span> Costs &amp; Benefits</span> </button>
+    <button class="tablink" data-tab="visualizationsTab" aria-selected="false"> <i class="fa-solid fa-map"></i><span> Visualizations</span> </button>
+    <button class="tablink" data-tab="scenariosTab" aria-selected="false"> <i class="fa-solid fa-folder-open"></i><span> Saved Scenarios</span> </button>
   </nav>
 
   <!-- Introduction Tab -->
@@ -66,7 +48,7 @@
     <div class="intro-box">
       <p>
         Field Epidemiology Training Programs (FETP) are key to strengthening public health responses.
-        STEPS uses discrete choice experiment estimates to predict programme uptake – meaning the predicted likelihood
+        STEPS uses discrete choice experiment estimates to forecast programme uptake – meaning the predicted likelihood
         that decision makers will endorse a given training configuration – and to assess cost–benefit tradeoffs.
       </p>
       <ul>
@@ -113,7 +95,6 @@
   <section id="attributesTab" class="tabcontent" tabindex="0">
     <h2>Key Attributes</h2>
     <div class="attributes-grid">
-      <!-- Level of Training -->
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-hourglass-start"></i>
@@ -124,7 +105,6 @@
           <p>Frontline, Intermediate, or Advanced.</p>
         </div>
       </div>
-      <!-- Training Model -->
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-user-tie"></i>
@@ -135,29 +115,26 @@
           <p>In-service or Scholarship-based.</p>
         </div>
       </div>
-      <!-- Stipend Amount -->
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-hand-holding-usd"></i>
-          <span class="info-icon" data-tooltip="Stipend levels help offset financial barriers: $200 (ref), $400, $600, or $800."></span>
+          <span class="info-icon" data-tooltip="Stipend levels: $200 (ref), $400, $600, or $800."></span>
         </div>
         <div class="attribute-content">
           <h4>Stipend Amount</h4>
           <p>$200, $400, $600, or $800.</p>
         </div>
       </div>
-      <!-- Annual Training Capacity -->
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-users"></i>
-          <span class="info-icon" data-tooltip="Indicates the number of trainees per cycle. Options: 100, 500 (ref), 1000, 1500, or 2000 (higher is better)."></span>
+          <span class="info-icon" data-tooltip="Trainees per cycle: 100, 500 (ref), 1000, 1500, or 2000 (higher is better)."></span>
         </div>
         <div class="attribute-content">
           <h4>Annual Training Capacity</h4>
           <p>100, 500, 1000, 1500, or 2000 trainees.</p>
         </div>
       </div>
-      <!-- Delivery Method -->
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-mobile-screen"></i>
@@ -168,26 +145,24 @@
           <p>Online, In-person, or Hybrid.</p>
         </div>
       </div>
-      <!-- Number of Training Sites -->
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-building-columns"></i>
-          <span class="info-icon" data-tooltip="Select distribution: Multiple State Capitals (ref), Single Centralized Hub, Zonal Regional Centers, or Decentralized Rural Nodes."></span>
+          <span class="info-icon" data-tooltip="Distribution: Multiple State Capitals (ref), Single Centralized Hub, Zonal Regional Centers, or Decentralized Rural Nodes."></span>
         </div>
         <div class="attribute-content">
           <h4>Number of Training Sites</h4>
           <p>Determines geographic spread.</p>
         </div>
       </div>
-      <!-- Fee per Training Completion -->
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-dollar-sign"></i>
-          <span class="info-icon" data-tooltip="This fee (in USD) is charged upon training completion. Adjust using the slider."></span>
+          <span class="info-icon" data-tooltip="Fee charged upon training completion. Adjust using the slider."></span>
         </div>
         <div class="attribute-content">
           <h4>Fee per Training Completion</h4>
-          <p>Cost charged to participants after training.</p>
+          <p>Cost charged after training.</p>
         </div>
       </div>
     </div>
@@ -196,15 +171,14 @@
   <!-- Inputs Tab -->
   <section id="inputsTab" class="tabcontent" tabindex="0">
     <div class="input-card">
-      <h2>Configure Programme Options <span class="info-icon-input" data-tooltip="Select your programme options. Hover over each label for details."></span></h2>
-      <p>Select your options below. All fields are required. <em>(Reference values are shown in smaller text.)</em></p>
+      <h2>Configure Programme Options <span class="info-icon-input" data-tooltip="Hover over each label for details."></span></h2>
+      <p>Select your options below. All fields are required. <em>(Reference values in parentheses)</em></p>
       <form onsubmit="event.preventDefault();">
         <div class="input-cards">
-          <!-- Level of Training (Ref: Frontline) -->
           <div class="input-level-card">
             <h3>
               Level of Training <span class="reference">(Ref: Frontline)</span>
-              <span class="info-icon-input" data-tooltip="Choose Frontline for a 3-month basic programme (ref), Intermediate (12 months), or Advanced (24 months)."></span>
+              <span class="info-icon-input" data-tooltip="Choose Frontline (3 months, ref), Intermediate (12 months), or Advanced (24 months)."></span>
             </h3>
             <div class="options">
               <label><input type="radio" name="levelTraining" value="frontline" checked /> Frontline (3 months)</label>
@@ -212,22 +186,20 @@
               <label><input type="radio" name="levelTraining" value="advanced" /> Advanced (24 months)</label>
             </div>
           </div>
-          <!-- Training Model (Ref: In-service) -->
           <div class="input-level-card">
             <h3>
               Training Model <span class="reference">(Ref: In-service)</span>
-              <span class="info-icon-input" data-tooltip="Select In-service if participants work while training (ref) or Scholarship-based if they study full-time."></span>
+              <span class="info-icon-input" data-tooltip="Select In-service (ref) or Scholarship-based."></span>
             </h3>
             <div class="options">
               <label><input type="radio" name="trainingModel" value="inservice" checked /> In-service Training</label>
               <label><input type="radio" name="trainingModel" value="scholarship" /> Scholarship-based Training</label>
             </div>
           </div>
-          <!-- Stipend Amount (Ref: $200) -->
           <div class="input-level-card">
             <h3>
               Stipend Amount <span class="reference">(Ref: $200)</span>
-              <span class="info-icon-input" data-tooltip="Stipend levels: $200 (ref), $400, $600, or $800."></span>
+              <span class="info-icon-input" data-tooltip="Stipend: $200 (ref), $400, $600, or $800."></span>
             </h3>
             <div class="options">
               <label><input type="radio" name="stipendAmount" value="200" checked /> $200</label>
@@ -236,11 +208,10 @@
               <label><input type="radio" name="stipendAmount" value="800" /> $800</label>
             </div>
           </div>
-          <!-- Annual Training Capacity (Ref: 500 trainees) -->
           <div class="input-level-card">
             <h3>
               Annual Training Capacity <span class="reference">(Ref: 500 trainees)</span>
-              <span class="info-icon-input" data-tooltip="Select the number of trainees per cycle: 100, 500 (ref), 1000, 1500, or 2000."></span>
+              <span class="info-icon-input" data-tooltip="Choose 100, 500 (ref), 1000, 1500, or 2000 trainees."></span>
             </h3>
             <div class="options">
               <label><input type="radio" name="annualCapacity" value="100" /> 100 trainees</label>
@@ -250,11 +221,10 @@
               <label><input type="radio" name="annualCapacity" value="2000" /> 2000 trainees</label>
             </div>
           </div>
-          <!-- Delivery Method (Ref: Online) -->
           <div class="input-level-card">
             <h3>
               Delivery Method <span class="reference">(Ref: Online)</span>
-              <span class="info-icon-input" data-tooltip="Choose Online (ref), In-person, or Hybrid."></span>
+              <span class="info-icon-input" data-tooltip="Select Online (ref), In-person, or Hybrid."></span>
             </h3>
             <div class="options">
               <label><input type="radio" name="deliveryMethod" value="online" checked /> Online</label>
@@ -262,11 +232,10 @@
               <label><input type="radio" name="deliveryMethod" value="hybrid" /> Hybrid</label>
             </div>
           </div>
-          <!-- Number of Training Sites (Ref: Multiple State Capitals) -->
           <div class="input-level-card">
             <h3>
               Number of Training Sites <span class="reference">(Ref: Multiple State Capitals)</span>
-              <span class="info-icon-input" data-tooltip="Select distribution: Multiple State Capitals (ref), Single Centralized Hub, Zonal Regional Centers, or Decentralized Rural Nodes."></span>
+              <span class="info-icon-input" data-tooltip="Select: Multiple State Capitals (ref), Single Centralized Hub, Zonal Regional Centers, or Decentralized Rural Nodes."></span>
             </h3>
             <div class="options">
               <label><input type="radio" name="trainingSites" value="centralized" /> Single Centralized Hub</label>
@@ -275,11 +244,10 @@
               <label><input type="radio" name="trainingSites" value="decentralized" /> Decentralized Rural Nodes</label>
             </div>
           </div>
-          <!-- Fee per Training Completion slider -->
           <div class="input-level-card">
             <h3>
               Fee per Training Completion (USD)
-              <span class="info-icon-input" data-tooltip="This fee is charged upon training completion. Adjust using the slider."></span>
+              <span class="info-icon-input" data-tooltip="Adjust this fee using the slider."></span>
             </h3>
             <div class="options slider-option">
               <label for="costSliderFETP">
@@ -376,7 +344,6 @@
         <button class="buttons-row" onclick="toggleCostAccordion()">Cost Breakdown</button>
         <button class="buttons-row" onclick="toggleFETPBenefitsAnalysis()">Benefits Explanation</button>
       </div>
-      <!-- Detailed Cost Breakdown Accordion -->
       <div id="detailedCostBreakdown" style="display:none;">
         <div class="accordion-item">
           <h3>Direct Costs</h3>
@@ -460,7 +427,6 @@
           </div>
         </div>
       </div>
-      <!-- Benefits Explanation -->
       <div id="detailedFETPBenefitsAnalysis" class="cost-cards" style="display:none;">
         <div class="cost-card">
           <h4><i class="fa-solid fa-hand-holding-dollar"></i> QALY Benefits</h4>
