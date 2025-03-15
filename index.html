@@ -19,7 +19,7 @@
   <header>
     <h1>STEPS Decision Aid Tool</h1>
     <p>
-      STEPS helps policy makers in India plan and scale Field Epidemiology Training Programs by predicting uptake,
+      STEPS helps policy makers in India plan and scale Field Epidemiology Training Programs by forecasting programme uptake,
       evaluating economic tradeoffs, and comparing key programme features.
     </p>
   </header>
@@ -55,16 +55,16 @@
   <section id="introTab" class="tabcontent" tabindex="0" style="display: block;">
     <div class="intro-box">
       <p>
-        Field Epidemiology Training Programs are critical for strengthening public health responses.
-        STEPS uses discrete choice experiment estimates to predict programme uptake, assess economic tradeoffs,
-        and compare key programme features.
+        Field Epidemiology Training Programs (FETP) are key to strengthening public health responses.
+        STEPS uses discrete choice experiment estimates to forecast programme uptake – that is, the predicted likelihood that
+        decision makers will endorse and adopt a given training configuration – and to assess cost–benefit tradeoffs.
       </p>
       <ul>
         <li><strong>Instructions</strong> – A brief guide to using the tool.</li>
-        <li><strong>Attributes</strong> – A snapshot of programme features.</li>
+        <li><strong>Attributes</strong> – A snapshot of the main programme features.</li>
         <li><strong>Inputs</strong> – Configure your programme options.</li>
         <li><strong>WTP Results</strong> – View willingness-to-pay estimates.</li>
-        <li><strong>Predicted Uptake</strong> – See the predicted participation rate.</li>
+        <li><strong>Predicted Uptake</strong> – See the forecasted support from decision makers.</li>
         <li><strong>Costs &amp; Benefits</strong> – Review a dynamic economic summary.</li>
         <li><strong>Saved Scenarios</strong> – Save and compare configurations.</li>
       </ul>
@@ -90,7 +90,7 @@
           Note: Some combinations are restricted.
         </li>
         <li style="margin-left: 20px;">The <strong>WTP Results</strong> tab displays a bar chart with error estimates.</li>
-        <li style="margin-left: 20px;">The <strong>Predicted Uptake</strong> tab shows a doughnut chart of forecasted participation.</li>
+        <li style="margin-left: 20px;">The <strong>Predicted Uptake</strong> tab shows a doughnut chart of forecasted decision maker support.</li>
         <li style="margin-left: 20px;">The <strong>Costs &amp; Benefits</strong> tab provides an exhaustive, dynamic economic summary.</li>
         <li style="margin-left: 20px;">Saved scenarios can be compared and exported as a PDF.</li>
       </ol>
@@ -127,7 +127,7 @@
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-hand-holding-usd"></i>
-          <span class="info-icon" data-tooltip="Stipend levels help reduce financial barriers: $200 (ref), $400, $600, or $800."></span>
+          <span class="info-icon" data-tooltip="Stipend levels help offset financial barriers: $200 (ref), $400, $600, or $800."></span>
         </div>
         <div class="attribute-content">
           <h4>Stipend Amount</h4>
@@ -160,7 +160,7 @@
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-building-columns"></i>
-          <span class="info-icon" data-tooltip="Select the geographic distribution: Multiple State Capitals (ref), Single Centralized Hub, Zonal Regional Centers, or Decentralized Rural Nodes."></span>
+          <span class="info-icon" data-tooltip="Select geographic distribution: Multiple State Capitals (ref), Single Centralized Hub, Zonal Regional Centers, or Decentralized Rural Nodes."></span>
         </div>
         <div class="attribute-content">
           <h4>Number of Training Sites</h4>
@@ -171,7 +171,7 @@
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-dollar-sign"></i>
-          <span class="info-icon" data-tooltip="This fee (in USD) is charged upon completion. Adjust using the slider below."></span>
+          <span class="info-icon" data-tooltip="This fee (in USD) is charged upon completion. Adjust using the slider."></span>
         </div>
         <div class="attribute-content">
           <h4>Fee per Training Completion</h4>
@@ -185,145 +185,82 @@
   <section id="inputsTab" class="tabcontent" tabindex="0">
     <div class="input-card">
       <h2>Configure Programme Options <span class="info-icon-input" data-tooltip="Select your programme options. Hover each label for details."></span></h2>
-      <p>Select your options below. All fields are required. Note that some combinations are restricted.</p>
+      <p>Select your options below. All fields are required. (Reference values are shown in smaller, unobtrusive text.)</p>
       <form onsubmit="event.preventDefault();">
         <div class="input-cards">
-          <!-- Level of Training (Reference: Frontline) -->
+          <!-- Level of Training (Ref: Frontline) -->
           <div class="input-level-card">
             <h3>
-              Level of Training <span class="reference">(Ref: Frontline)</span>
+              Level of Training <span class="reference">[Ref: Frontline]</span>
               <span class="info-icon-input" data-tooltip="Choose Frontline for a 3-month basic programme (ref), Intermediate (12 months), or Advanced (24 months)."></span>
             </h3>
             <div class="options">
-              <label>
-                <input type="radio" name="levelTraining" value="frontline" checked />
-                Frontline (3 months)
-              </label>
-              <label>
-                <input type="radio" name="levelTraining" value="intermediate" />
-                Intermediate (12 months)
-              </label>
-              <label>
-                <input type="radio" name="levelTraining" value="advanced" />
-                Advanced (24 months)
-              </label>
+              <label><input type="radio" name="levelTraining" value="frontline" checked /> Frontline (3 months)</label>
+              <label><input type="radio" name="levelTraining" value="intermediate" /> Intermediate (12 months)</label>
+              <label><input type="radio" name="levelTraining" value="advanced" /> Advanced (24 months)</label>
             </div>
           </div>
-          <!-- Training Model (Reference: In-service) -->
+          <!-- Training Model (Ref: In-service) -->
           <div class="input-level-card">
             <h3>
-              Training Model <span class="reference">(Ref: In-service)</span>
+              Training Model <span class="reference">[Ref: In-service]</span>
               <span class="info-icon-input" data-tooltip="Select In-service if participants work while training (ref) or Scholarship-based if they study full-time."></span>
             </h3>
             <div class="options">
-              <label>
-                <input type="radio" name="trainingModel" value="inservice" checked />
-                In-service Training
-              </label>
-              <label>
-                <input type="radio" name="trainingModel" value="scholarship" />
-                Scholarship-based Training
-              </label>
+              <label><input type="radio" name="trainingModel" value="inservice" checked /> In-service Training</label>
+              <label><input type="radio" name="trainingModel" value="scholarship" /> Scholarship-based Training</label>
             </div>
           </div>
-          <!-- Stipend Amount (Reference: $200) -->
+          <!-- Stipend Amount (Ref: $200) -->
           <div class="input-level-card">
             <h3>
-              Stipend Amount <span class="reference">(Ref: $200)</span>
+              Stipend Amount <span class="reference">[Ref: $200]</span>
               <span class="info-icon-input" data-tooltip="Stipend levels help offset financial barriers: $200 (ref), $400, $600, or $800."></span>
             </h3>
             <div class="options">
-              <label>
-                <input type="radio" name="stipendAmount" value="200" checked />
-                $200
-              </label>
-              <label>
-                <input type="radio" name="stipendAmount" value="400" />
-                $400
-              </label>
-              <label>
-                <input type="radio" name="stipendAmount" value="600" />
-                $600
-              </label>
-              <label>
-                <input type="radio" name="stipendAmount" value="800" />
-                $800
-              </label>
+              <label><input type="radio" name="stipendAmount" value="200" checked /> $200</label>
+              <label><input type="radio" name="stipendAmount" value="400" /> $400</label>
+              <label><input type="radio" name="stipendAmount" value="600" /> $600</label>
+              <label><input type="radio" name="stipendAmount" value="800" /> $800</label>
             </div>
           </div>
-          <!-- Annual Training Capacity (Reference: 500 trainees) -->
+          <!-- Annual Training Capacity (Ref: 500 trainees) -->
           <div class="input-level-card">
             <h3>
-              Annual Training Capacity <span class="reference">(Ref: 500 trainees)</span>
+              Annual Training Capacity <span class="reference">[Ref: 500 trainees]</span>
               <span class="info-icon-input" data-tooltip="Select the number of trainees per cycle: 100, 500 (ref), 1000, 1500, or 2000."></span>
             </h3>
             <div class="options">
-              <label>
-                <input type="radio" name="annualCapacity" value="100" />
-                100 trainees
-              </label>
-              <label>
-                <input type="radio" name="annualCapacity" value="500" checked />
-                500 trainees
-              </label>
-              <label>
-                <input type="radio" name="annualCapacity" value="1000" />
-                1000 trainees
-              </label>
-              <label>
-                <input type="radio" name="annualCapacity" value="1500" />
-                1500 trainees
-              </label>
-              <label>
-                <input type="radio" name="annualCapacity" value="2000" />
-                2000 trainees
-              </label>
+              <label><input type="radio" name="annualCapacity" value="100" /> 100 trainees</label>
+              <label><input type="radio" name="annualCapacity" value="500" checked /> 500 trainees</label>
+              <label><input type="radio" name="annualCapacity" value="1000" /> 1000 trainees</label>
+              <label><input type="radio" name="annualCapacity" value="1500" /> 1500 trainees</label>
+              <label><input type="radio" name="annualCapacity" value="2000" /> 2000 trainees</label>
             </div>
           </div>
-          <!-- Delivery Method (Reference: Online) -->
+          <!-- Delivery Method (Ref: Online) -->
           <div class="input-level-card">
             <h3>
-              Delivery Method <span class="reference">(Ref: Online)</span>
+              Delivery Method <span class="reference">[Ref: Online]</span>
               <span class="info-icon-input" data-tooltip="Choose Online (ref), In-person, or Hybrid delivery."></span>
             </h3>
             <div class="options">
-              <label>
-                <input type="radio" name="deliveryMethod" value="online" checked />
-                Online
-              </label>
-              <label>
-                <input type="radio" name="deliveryMethod" value="inperson" />
-                In-person
-              </label>
-              <label>
-                <input type="radio" name="deliveryMethod" value="hybrid" />
-                Hybrid
-              </label>
+              <label><input type="radio" name="deliveryMethod" value="online" checked /> Online</label>
+              <label><input type="radio" name="deliveryMethod" value="inperson" /> In-person</label>
+              <label><input type="radio" name="deliveryMethod" value="hybrid" /> Hybrid</label>
             </div>
           </div>
-          <!-- Number of Training Sites (Reference: Multiple State Capitals) -->
+          <!-- Number of Training Sites (Ref: Multiple State Capitals) -->
           <div class="input-level-card">
             <h3>
-              Number of Training Sites <span class="reference">(Ref: Multiple State Capitals)</span>
-              <span class="info-icon-input" data-tooltip="Select the distribution: Multiple State Capitals (ref), Single Centralized Hub, Zonal Regional Centers, or Decentralized Rural Nodes."></span>
+              Number of Training Sites <span class="reference">[Ref: Multiple State Capitals]</span>
+              <span class="info-icon-input" data-tooltip="Select distribution: Multiple State Capitals (ref), Single Centralized Hub, Zonal Regional Centers, or Decentralized Rural Nodes."></span>
             </h3>
             <div class="options">
-              <label>
-                <input type="radio" name="trainingSites" value="centralized" />
-                Single Centralized Hub
-              </label>
-              <label>
-                <input type="radio" name="trainingSites" value="stateCapitals" checked />
-                Multiple State Capitals
-              </label>
-              <label>
-                <input type="radio" name="trainingSites" value="zonalCenters" />
-                Zonal Regional Centers
-              </label>
-              <label>
-                <input type="radio" name="trainingSites" value="decentralized" />
-                Decentralized Rural Nodes
-              </label>
+              <label><input type="radio" name="trainingSites" value="centralized" /> Single Centralized Hub</label>
+              <label><input type="radio" name="trainingSites" value="stateCapitals" checked /> Multiple State Capitals</label>
+              <label><input type="radio" name="trainingSites" value="zonalCenters" /> Zonal Regional Centers</label>
+              <label><input type="radio" name="trainingSites" value="decentralized" /> Decentralized Rural Nodes</label>
             </div>
           </div>
           <!-- Fee per Training Completion slider -->
@@ -346,10 +283,16 @@
           <button type="button" onclick="openFETPScenario()">Calculate &amp; View Results</button>
         </div>
       </form>
-      <!-- Results Display -->
-      <div id="resultsDisplay" class="results-display"></div>
     </div>
   </section>
+
+  <!-- Popup Modal for Results -->
+  <div id="resultModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal()">&times;</span>
+      <div id="modalResults"></div>
+    </div>
+  </div>
 
   <!-- WTP Results Tab -->
   <section id="wtpTab" class="tabcontent" tabindex="0">
@@ -376,7 +319,7 @@
     <div class="calculation-info">
       <h4>Predicted Programme Uptake</h4>
       <p>
-        Click “Show Probability Plot” to view the forecasted participation rate.
+        Click “Show Probability Plot” to view the forecasted decision maker support.
       </p>
       <div class="buttons-row">
         <button onclick="renderFETPProbChart()">Show Probability Plot</button>
@@ -413,7 +356,7 @@
       <div class="modelling-assumptions">
         <h3><i class="fa-solid fa-lightbulb"></i> Assumptions</h3>
         <p>
-          Cost estimates are based on recent literature. Variable costs (participant fee) and fixed costs (venue, materials, trainer fees, etc.) are combined.
+          Cost estimates are based on recent literature and combine variable costs (participant fee) with fixed costs.
           The base fixed cost of $35,500 is adjusted by $10 for each trainee above or below 500.
         </p>
       </div>
@@ -426,39 +369,82 @@
         <div class="accordion-item">
           <h3>Direct Costs</h3>
           <div class="accordion-content">
-            <div class="cost-breakdown-grid">
-              <div class="cost-card-detail">
-                <h4>Venue Rental</h4>
-                <p>~$3,000 per cycle</p>
-              </div>
-              <div class="cost-card-detail">
-                <h4>Training Materials</h4>
-                <p>~$7,000</p>
-              </div>
-              <div class="cost-card-detail">
-                <h4>Trainer Compensation</h4>
-                <p>~$8,000</p>
-              </div>
-              <div class="cost-card-detail">
-                <h4>Personnel &amp; IT</h4>
-                <p>~$14,000</p>
-              </div>
-              <div class="cost-card-detail">
-                <h4>Logistics</h4>
-                <p>~$5,500</p>
-              </div>
-            </div>
+            <ul>
+              <li><strong>Training and Development:</strong>
+                <ul>
+                  <li>Venue rental for workshops and meetings</li>
+                  <li>Acquisition of training materials (manuals, books, online resources)</li>
+                  <li>Compensation for trainers and speakers</li>
+                  <li>Content development and licensing fees</li>
+                </ul>
+              </li>
+              <li><strong>Personnel Costs:</strong>
+                <ul>
+                  <li>Salaries for full-time staff (program directors, coordinators, admin support)</li>
+                  <li>Consultant fees for subject matter experts</li>
+                  <li>Employment benefits and associated taxes</li>
+                </ul>
+              </li>
+              <li><strong>Technology Costs:</strong>
+                <ul>
+                  <li>Procurement of hardware (computers, projectors, screens)</li>
+                  <li>Software purchases (LMS, data analysis tools)</li>
+                  <li>Maintenance and support for tech infrastructure</li>
+                </ul>
+              </li>
+              <li><strong>Logistical Costs:</strong>
+                <ul>
+                  <li>Travel and accommodation for trainers and participants</li>
+                  <li>Catering services during training sessions</li>
+                </ul>
+              </li>
+              <li><strong>Miscellaneous Costs:</strong>
+                <ul>
+                  <li>Printing, stationery, and office supplies</li>
+                  <li>Communication expenses (telephone, internet)</li>
+                  <li>Insurance and liability coverage</li>
+                </ul>
+              </li>
+            </ul>
           </div>
         </div>
         <div class="accordion-item">
-          <h3>Fixed Costs</h3>
+          <h3>Indirect Costs</h3>
           <div class="accordion-content">
-            <div class="cost-breakdown-grid">
-              <div class="cost-card-detail">
-                <h4>Overheads &amp; Infrastructure</h4>
-                <p>Base: ~$35,500 (adjusted dynamically)</p>
-              </div>
-            </div>
+            <ul>
+              <li><strong>Opportunity Costs:</strong>
+                <ul>
+                  <li>Lost productivity due to training participation</li>
+                  <li>Costs for temporary replacements or overtime</li>
+                </ul>
+              </li>
+              <li><strong>Infrastructure Costs:</strong>
+                <ul>
+                  <li>Upgrades or modifications to existing facilities</li>
+                  <li>Depreciation of equipment used in training</li>
+                </ul>
+              </li>
+              <li><strong>Administrative Costs:</strong>
+                <ul>
+                  <li>Overheads such as utilities and office space</li>
+                  <li>Management and administrative oversight time</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h3>Recurring Costs</h3>
+          <div class="accordion-content">
+            <ul>
+              <li><strong>Maintenance and Upkeep:</strong>
+                <ul>
+                  <li>Regular updates to training materials</li>
+                  <li>Continuous trainer development</li>
+                  <li>Renewal fees for software and licensed materials</li>
+                </ul>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
