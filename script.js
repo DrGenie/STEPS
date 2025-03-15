@@ -1,9 +1,9 @@
 /****************************************************************************
  * SCRIPT.JS
  * 1) Tab switching, slider updates, and accordion toggling
- * 2) DCE model for FETP with updated attributes and realistic restrictions
- * 3) Chart rendering for predicted uptake and cost–benefit analysis
- * 4) Integration with Leaflet for interactive maps and Chart.js for dashboard visualization
+ * 2) DCE model for FETP with realistic attribute coefficients
+ * 3) Chart rendering for Adoption Likelihood and Cost–Benefit analysis
+ * 4) Integration with Leaflet for an interactive map and Chart.js for a dashboard chart
  * 5) Scenario saving and PDF export
  ****************************************************************************/
 
@@ -283,22 +283,14 @@ function renderFETPCostsBenefits() {
 /* Toggle Cost Breakdown */
 function toggleCostAccordion() {
   var acc = document.getElementById("detailedCostBreakdown");
-  if (acc.style.display === "block") {
-    acc.style.display = "none";
-  } else {
-    acc.style.display = "block";
-  }
+  acc.style.display = (acc.style.display === "block") ? "none" : "block";
 }
 
 /* Toggle Benefits Explanation */
 function toggleFETPBenefitsAnalysis() {
   var box = document.getElementById("detailedFETPBenefitsAnalysis");
   if (!box) return;
-  if (box.style.display === "flex") {
-    box.style.display = "none";
-  } else {
-    box.style.display = "flex";
-  }
+  box.style.display = (box.style.display === "flex") ? "none" : "flex";
 }
 
 /* Render Interactive Map using Leaflet */
