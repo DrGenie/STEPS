@@ -1,4 +1,4 @@
-/* RESETsd & BASE */
+/* RESET & BASE */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,7 +6,7 @@
 }
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f0f2f5;
+  background-color: #eef2f7;
   color: #333;
 }
 .container {
@@ -23,11 +23,11 @@ body {
 header h1 {
   text-align: center;
   margin-bottom: 15px;
-  color: #2c3e50;
+  color: #003366;
 }
 header p {
-  font-size: 1.05em;
-  color: #7f8c8d;
+  font-size: 1.1em;
+  color: #555;
   text-align: center;
   max-width: 700px;
   margin: 0 auto 15px;
@@ -41,23 +41,23 @@ header p {
   margin-bottom: 25px;
 }
 .tablink {
-  background: #ecf0f1;
+  background: #d9e4f5;
   border: none;
   padding: 12px 18px;
   margin: 3px;
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s;
-  color: #2c3e50;
+  color: #003366;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
 .tablink.active {
-  background: #2980b9;
+  background: #003366;
   color: #fff;
 }
 .tablink:hover {
-  background: #bdc3c7;
+  background: #b0c4de;
 }
 
 /* TAB CONTENTS */
@@ -67,17 +67,18 @@ header p {
 }
 .tabcontent h2 {
   margin-bottom: 10px;
+  color: #003366;
 }
 .tabcontent p {
   margin-bottom: 10px;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 /* INTRO BOX */
 .intro-box {
-  background-color: #e8f4fd;
+  background-color: #cce0ff;
   padding: 20px;
-  border-left: 5px solid #3498db;
+  border-left: 5px solid #003366;
   border-radius: 4px;
   font-size: 1.1em;
   line-height: 1.5em;
@@ -85,8 +86,8 @@ header p {
 
 /* CALCULATION INFO BOX */
 .calculation-info {
-  background-color: #f9f9f9;
-  border-left: 4px solid #2980b9;
+  background-color: #f2f7ff;
+  border-left: 4px solid #003366;
   padding: 15px;
   border-radius: 6px;
   margin-top: 15px;
@@ -94,7 +95,7 @@ header p {
 
 /* INPUT CARDS */
 .input-card {
-  background-color: #f7f9fc;
+  background-color: #f9fbfd;
   border-radius: 8px;
   padding: 20px;
   margin-bottom: 20px;
@@ -106,7 +107,7 @@ header p {
 }
 .input-level-card {
   background-color: #fff;
-  border: 1px solid #bdc3c7;
+  border: 1px solid #ccd6e5;
   border-radius: 8px;
   padding: 15px;
   flex: 1 1 300px;
@@ -114,14 +115,15 @@ header p {
 .input-level-card h3 {
   margin-bottom: 10px;
   font-size: 1.1em;
-  color: #2c3e50;
+  color: #003366;
   display: flex;
   align-items: center;
   gap: 5px;
 }
 .input-level-card .reference {
-  font-size: 0.9em;
-  color: #7f8c8d;
+  font-size: 0.8em;
+  color: #777;
+  margin-left: 5px;
 }
 .input-level-card .options label {
   display: block;
@@ -133,7 +135,7 @@ header p {
   display: inline-block;
   width: 16px;
   height: 16px;
-  background-color: #2980b9;
+  background-color: #003366;
   color: #fff;
   border-radius: 50%;
   font-size: 10px;
@@ -153,24 +155,24 @@ header p {
   margin-top: 15px;
 }
 .attribute-card {
-  background-color: #f7f9fc;
-  border: 1px solid #ccc;
+  background-color: #f9fbfd;
+  border: 1px solid #ccd6e5;
   border-radius: 8px;
   padding: 15px;
   display: flex;
   gap: 10px;
   align-items: center;
-  position: relative;
 }
 .attribute-icon {
   font-size: 24px;
+  color: #003366;
   position: relative;
 }
 .info-icon {
   display: inline-block;
   width: 16px;
   height: 16px;
-  background-color: #2980b9;
+  background-color: #003366;
   color: #fff;
   border-radius: 50%;
   font-size: 10px;
@@ -192,7 +194,7 @@ header p {
   top: 110%;
   left: 50%;
   transform: translateX(-50%);
-  background: #2980b9;
+  background: #003366;
   color: #fff;
   padding: 5px 8px;
   border-radius: 4px;
@@ -212,8 +214,8 @@ header p {
 .chart-box {
   flex: 1 1 45%;
   padding: 10px;
-  background: #fafafa;
-  border: 1px solid #ccc;
+  background: #f2f7ff;
+  border: 1px solid #ccd6e5;
   border-radius: 6px;
   position: relative;
   overflow: hidden;
@@ -221,7 +223,7 @@ header p {
 .chart-box h3 {
   text-align: center;
   margin-bottom: 8px;
-  color: #2c3e50;
+  color: #003366;
 }
 .chart-box canvas {
   display: block;
@@ -229,15 +231,99 @@ header p {
   height: 100%;
 }
 
-/* Results Display */
-.results-display {
-  margin-top: 20px;
-  padding: 15px;
-  background-color: #e8f4fd;
-  border: 1px solid #3498db;
-  border-radius: 4px;
+/* Results Display (Modal) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 200;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.6);
+}
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px 30px;
+  border: 1px solid #888;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 8px;
+  position: relative;
+  animation: fadeIn 0.5s;
+}
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+.close-button {
+  color: #aaa;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.close-button:hover,
+.close-button:focus {
+  color: #000;
+}
+
+/* Cost Breakdown Cards */
+.cost-breakdown-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+.cost-card-detail {
+  background-color: #fff;
+  border: 1px solid #ccd6e5;
+  border-radius: 6px;
+  padding: 10px;
+  text-align: center;
+}
+.cost-card-detail h4 {
+  margin-bottom: 5px;
   font-size: 1em;
-  color: #2c3e50;
+  color: #003366;
+}
+.cost-card-detail p {
+  font-size: 0.9em;
+  color: #555;
+  margin: 0;
+}
+
+/* Accordion styles for cost breakdown */
+.accordion-item {
+  margin-bottom: 10px;
+  border: 1px solid #ccd6e5;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.accordion-item h3 {
+  background-color: #003366;
+  color: #fff;
+  padding: 10px;
+  margin: 0;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.accordion-item h3:hover {
+  background-color: #002244;
+}
+.accordion-content {
+  padding: 10px;
+  display: none;
+  background-color: #f2f7ff;
+}
+.accordion-content ul {
+  list-style-type: disc;
+  margin-left: 20px;
 }
 
 /* TABLE CONTAINER & SCENARIOS */
@@ -251,17 +337,17 @@ header p {
 }
 #FETPScenarioTable th,
 #FETPScenarioTable td {
-  border: 1px solid #bdc3c7;
+  border: 1px solid #ccd6e5;
   padding: 10px;
   text-align: center;
 }
 #FETPScenarioTable th {
-  background-color: #2980b9;
+  background-color: #003366;
   color: #fff;
   font-weight: 600;
 }
 #FETPScenarioTable tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: #e6eef7;
 }
 
 /* BUTTONS ROW */
@@ -273,7 +359,7 @@ header p {
   justify-content: center;
 }
 .buttons-row button {
-  background-color: #2980b9;
+  background-color: #003366;
   color: #fff;
   border: none;
   padding: 10px 18px;
@@ -283,72 +369,14 @@ header p {
   font-size: 1em;
 }
 .buttons-row button:hover {
-  background-color: #1c5980;
+  background-color: #002244;
   transform: translateY(-2px);
-}
-
-/* Cost Breakdown Cards */
-.cost-breakdown-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 10px;
-  margin-top: 10px;
-}
-.cost-card-detail {
-  background-color: #fff;
-  border: 1px solid #bdc3c7;
-  border-radius: 6px;
-  padding: 10px;
-  text-align: center;
-}
-.cost-card-detail h4 {
-  margin-bottom: 5px;
-  font-size: 1em;
-  color: #2c3e50;
-}
-.cost-card-detail p {
-  font-size: 0.9em;
-  color: #7f8c8d;
-  margin: 0;
-}
-
-/* Accordion styles for cost breakdown */
-.accordion-item {
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  overflow: hidden;
-}
-.accordion-item h3 {
-  background-color: #2980b9;
-  color: #fff;
-  padding: 10px;
-  margin: 0;
-  font-size: 1.1em;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-.accordion-item h3:hover {
-  background-color: #1c5980;
-}
-.accordion-content {
-  padding: 10px;
-  display: none;
-  background-color: #f7f9fc;
-}
-.accordion-content h4 {
-  margin-top: 10px;
-  color: #2c3e50;
-}
-.accordion-content ul {
-  list-style-type: disc;
-  margin-left: 20px;
 }
 
 /* RESPONSIVE */
 @media (max-width: 992px) {
-  .cost-card {
-    width: calc(50% - 20px);
+  .cost-card-detail {
+    width: 100%;
   }
 }
 @media (max-width: 768px) {
@@ -366,9 +394,6 @@ header p {
     height: 300px;
   }
   .input-cards {
-    flex-direction: column;
-  }
-  .cost-cards {
     flex-direction: column;
   }
 }
