@@ -13,13 +13,20 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <!-- jsPDF -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <!-- Leaflet CSS and JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha512-sA+8s4M6Omi0oJmd5dbuap3T7jsSObbd3xd4/fP8HAmVRHNFht6BFB/hxPx9U0z0XnPFADLvF6Roig4SGuOj/A=="
+    crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha512-VV1c7L1lEpByI4A+ZOC88SH0s+hRxbgAjvzuz36eZGwN+I9IMRhMC/jazcK0e+RghWyA4EkO8wgm+0d0JY3h3g=="
+    crossorigin=""></script>
 </head>
 <body>
 <div class="container">
   <header>
     <h1>STEPS Decision Aid Tool</h1>
     <p>
-      STEPS helps policy makers in India plan and scale Field Epidemiology Training Programs by predicting programme uptake,
+      STEPS helps policy makers in India plan and scale Field Epidemiology Training Programs by forecasting programme uptake,
       evaluating economic tradeoffs, and comparing key programme features.
     </p>
   </header>
@@ -46,6 +53,9 @@
     <button class="tablink" data-tab="costsTab" aria-selected="false">
       <i class="fa-solid fa-calculator"></i><span> Costs &amp; Benefits</span>
     </button>
+    <button class="tablink" data-tab="visualizationsTab" aria-selected="false">
+      <i class="fa-solid fa-map"></i><span> Visualizations</span>
+    </button>
     <button class="tablink" data-tab="scenariosTab" aria-selected="false">
       <i class="fa-solid fa-folder-open"></i><span> Saved Scenarios</span>
     </button>
@@ -56,16 +66,17 @@
     <div class="intro-box">
       <p>
         Field Epidemiology Training Programs (FETP) are key to strengthening public health responses.
-        STEPS uses discrete choice experiment estimates to forecast programme uptake – that is, the predicted likelihood that
-        decision makers will endorse and adopt a given training configuration – and to assess cost–benefit tradeoffs.
+        STEPS uses discrete choice experiment estimates to forecast programme uptake – meaning the predicted likelihood
+        that decision makers will endorse a given training configuration – and to assess cost–benefit tradeoffs.
       </p>
       <ul>
         <li><strong>Instructions</strong> – A brief guide to using the tool.</li>
         <li><strong>Attributes</strong> – A snapshot of the main programme features.</li>
         <li><strong>Inputs</strong> – Configure your programme options.</li>
         <li><strong>WTP Results</strong> – View willingness-to-pay estimates.</li>
-        <li><strong>Predicted Uptake</strong> – See the forecasted support from decision makers.</li>
+        <li><strong>Predicted Uptake</strong> – See the forecasted decision maker support.</li>
         <li><strong>Costs &amp; Benefits</strong> – Review a dynamic economic summary.</li>
+        <li><strong>Visualizations</strong> – Explore interactive maps and dashboards.</li>
         <li><strong>Saved Scenarios</strong> – Save and compare configurations.</li>
       </ul>
     </div>
@@ -92,6 +103,7 @@
         <li style="margin-left: 20px;">The <strong>WTP Results</strong> tab displays a bar chart with error estimates.</li>
         <li style="margin-left: 20px;">The <strong>Predicted Uptake</strong> tab shows a doughnut chart of forecasted decision maker support.</li>
         <li style="margin-left: 20px;">The <strong>Costs &amp; Benefits</strong> tab provides an exhaustive, dynamic economic summary.</li>
+        <li style="margin-left: 20px;">The <strong>Visualizations</strong> tab offers an interactive map and dashboard illustrating regional capacities and cost distributions.</li>
         <li style="margin-left: 20px;">Saved scenarios can be compared and exported as a PDF.</li>
       </ol>
     </div>
@@ -160,7 +172,7 @@
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-building-columns"></i>
-          <span class="info-icon" data-tooltip="Select geographic distribution: Multiple State Capitals (ref), Single Centralized Hub, Zonal Regional Centers, or Decentralized Rural Nodes."></span>
+          <span class="info-icon" data-tooltip="Select distribution: Multiple State Capitals (ref), Single Centralized Hub, Zonal Regional Centers, or Decentralized Rural Nodes."></span>
         </div>
         <div class="attribute-content">
           <h4>Number of Training Sites</h4>
@@ -184,14 +196,14 @@
   <!-- Inputs Tab -->
   <section id="inputsTab" class="tabcontent" tabindex="0">
     <div class="input-card">
-      <h2>Configure Programme Options <span class="info-icon-input" data-tooltip="Select your programme options. Hover each label for details."></span></h2>
-      <p>Select your options below. All fields are required. (Reference values are shown in smaller, unobtrusive text.)</p>
+      <h2>Configure Programme Options <span class="info-icon-input" data-tooltip="Select your programme options. Hover over each label for details."></span></h2>
+      <p>Select your options below. All fields are required. <em>(Reference values are shown in smaller text.)</em></p>
       <form onsubmit="event.preventDefault();">
         <div class="input-cards">
           <!-- Level of Training (Ref: Frontline) -->
           <div class="input-level-card">
             <h3>
-              Level of Training <span class="reference">[Ref: Frontline]</span>
+              Level of Training <span class="reference">(Ref: Frontline)</span>
               <span class="info-icon-input" data-tooltip="Choose Frontline for a 3-month basic programme (ref), Intermediate (12 months), or Advanced (24 months)."></span>
             </h3>
             <div class="options">
@@ -203,7 +215,7 @@
           <!-- Training Model (Ref: In-service) -->
           <div class="input-level-card">
             <h3>
-              Training Model <span class="reference">[Ref: In-service]</span>
+              Training Model <span class="reference">(Ref: In-service)</span>
               <span class="info-icon-input" data-tooltip="Select In-service if participants work while training (ref) or Scholarship-based if they study full-time."></span>
             </h3>
             <div class="options">
@@ -214,8 +226,8 @@
           <!-- Stipend Amount (Ref: $200) -->
           <div class="input-level-card">
             <h3>
-              Stipend Amount <span class="reference">[Ref: $200]</span>
-              <span class="info-icon-input" data-tooltip="Stipend levels help offset financial barriers: $200 (ref), $400, $600, or $800."></span>
+              Stipend Amount <span class="reference">(Ref: $200)</span>
+              <span class="info-icon-input" data-tooltip="Stipend levels: $200 (ref), $400, $600, or $800."></span>
             </h3>
             <div class="options">
               <label><input type="radio" name="stipendAmount" value="200" checked /> $200</label>
@@ -227,7 +239,7 @@
           <!-- Annual Training Capacity (Ref: 500 trainees) -->
           <div class="input-level-card">
             <h3>
-              Annual Training Capacity <span class="reference">[Ref: 500 trainees]</span>
+              Annual Training Capacity <span class="reference">(Ref: 500 trainees)</span>
               <span class="info-icon-input" data-tooltip="Select the number of trainees per cycle: 100, 500 (ref), 1000, 1500, or 2000."></span>
             </h3>
             <div class="options">
@@ -241,8 +253,8 @@
           <!-- Delivery Method (Ref: Online) -->
           <div class="input-level-card">
             <h3>
-              Delivery Method <span class="reference">[Ref: Online]</span>
-              <span class="info-icon-input" data-tooltip="Choose Online (ref), In-person, or Hybrid delivery."></span>
+              Delivery Method <span class="reference">(Ref: Online)</span>
+              <span class="info-icon-input" data-tooltip="Choose Online (ref), In-person, or Hybrid."></span>
             </h3>
             <div class="options">
               <label><input type="radio" name="deliveryMethod" value="online" checked /> Online</label>
@@ -253,7 +265,7 @@
           <!-- Number of Training Sites (Ref: Multiple State Capitals) -->
           <div class="input-level-card">
             <h3>
-              Number of Training Sites <span class="reference">[Ref: Multiple State Capitals]</span>
+              Number of Training Sites <span class="reference">(Ref: Multiple State Capitals)</span>
               <span class="info-icon-input" data-tooltip="Select distribution: Multiple State Capitals (ref), Single Centralized Hub, Zonal Regional Centers, or Decentralized Rural Nodes."></span>
             </h3>
             <div class="options">
@@ -356,8 +368,8 @@
       <div class="modelling-assumptions">
         <h3><i class="fa-solid fa-lightbulb"></i> Assumptions</h3>
         <p>
-          Cost estimates are based on recent literature and combine variable costs (participant fee) with fixed costs.
-          The base fixed cost of $35,500 is adjusted by $10 for each trainee above or below 500.
+          Cost estimates combine variable costs (participant fee) and fixed costs (venue, materials, trainer fees, etc.).
+          A base fixed cost of $35,500 is adjusted by $10 for each trainee above or below 500.
         </p>
       </div>
       <div class="cost-icons">
@@ -370,7 +382,7 @@
           <h3>Direct Costs</h3>
           <div class="accordion-content">
             <ul>
-              <li><strong>Training and Development:</strong>
+              <li><strong>Training &amp; Development:</strong>
                 <ul>
                   <li>Venue rental for workshops and meetings</li>
                   <li>Acquisition of training materials (manuals, books, online resources)</li>
@@ -394,7 +406,7 @@
               </li>
               <li><strong>Logistical Costs:</strong>
                 <ul>
-                  <li>Travel and accommodation for trainers and participants</li>
+                  <li>Travel and accommodation expenses</li>
                   <li>Catering services during training sessions</li>
                 </ul>
               </li>
@@ -415,7 +427,7 @@
               <li><strong>Opportunity Costs:</strong>
                 <ul>
                   <li>Lost productivity due to training participation</li>
-                  <li>Costs for temporary replacements or overtime</li>
+                  <li>Temporary replacement or overtime expenses</li>
                 </ul>
               </li>
               <li><strong>Infrastructure Costs:</strong>
@@ -441,7 +453,7 @@
                 <ul>
                   <li>Regular updates to training materials</li>
                   <li>Continuous trainer development</li>
-                  <li>Renewal fees for software and licensed materials</li>
+                  <li>Renewal fees for software and licenses</li>
                 </ul>
               </li>
             </ul>
@@ -457,6 +469,17 @@
             This reflects the economic value of improved health outcomes.
           </p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visualizations Tab -->
+  <section id="visualizationsTab" class="tabcontent" tabindex="0">
+    <h2>Interactive Visualizations</h2>
+    <div class="visualizations-container">
+      <div id="mapContainer" class="map-container"></div>
+      <div id="dashboardContainer" class="dashboard-container">
+        <canvas id="dashboardChart"></canvas>
       </div>
     </div>
   </section>
