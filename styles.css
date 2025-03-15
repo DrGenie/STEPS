@@ -1,4 +1,4 @@
-/* RESETs & BASE */
+/* RESET & BASE */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -129,21 +129,21 @@ header p {
 .input-level-card .reference {
   font-size: 0.8em;
   color: #777;
-  margin-left: 2px; /* reduced spacing */
+  margin-left: 2px; /* Reduced spacing */
 }
 .input-level-card .options label {
   display: block;
   margin-bottom: 6px;
 }
 
-/* Info icons for inputs */
-.info-icon-input {
+/* Info icons for inputs and attributes */
+.info-icon-input, .info-icon {
   font-size: 14px;
   color: #003366;
-  margin-left: 4px;
+  margin-left: 2px;
   cursor: help;
 }
-.info-icon-input:before {
+.info-icon-input:before, .info-icon:before {
   font-family: "Font Awesome 6 Free";
   content: "\f05a";
   font-weight: 900;
@@ -168,17 +168,6 @@ header p {
 .attribute-icon {
   font-size: 24px;
   color: #003366;
-}
-.info-icon {
-  font-size: 14px;
-  color: #003366;
-  margin-left: 2px;
-  cursor: help;
-}
-.info-icon:before {
-  font-family: "Font Awesome 6 Free";
-  content: "\f05a";
-  font-weight: 900;
 }
 [data-tooltip] {
   position: relative;
