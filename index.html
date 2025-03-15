@@ -26,7 +26,7 @@
   <header>
     <h1>STEPS Decision Aid Tool</h1>
     <p>
-      STEPS helps policy makers in India plan and scale Field Epidemiology Training Programs by predcting programme uptake,
+      STEPS helps policy makers in India plan and scale Field Epidemiology Training Programs by forecasting programme uptake,
       evaluating economic tradeoffs, and comparing key programme features.
     </p>
   </header>
@@ -44,11 +44,8 @@
     <button class="tablink" data-tab="inputsTab" aria-selected="false">
       <i class="fa-solid fa-sliders"></i><span> Inputs</span>
     </button>
-    <button class="tablink" data-tab="wtpTab" aria-selected="false">
-      <i class="fa-solid fa-chart-bar"></i><span> WTP Results</span>
-    </button>
     <button class="tablink" data-tab="probTab" aria-selected="false">
-      <i class="fa-solid fa-chart-pie"></i><span> Predicted Uptake</span>
+      <i class="fa-solid fa-chart-pie"></i><span> Adoption Likelihood</span>
     </button>
     <button class="tablink" data-tab="costsTab" aria-selected="false">
       <i class="fa-solid fa-calculator"></i><span> Costs &amp; Benefits</span>
@@ -66,45 +63,32 @@
     <div class="intro-box">
       <p>
         Field Epidemiology Training Programs (FETP) are key to strengthening public health responses.
-        STEPS uses discrete choice experiment estimates to predict programme uptake – meaning the predicted likelihood
-        that decision makers will endorse a given training configuration – and to assess cost–benefit analysis.
+        STEPS uses discrete choice experiment estimates to forecast programme uptake – meaning the predicted likelihood
+        that decision makers will endorse a given training configuration – and to assess cost–benefit tradeoffs.
       </p>
       <ul>
-        <li><strong>Instructions</strong> – A brief guide to using the tool.</li>
+        <li><strong>Instructions</strong> – A visually engaging guide to using the tool.</li>
         <li><strong>Attributes</strong> – A snapshot of the main programme features.</li>
-        <li><strong>Inputs</strong> – Configure your programme options.</li>
-        <li><strong>WTP Results</strong> – View willingness-to-pay estimates.</li>
-        <li><strong>Predicted Uptake</strong> – See the forecasted decision maker support.</li>
-        <li><strong>Costs &amp; Benefits</strong> – Review a dynamic economic summary.</li>
-        <li><strong>Visualizations</strong> – Explore interactive maps and dashboards.</li>
-        <li><strong>Saved Scenarios</strong> – Save and compare configurations.</li>
+        <li><strong>Inputs</strong> – Configure your programme options with clear, interactive controls.</li>
+        <li><strong>Adoption Likelihood</strong> – View a forecast of decision maker support.</li>
+        <li><strong>Costs &amp; Benefits</strong> – Explore a detailed, dynamic economic summary.</li>
+        <li><strong>Visualizations</strong> – Interact with maps and dashboards showing regional capacities and cost distributions.</li>
+        <li><strong>Saved Scenarios</strong> – Save, compare, and export your configurations.</li>
       </ul>
     </div>
   </section>
 
   <!-- Instructions Tab -->
   <section id="instructionsTab" class="tabcontent" tabindex="0">
-    <div class="calculation-info">
-      <h4>How to Use This Tool</h4>
+    <div class="calculation-info instructions">
+      <h4>How to Use STEPS</h4>
       <ol>
-        <li style="margin-left: 20px;">Review the <strong>Attributes</strong> tab for an overview of programme features.</li>
-        <li style="margin-left: 20px;">In the <strong>Inputs</strong> tab, select your options. You will choose:
-          <ul>
-            <li>Level of Training (Frontline [ref], Intermediate, Advanced)</li>
-            <li>Training Model (In-service [ref] or Scholarship-based)</li>
-            <li>Stipend Amount ($200 [ref], $400, $600, $800)</li>
-            <li>Annual Training Capacity (100, 500 [ref], 1000, 1500, 2000 trainees; higher is better)</li>
-            <li>Delivery Method (Online [ref], In-person, Hybrid)</li>
-            <li>Number of Training Sites (Multiple State Capitals [ref], Single Centralized Hub, Zonal Regional Centers, Decentralized Rural Nodes)</li>
-            <li>Fee per Training Completion (adjust via slider)</li>
-          </ul>
-          Note: Some combinations are restricted.
-        </li>
-        <li style="margin-left: 20px;">The <strong>WTP Results</strong> tab displays a bar chart with error estimates.</li>
-        <li style="margin-left: 20px;">The <strong>Predicted Uptake</strong> tab shows a doughnut chart of forecasted decision maker support.</li>
-        <li style="margin-left: 20px;">The <strong>Costs &amp; Benefits</strong> tab provides an exhaustive, dynamic economic summary.</li>
-        <li style="margin-left: 20px;">The <strong>Visualizations</strong> tab offers an interactive map and dashboard illustrating regional capacities and cost distributions.</li>
-        <li style="margin-left: 20px;">Saved scenarios can be compared and exported as a PDF.</li>
+        <li><strong>Review Attributes:</strong> View a quick overview of the key programme features.</li>
+        <li><strong>Configure Inputs:</strong> In the Inputs tab, select options such as Level of Training, Training Model, Stipend, Capacity, Delivery Method, Number of Training Sites, and Fee. Reference values (in parentheses) guide your selection.</li>
+        <li><strong>Adoption Likelihood:</strong> Check the Adoption Likelihood tab to see the forecasted support from decision makers.</li>
+        <li><strong>Costs &amp; Benefits:</strong> Examine the economic summary. Toggle the Cost Breakdown and Benefits Explanation sections for detailed insights.</li>
+        <li><strong>Visualizations:</strong> Explore interactive maps and a dashboard that illustrate regional capacities and cost distributions.</li>
+        <li><strong>Saved Scenarios:</strong> Save your configurations and export comparisons as a PDF.</li>
       </ol>
     </div>
   </section>
@@ -113,71 +97,51 @@
   <section id="attributesTab" class="tabcontent" tabindex="0">
     <h2>Key Attributes</h2>
     <div class="attributes-grid">
+      <!-- Each attribute card uses a representative icon -->
       <div class="attribute-card">
-        <div class="attribute-icon">
-          <i class="fa-solid fa-hourglass-start"></i>
-          <span class="info-icon" data-tooltip="Select the duration: Frontline (3 months; ref), Intermediate (12 months), or Advanced (24 months)."></span>
-        </div>
+        <div class="attribute-icon"><i class="fa-solid fa-hourglass-half"></i></div>
         <div class="attribute-content">
           <h4>Level of Training</h4>
           <p>Frontline, Intermediate, or Advanced.</p>
         </div>
       </div>
       <div class="attribute-card">
-        <div class="attribute-icon">
-          <i class="fa-solid fa-user-tie"></i>
-          <span class="info-icon" data-tooltip="Choose In-service if participants work while training (ref) or Scholarship-based for full-time study."></span>
-        </div>
+        <div class="attribute-icon"><i class="fa-solid fa-chalkboard-teacher"></i></div>
         <div class="attribute-content">
           <h4>Training Model</h4>
           <p>In-service or Scholarship-based.</p>
         </div>
       </div>
       <div class="attribute-card">
-        <div class="attribute-icon">
-          <i class="fa-solid fa-hand-holding-usd"></i>
-          <span class="info-icon" data-tooltip="Stipend levels: $200 (ref), $400, $600, or $800."></span>
-        </div>
+        <div class="attribute-icon"><i class="fa-solid fa-hand-holding-usd"></i></div>
         <div class="attribute-content">
           <h4>Stipend Amount</h4>
           <p>$200, $400, $600, or $800.</p>
         </div>
       </div>
       <div class="attribute-card">
-        <div class="attribute-icon">
-          <i class="fa-solid fa-users"></i>
-          <span class="info-icon" data-tooltip="Trainees per cycle: 100, 500 (ref), 1000, 1500, or 2000 (higher is better)."></span>
-        </div>
+        <div class="attribute-icon"><i class="fa-solid fa-users"></i></div>
         <div class="attribute-content">
           <h4>Annual Training Capacity</h4>
           <p>100, 500, 1000, 1500, or 2000 trainees.</p>
         </div>
       </div>
       <div class="attribute-card">
-        <div class="attribute-icon">
-          <i class="fa-solid fa-mobile-screen"></i>
-          <span class="info-icon" data-tooltip="Delivery options: Online (ref), In-person, or Hybrid."></span>
-        </div>
+        <div class="attribute-icon"><i class="fa-solid fa-mobile-screen"></i></div>
         <div class="attribute-content">
           <h4>Delivery Method</h4>
           <p>Online, In-person, or Hybrid.</p>
         </div>
       </div>
       <div class="attribute-card">
-        <div class="attribute-icon">
-          <i class="fa-solid fa-building-columns"></i>
-          <span class="info-icon" data-tooltip="Distribution: Multiple State Capitals (ref), Single Centralized Hub, Zonal Regional Centers, or Decentralized Rural Nodes."></span>
-        </div>
+        <div class="attribute-icon"><i class="fa-solid fa-building-columns"></i></div>
         <div class="attribute-content">
           <h4>Number of Training Sites</h4>
           <p>Determines geographic spread.</p>
         </div>
       </div>
       <div class="attribute-card">
-        <div class="attribute-icon">
-          <i class="fa-solid fa-dollar-sign"></i>
-          <span class="info-icon" data-tooltip="Fee charged upon training completion. Adjust using the slider."></span>
-        </div>
+        <div class="attribute-icon"><i class="fa-solid fa-dollar-sign"></i></div>
         <div class="attribute-content">
           <h4>Fee per Training Completion</h4>
           <p>Cost charged after training.</p>
@@ -189,14 +153,15 @@
   <!-- Inputs Tab -->
   <section id="inputsTab" class="tabcontent" tabindex="0">
     <div class="input-card">
-      <h2>Configure Programme Options <span class="info-icon-input" data-tooltip="Hover over each label for details."></span></h2>
+      <h2>Configure Programme Options <i class="fa-solid fa-info-circle info-icon-input" data-tooltip="Hover over each label for details."></i></h2>
       <p>Select your options below. All fields are required. <em>(Reference values in parentheses)</em></p>
       <form onsubmit="event.preventDefault();">
         <div class="input-cards">
+          <!-- Level of Training -->
           <div class="input-level-card">
             <h3>
               Level of Training <span class="reference">(Ref: Frontline)</span>
-              <span class="info-icon-input" data-tooltip="Choose Frontline (3 months, ref), Intermediate (12 months), or Advanced (24 months)."></span>
+              <i class="fa-solid fa-clock info-icon-input" data-tooltip="Choose Frontline (3 months, ref), Intermediate (12 months), or Advanced (24 months)."></i>
             </h3>
             <div class="options">
               <label><input type="radio" name="levelTraining" value="frontline" checked /> Frontline (3 months)</label>
@@ -204,20 +169,22 @@
               <label><input type="radio" name="levelTraining" value="advanced" /> Advanced (24 months)</label>
             </div>
           </div>
+          <!-- Training Model -->
           <div class="input-level-card">
             <h3>
               Training Model <span class="reference">(Ref: In-service)</span>
-              <span class="info-icon-input" data-tooltip="Select In-service (ref) or Scholarship-based."></span>
+              <i class="fa-solid fa-chalkboard info-icon-input" data-tooltip="Select In-service (ref) or Scholarship-based."></i>
             </h3>
             <div class="options">
               <label><input type="radio" name="trainingModel" value="inservice" checked /> In-service Training</label>
               <label><input type="radio" name="trainingModel" value="scholarship" /> Scholarship-based Training</label>
             </div>
           </div>
+          <!-- Stipend Amount -->
           <div class="input-level-card">
             <h3>
               Stipend Amount <span class="reference">(Ref: $200)</span>
-              <span class="info-icon-input" data-tooltip="Stipend: $200 (ref), $400, $600, or $800."></span>
+              <i class="fa-solid fa-hand-holding-usd info-icon-input" data-tooltip="Stipend: $200 (ref), $400, $600, or $800."></i>
             </h3>
             <div class="options">
               <label><input type="radio" name="stipendAmount" value="200" checked /> $200</label>
@@ -226,10 +193,11 @@
               <label><input type="radio" name="stipendAmount" value="800" /> $800</label>
             </div>
           </div>
+          <!-- Annual Training Capacity -->
           <div class="input-level-card">
             <h3>
               Annual Training Capacity <span class="reference">(Ref: 500 trainees)</span>
-              <span class="info-icon-input" data-tooltip="Choose 100, 500 (ref), 1000, 1500, or 2000 trainees."></span>
+              <i class="fa-solid fa-users info-icon-input" data-tooltip="Choose 100, 500 (ref), 1000, 1500, or 2000 trainees."></i>
             </h3>
             <div class="options">
               <label><input type="radio" name="annualCapacity" value="100" /> 100 trainees</label>
@@ -239,10 +207,11 @@
               <label><input type="radio" name="annualCapacity" value="2000" /> 2000 trainees</label>
             </div>
           </div>
+          <!-- Delivery Method -->
           <div class="input-level-card">
             <h3>
               Delivery Method <span class="reference">(Ref: Online)</span>
-              <span class="info-icon-input" data-tooltip="Select Online (ref), In-person, or Hybrid."></span>
+              <i class="fa-solid fa-mobile-alt info-icon-input" data-tooltip="Select Online (ref), In-person, or Hybrid."></i>
             </h3>
             <div class="options">
               <label><input type="radio" name="deliveryMethod" value="online" checked /> Online</label>
@@ -250,10 +219,11 @@
               <label><input type="radio" name="deliveryMethod" value="hybrid" /> Hybrid</label>
             </div>
           </div>
+          <!-- Number of Training Sites -->
           <div class="input-level-card">
             <h3>
               Number of Training Sites <span class="reference">(Ref: Multiple State Capitals)</span>
-              <span class="info-icon-input" data-tooltip="Select: Multiple State Capitals (ref), Single Centralized Hub, Zonal Regional Centers, or Decentralized Rural Nodes."></span>
+              <i class="fa-solid fa-building info-icon-input" data-tooltip="Select: Multiple State Capitals (ref), Single Centralized Hub, Zonal Regional Centers, or Decentralized Rural Nodes."></i>
             </h3>
             <div class="options">
               <label><input type="radio" name="trainingSites" value="centralized" /> Single Centralized Hub</label>
@@ -262,10 +232,11 @@
               <label><input type="radio" name="trainingSites" value="decentralized" /> Decentralized Rural Nodes</label>
             </div>
           </div>
+          <!-- Fee per Training Completion -->
           <div class="input-level-card">
             <h3>
               Fee per Training Completion (USD)
-              <span class="info-icon-input" data-tooltip="Adjust this fee using the slider."></span>
+              <i class="fa-solid fa-dollar-sign info-icon-input" data-tooltip="Adjust this fee using the slider."></i>
             </h3>
             <div class="options slider-option">
               <label for="costSliderFETP">
@@ -292,30 +263,10 @@
     </div>
   </div>
 
-  <!-- WTP Results Tab -->
-  <section id="wtpTab" class="tabcontent" tabindex="0">
-    <div class="calculation-info">
-      <h4>Willingness-to-Pay (WTP) Results</h4>
-      <p>
-        WTP is estimated as the ratio of each attribute’s coefficient over the negative fee coefficient.
-        Hover over the bars to view error estimates.
-      </p>
-      <div class="buttons-row">
-        <button onclick="renderWTPChart()">Show WTP Charts</button>
-      </div>
-      <div class="chart-grid">
-        <div class="chart-box" style="height:350px; overflow:hidden;">
-          <h3>WTP (USD)</h3>
-          <canvas id="wtpChartMain"></canvas>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Predicted Uptake Tab -->
+  <!-- Adoption Likelihood Tab -->
   <section id="probTab" class="tabcontent" tabindex="0">
     <div class="calculation-info">
-      <h4>Predicted Programme Uptake</h4>
+      <h4>Adoption Likelihood</h4>
       <p>
         Click “Show Probability Plot” to view the forecasted decision maker support.
       </p>
@@ -324,7 +275,7 @@
       </div>
       <div class="chart-grid">
         <div class="chart-box" style="height:350px; overflow:hidden;">
-          <h3>Uptake Probability</h3>
+          <h3>Adoption Likelihood</h3>
           <canvas id="probChartFETP"></canvas>
         </div>
       </div>
@@ -371,36 +322,36 @@
               <li><strong>Training &amp; Development:</strong>
                 <ul>
                   <li>Venue rental for workshops and meetings</li>
-                  <li>Acquisition of training materials (manuals, books, online resources)</li>
+                  <li>Acquisition of training materials</li>
                   <li>Compensation for trainers and speakers</li>
                   <li>Content development and licensing fees</li>
                 </ul>
               </li>
               <li><strong>Personnel Costs:</strong>
                 <ul>
-                  <li>Salaries for full-time staff (program directors, coordinators, admin support)</li>
-                  <li>Consultant fees for subject matter experts</li>
-                  <li>Employment benefits and associated taxes</li>
+                  <li>Salaries for full-time staff</li>
+                  <li>Consultant fees</li>
+                  <li>Employment benefits and taxes</li>
                 </ul>
               </li>
               <li><strong>Technology Costs:</strong>
                 <ul>
-                  <li>Procurement of hardware (computers, projectors, screens)</li>
-                  <li>Software purchases (LMS, data analysis tools)</li>
-                  <li>Maintenance and support for tech infrastructure</li>
+                  <li>Hardware procurement</li>
+                  <li>Software purchases</li>
+                  <li>Maintenance and support</li>
                 </ul>
               </li>
               <li><strong>Logistical Costs:</strong>
                 <ul>
                   <li>Travel and accommodation expenses</li>
-                  <li>Catering services during training sessions</li>
+                  <li>Catering services</li>
                 </ul>
               </li>
               <li><strong>Miscellaneous Costs:</strong>
                 <ul>
-                  <li>Printing, stationery, and office supplies</li>
-                  <li>Communication expenses (telephone, internet)</li>
-                  <li>Insurance and liability coverage</li>
+                  <li>Printing, stationery, office supplies</li>
+                  <li>Communication expenses</li>
+                  <li>Insurance coverage</li>
                 </ul>
               </li>
             </ul>
@@ -418,14 +369,14 @@
               </li>
               <li><strong>Infrastructure Costs:</strong>
                 <ul>
-                  <li>Upgrades or modifications to existing facilities</li>
-                  <li>Depreciation of equipment used in training</li>
+                  <li>Upgrades to facilities</li>
+                  <li>Depreciation of equipment</li>
                 </ul>
               </li>
               <li><strong>Administrative Costs:</strong>
                 <ul>
-                  <li>Overheads such as utilities and office space</li>
-                  <li>Management and administrative oversight time</li>
+                  <li>Utilities and office space</li>
+                  <li>Management time</li>
                 </ul>
               </li>
             </ul>
@@ -439,7 +390,7 @@
                 <ul>
                   <li>Regular updates to training materials</li>
                   <li>Continuous trainer development</li>
-                  <li>Renewal fees for software and licenses</li>
+                  <li>Renewal fees for software/licenses</li>
                 </ul>
               </li>
             </ul>
