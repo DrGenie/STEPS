@@ -3,7 +3,8 @@
  * 1) Tab switching, slider updates, and accordion toggling
  * 2) DCE model for FETP with updated attributes and realistic restrictions
  * 3) Chart rendering for WTP, predicted uptake, and dynamic cost–benefit analysis
- * 4) Scenario saving and PDF export
+ * 4) Integration with Leaflet for interactive maps and Chart.js for dashboard visualization
+ * 5) Scenario saving and PDF export
  ****************************************************************************/
 
 /** On DOM load, set up tabs and accordion toggles */
@@ -12,6 +13,10 @@ document.addEventListener("DOMContentLoaded", function(){
   tabs.forEach(btn => {
     btn.addEventListener("click", function(){
       openTab(this.getAttribute("data-tab"), this);
+      if(this.getAttribute("data-tab") === "visualizationsTab"){
+        renderMap();
+        renderDashboard();
+      }
     });
   });
   openTab("introTab", document.querySelector(".tablink"));
@@ -44,13 +49,6 @@ function updateFETPCostDisplay(val){
 }
 
 /** DCE Coefficients and attribute mappings */
-/* Updated assumptions:
-   - Level of Training: Frontline is the reference.
-   - Stipend and Fee levels are set to realistic low values for India.
-   - Annual Capacity: higher capacity yields higher coefficient.
-   - Delivery Method: includes Online (ref), In-person, Hybrid.
-   - Number of Training Sites: reference is Multiple State Capitals.
-*/
 const mainCoefficients = {
   ASC_mean: -0.112,
   ASC_optout: 0.131,
@@ -129,32 +127,24 @@ function buildFETPScenario(){
 function computeFETPUptake(sc){
   let U = mainCoefficients.ASC_mean;
   
-  // Level of Training
   if(sc.levelTraining === "frontline") U += mainCoefficients.training_frontline;
   else if(sc.levelTraining === "intermediate") U += mainCoefficients.training_intermediate;
   else if(sc.levelTraining === "advanced") U += mainCoefficients.training_advanced;
   
-  // Training Model
   if(sc.trainingModel === "scholarship") U += mainCoefficients.trainingModel_scholarship;
   
-  // Stipend Amount
   if(sc.stipendAmount in mainCoefficients.stipend_levels)
     U += mainCoefficients.stipend_levels[sc.stipendAmount];
   
-  // Annual Training Capacity
   if(sc.annualCapacity in mainCoefficients.capacity_levels)
     U += mainCoefficients.capacity_levels[sc.annualCapacity];
   
-  // Delivery Method
   if(sc.deliveryMethod === "inperson") U += mainCoefficients.delivery_inperson;
   else if(sc.deliveryMethod === "hybrid") U += mainCoefficients.delivery_hybrid;
-  // Online is reference
   
-  // Number of Training Sites
   if(sc.trainingSites in mainCoefficients.trainingSites)
     U += mainCoefficients.trainingSites[sc.trainingSites];
   
-  // Fee per Training Completion effect
   U += mainCoefficients.cost * sc.fee;
   
   const altExp = Math.exp(U);
@@ -162,7 +152,7 @@ function computeFETPUptake(sc){
   return altExp / (altExp + optExp);
 }
 
-/** "Calculate & View Results" - results shown in a popup modal */
+/** "Calculate & View Results" - display results in popup modal */
 function openFETPScenario(){
   const scenario = buildFETPScenario();
   if(!scenario) return;
@@ -318,7 +308,6 @@ function renderFETPCostsBenefits(){
   const pct = uptakeFraction * 100;
   const trainees = sc.annualCapacity;
   
-  // QALY gain per participant from dropdown
   let qVal = 0.05;
   const sel = document.getElementById("qalyFETPSelect");
   if(sel){
@@ -326,11 +315,9 @@ function renderFETPCostsBenefits(){
     else if(sel.value === "high") qVal = 0.08;
   }
   
-  // Fixed cost dynamically adjusted based on capacity (base $35,500, ± $10 per trainee from 500)
   const fixedCost = 35500 + (sc.annualCapacity - 500) * 10;
   const totalCost = sc.fee * trainees + fixedCost;
   
-  // Monetised benefits calculation
   const totalQALY = trainees * qVal;
   const monetized = totalQALY * 50000;
   const netB = monetized - totalCost;
@@ -385,22 +372,86 @@ function renderFETPCostsBenefits(){
   });
 }
 
-/** Toggle cost breakdown accordion */
-function toggleCostAccordion(){
-  const acc = document.getElementById("detailedCostBreakdown");
-  acc.style.display = (acc.style.display === "none" || acc.style.display === "") ? "block" : "none";
+/** Render Interactive Map using Leaflet */
+function renderMap(){
+  // Center the map on India
+  var map = L.map('mapContainer').setView([20.5937, 78.9629], 5);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+  // Add markers for sample training site distributions
+  L.marker([28.6139, 77.2090]).addTo(map).bindPopup('New Delhi - Multiple State Capitals');
+  L.marker([19.0760, 72.8777]).addTo(map).bindPopup('Mumbai - Single Centralized Hub');
+  L.marker([13.0827, 80.2707]).addTo(map).bindPopup('Chennai - Zonal Regional Center');
+  L.marker([22.5726, 88.3639]).addTo(map).bindPopup('Kolkata - Decentralized Rural Node');
 }
 
-/** Toggle benefits explanation display */
-function toggleFETPBenefitsAnalysis(){
-  const box = document.getElementById("detailedFETPBenefitsAnalysis");
-  if(!box) return;
-  box.style.display = (box.style.display === "none" || box.style.display === "") ? "flex" : "none";
+/** Render Dashboard Chart for Cost Distribution */
+function renderDashboard(){
+  const ctx = document.getElementById('dashboardChart').getContext('2d');
+  if(window.dashboardChartInstance) {
+    window.dashboardChartInstance.destroy();
+  }
+  window.dashboardChartInstance = new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: ['Direct Costs', 'Indirect Costs', 'Recurring Costs'],
+      datasets: [{
+        data: [50, 30, 20],
+        backgroundColor: ['#c0392b', '#27ae60', '#f1c40f']
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: 'Cost Distribution'
+        },
+        legend: {
+          position: 'bottom'
+        }
+      }
+    }
+  });
 }
 
-/***************************************************************************
- * Scenario Saving & PDF Export
- ***************************************************************************/
+/** Render visualizations (map and dashboard) */
+function renderVisualizations(){
+  renderMap();
+  renderDashboard();
+}
+
+/** Render predicted uptake (doughnut chart) */
+let probChartFETP = null;
+function renderFETPProbChart(){
+  const sc = buildFETPScenario();
+  if(!sc) return;
+  const fraction = computeFETPUptake(sc);
+  const pct = fraction * 100;
+  
+  const ctx = document.getElementById("probChartFETP").getContext("2d");
+  if(probChartFETP) probChartFETP.destroy();
+  probChartFETP = new Chart(ctx, {
+    type: "doughnut",
+    data: {
+      labels: ["Uptake", "Non-uptake"],
+      datasets: [{
+        data: [pct, 100 - pct],
+        backgroundColor: ["#28a745", "#dc3545"]
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        title: { display: true, text: `Predicted Uptake: ${pct.toFixed(2)}%`, font: { size: 16 } }
+      }
+    }
+  });
+}
+
+/** Scenario Saving & PDF Export */
 let savedFETPScenarios = [];
 function saveFETPScenario(){
   const sc = buildFETPScenario();
