@@ -19,7 +19,7 @@
   <header>
     <h1>STEPS Decision Aid Tool</h1>
     <p>
-      STEPS helps policy makers in India plan and scale Field Epidemiology Training Programs by predicting uptake,
+      STEPS helps policy makers in India plan and scale Field Epidemiology Training Programs by forecasting uptake,
       evaluating economic tradeoffs, and comparing key programme features.
     </p>
   </header>
@@ -55,17 +55,17 @@
   <section id="introTab" class="tabcontent" tabindex="0" style="display: block;">
     <div class="intro-box">
       <p>
-        Field Epidemiology Training Programs are crucial for strengthening public health systems.
-        STEPS uses discrete choice experiment estimates to predict programme uptake, assess economic tradeoffs,
+        Field Epidemiology Training Programs are critical for strengthening public health responses.
+        STEPS uses discrete choice experiment estimates to forecast programme uptake, assess economic tradeoffs,
         and compare key programme features.
       </p>
       <ul>
         <li><strong>Instructions</strong> – A brief guide to using the tool.</li>
         <li><strong>Attributes</strong> – A snapshot of programme features.</li>
         <li><strong>Inputs</strong> – Configure your programme options.</li>
-        <li><strong>WTP Results</strong> – See willingness-to-pay estimates.</li>
-        <li><strong>Predicted Uptake</strong> – View the forecasted participation rate.</li>
-        <li><strong>Costs &amp; Benefits</strong> – Review a detailed economic summary.</li>
+        <li><strong>WTP Results</strong> – View willingness-to-pay estimates.</li>
+        <li><strong>Predicted Uptake</strong> – See the forecasted participation rate.</li>
+        <li><strong>Costs &amp; Benefits</strong> – Review a dynamic economic summary.</li>
         <li><strong>Saved Scenarios</strong> – Save and compare configurations.</li>
       </ul>
     </div>
@@ -87,7 +87,7 @@
             <li>Number of Training Sites (Multiple State Capitals [ref], Single Centralized Hub, Zonal Regional Centers, Decentralized Rural Nodes)</li>
             <li>Fee per Training Completion (adjust via slider)</li>
           </ul>
-          Note: Some combinations (e.g. pairing Advanced training with Frontline assumptions) are restricted.
+          Note: Some combinations are restricted.
         </li>
         <li style="margin-left: 20px;">The <strong>WTP Results</strong> tab displays a bar chart with error estimates.</li>
         <li style="margin-left: 20px;">The <strong>Predicted Uptake</strong> tab shows a doughnut chart of forecasted participation.</li>
@@ -105,7 +105,7 @@
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-hourglass-start"></i>
-          <span class="info-icon" data-tooltip="Select the duration: Frontline (3 months; reference), Intermediate (12 months), or Advanced (24 months)."></span>
+          <span class="info-icon" data-tooltip="Select the duration: Frontline (3 months; ref), Intermediate (12 months), or Advanced (24 months)."></span>
         </div>
         <div class="attribute-content">
           <h4>Level of Training</h4>
@@ -116,7 +116,7 @@
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-user-tie"></i>
-          <span class="info-icon" data-tooltip="Choose between training while working (In-service; reference) or full-time study with support (Scholarship-based)."></span>
+          <span class="info-icon" data-tooltip="Choose In-service if participants work while training (ref) or Scholarship-based for full-time study."></span>
         </div>
         <div class="attribute-content">
           <h4>Training Model</h4>
@@ -127,7 +127,7 @@
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-hand-holding-usd"></i>
-          <span class="info-icon" data-tooltip="Stipend levels help offset financial barriers: $200 (ref), $400, $600, $800."></span>
+          <span class="info-icon" data-tooltip="Stipend levels help reduce financial barriers: $200 (ref), $400, $600, or $800."></span>
         </div>
         <div class="attribute-content">
           <h4>Stipend Amount</h4>
@@ -138,7 +138,7 @@
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-users"></i>
-          <span class="info-icon" data-tooltip="Indicates the number of trainees per cycle. Options: 100, 500 (ref), 1000, 1500, 2000 (higher is better)."></span>
+          <span class="info-icon" data-tooltip="Indicates the number of trainees per cycle. Options: 100, 500 (ref), 1000, 1500, or 2000 (higher is better)."></span>
         </div>
         <div class="attribute-content">
           <h4>Annual Training Capacity</h4>
@@ -184,10 +184,8 @@
   <!-- Inputs Tab -->
   <section id="inputsTab" class="tabcontent" tabindex="0">
     <div class="input-card">
-      <h2>Configure Programme Options <span class="info-icon-input" data-tooltip="Select your programme options. Hover on each label for detailed info."></span></h2>
-      <p>
-        Select your options below. All fields are required. Note that some combinations are restricted.
-      </p>
+      <h2>Configure Programme Options <span class="info-icon-input" data-tooltip="Select your programme options. Hover each label for details."></span></h2>
+      <p>Select your options below. All fields are required. Note that some combinations are restricted.</p>
       <form onsubmit="event.preventDefault();">
         <div class="input-cards">
           <!-- Level of Training (Reference: Frontline) -->
@@ -215,7 +213,7 @@
           <div class="input-level-card">
             <h3>
               Training Model <span class="reference">(Ref: In-service)</span>
-              <span class="info-icon-input" data-tooltip="Select In-service if participants work while training (ref) or Scholarship-based for full-time study."></span>
+              <span class="info-icon-input" data-tooltip="Select In-service if participants work while training (ref) or Scholarship-based if they study full-time."></span>
             </h3>
             <div class="options">
               <label>
@@ -232,7 +230,7 @@
           <div class="input-level-card">
             <h3>
               Stipend Amount <span class="reference">(Ref: $200)</span>
-              <span class="info-icon-input" data-tooltip="Stipend levels: $200 (ref), $400, $600, or $800."></span>
+              <span class="info-icon-input" data-tooltip="Stipend levels help offset financial barriers: $200 (ref), $400, $600, or $800."></span>
             </h3>
             <div class="options">
               <label>
@@ -307,7 +305,7 @@
           <div class="input-level-card">
             <h3>
               Number of Training Sites <span class="reference">(Ref: Multiple State Capitals)</span>
-              <span class="info-icon-input" data-tooltip="Select distribution: Multiple State Capitals (ref), Single Centralized Hub, Zonal Regional Centers, or Decentralized Rural Nodes."></span>
+              <span class="info-icon-input" data-tooltip="Select the distribution: Multiple State Capitals (ref), Single Centralized Hub, Zonal Regional Centers, or Decentralized Rural Nodes."></span>
             </h3>
             <div class="options">
               <label>
@@ -332,7 +330,7 @@
           <div class="input-level-card">
             <h3>
               Fee per Training Completion (USD)
-              <span class="info-icon-input" data-tooltip="This fee is charged on completion of training. Adjust using the slider."></span>
+              <span class="info-icon-input" data-tooltip="This fee is charged upon training completion. Adjust using the slider."></span>
             </h3>
             <div class="options slider-option">
               <label for="costSliderFETP">
@@ -348,13 +346,8 @@
           <button type="button" onclick="openFETPScenario()">Calculate &amp; View Results</button>
         </div>
       </form>
-    </div>
-    <!-- Modal for Results -->
-    <div id="resultModal" class="modal">
-      <div class="modal-content">
-        <span class="close-button" onclick="closeModal()">&times;</span>
-        <div id="modalResults"></div>
-      </div>
+      <!-- Results Display -->
+      <div id="resultsDisplay" class="results-display"></div>
     </div>
   </section>
 
@@ -475,7 +468,7 @@
           <h4><i class="fa-solid fa-hand-holding-dollar"></i> QALY Benefits</h4>
           <p>
             Benefits = (QALY Gain per Participant × Number of Trainees × $50,000).
-            This quantifies the economic value of improved health outcomes.
+            This reflects the economic value of improved health outcomes.
           </p>
         </div>
       </div>
