@@ -374,12 +374,10 @@ function renderFETPCostsBenefits(){
 
 /** Render Interactive Map using Leaflet */
 function renderMap(){
-  // Center the map on India
   var map = L.map('mapContainer').setView([20.5937, 78.9629], 5);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
-  // Add markers for sample training site distributions
   L.marker([28.6139, 77.2090]).addTo(map).bindPopup('New Delhi - Multiple State Capitals');
   L.marker([19.0760, 72.8777]).addTo(map).bindPopup('Mumbai - Single Centralized Hub');
   L.marker([13.0827, 80.2707]).addTo(map).bindPopup('Chennai - Zonal Regional Center');
@@ -414,12 +412,6 @@ function renderDashboard(){
       }
     }
   });
-}
-
-/** Render visualizations (map and dashboard) */
-function renderVisualizations(){
-  renderMap();
-  renderDashboard();
 }
 
 /** Render predicted uptake (doughnut chart) */
