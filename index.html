@@ -71,8 +71,8 @@
         <li><strong>Attributes</strong>: Overview of key features with descriptive, round info icons.</li>
         <li><strong>Inputs</strong>: Configure your options using our streamlined grid‐based form.</li>
         <li><strong>Program Adoption Likelihood</strong>: View a donut chart showing forecasted support.</li>
-        <li><strong>Costs &amp; Benefits</strong>: See a dynamic cost–benefit analysis with a breakdown chart and explanation of how higher predicted uptake drives net benefit.</li>
-        <li><strong>Dashboard</strong>: Explore live training program data via real charts and maps.</li>
+        <li><strong>Costs &amp; Benefits</strong>: See a dynamic cost–benefit analysis with explanation of how higher predicted uptake drives net benefit.</li>
+        <li><strong>Dashboard</strong>: Explore live training program data with real charts and maps.</li>
         <li><strong>Saved Scenarios</strong>: Save, compare, and export configurations individually or as an overall PDF.</li>
       </ul>
     </div>
@@ -85,10 +85,10 @@
       <ol>
         <li><strong>Review Attributes:</strong> The Attributes tab explains each key feature using round info icons and illustrative emojis.</li>
         <li><strong>Configure Inputs:</strong> In the Inputs tab, choose options from each grouped block. Reference values (in parentheses) guide your selections.</li>
-        <li><strong>Program Adoption Likelihood:</strong> See a donut chart forecasting the likelihood that policy makers will adopt your configuration.</li>
-        <li><strong>Costs &amp; Benefits:</strong> View a dynamic cost–benefit analysis. Note that higher Predicted Uptake means more expected enrollment, which increases monetised benefits and net benefit.</li>
-        <li><strong>Dashboard:</strong> Explore live training program data with integrated charts and maps showing regional enrollment and trend data.</li>
-        <li><strong>Saved Scenarios:</strong> Save and export individual scenario details or a full comparison PDF.</li>
+        <li><strong>Program Adoption Likelihood:</strong> See the donut chart forecasting the probability that policy makers endorse your configuration.</li>
+        <li><strong>Costs &amp; Benefits:</strong> The analysis shows total cost and monetised benefits. Higher Predicted Uptake (indicating greater expected enrollment) increases the net benefit.</li>
+        <li><strong>Dashboard:</strong> Explore live training program data with regional enrollment and trend charts that mimic real deployment.</li>
+        <li><strong>Saved Scenarios:</strong> Save and export scenario details individually or as a full PDF comparison.</li>
       </ol>
     </div>
   </section>
@@ -167,7 +167,7 @@
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-file-invoice-dollar"></i>
-          <i class="fa-solid fa-info-circle info-icon" data-tooltip="The fee charged upon training completion."></i>
+          <i class="fa-solid fa-info-circle info-icon" data-tooltip="The fee (USD) charged upon training completion."></i>
         </div>
         <div class="attribute-content">
           <h4>Fee per Completion</h4>
@@ -271,7 +271,7 @@
                 <span id="costLabelFETP">2500</span>
               </label>
               <input type="range" id="costSliderFETP" min="0" max="10000" step="100" value="2500"
-                     oninput="updateFETPCostDisplay(this.value);"/>
+                     oninput="updateFETPCostDisplay(this.value);" />
             </div>
           </div>
         </div>
@@ -314,7 +314,7 @@
       <p>
         This section estimates the total programme cost and monetised benefits.<br/>
         <small>
-          Benefits = (QALY Gain per Participant × Number of Trainees × $50,000). Higher predicted uptake increases enrollment and, in turn, net benefit.
+          Benefits = (QALY Gain per Participant × Number of Trainees × $50,000). Higher predicted uptake means more enrollment, increasing net benefit.
         </small>
       </p>
       <div class="calculation-info" id="dynamicCostEstimate">
@@ -335,7 +335,7 @@
         <p>
           Cost estimates combine variable costs (fee per participant × capacity) and fixed costs.
           The base fixed cost of $35,500 is adjusted by $10 per trainee (above or below 500) plus extras for in‑person/hybrid delivery and advanced training.
-          Predicted Uptake is used to gauge potential enrollment—thus, a higher uptake increases monetised benefits and net benefit.
+          Predicted Uptake represents the likelihood that policy makers endorse your configuration; higher uptake leads to more enrollment and thus greater monetised benefits.
         </p>
       </div>
       <div class="cost-icons">
@@ -430,23 +430,24 @@
         <div class="cost-card">
           <h4><i class="fa-solid fa-hand-holding-dollar"></i> QALY Benefits</h4>
           <p>
-            Benefits = (QALY Gain × Trainees × $50,000). Higher predicted uptake means more enrollment, increasing net benefit.
+            Benefits = (QALY Gain × Trainees × $50,000). Higher predicted uptake drives more enrollment, thereby increasing net benefit.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Dashboard Tab (Real Data Integration) -->
+  <!-- Dashboard Tab -->
   <section id="dashboardTab" class="tabcontent" tabindex="0">
     <h2>Training Program Dashboard</h2>
+    <p class="dashboard-description">
+      The dashboard below integrates real (sample) data on regional enrollment and training trends. In a live deployment, these charts would be dynamically linked to current training program data.
+    </p>
     <div class="dashboard-grid">
-      <!-- Regional Enrollment Chart -->
       <div class="dashboard-chart">
         <h3>Regional Enrollment</h3>
         <canvas id="regionalEnrollmentChart"></canvas>
       </div>
-      <!-- Training Trend Chart -->
       <div class="dashboard-chart">
         <h3>Training Trend (Last 12 Months)</h3>
         <canvas id="trainingTrendChart"></canvas>
@@ -495,13 +496,16 @@
       <h2>Frequently Asked Questions</h2>
       <ul>
         <li><strong>What is Predicted Uptake?</strong>
-          <p>It is the forecasted probability that policy makers will endorse the chosen training configuration. A higher predicted uptake means more expected enrollment, which increases monetised benefits and net benefit.</p>
+          <p>It is the forecasted probability that policy makers will endorse your chosen configuration. A higher predicted uptake implies more expected enrollment, which increases monetised benefits and net benefit.</p>
         </li>
         <li><strong>How is Net Benefit Calculated?</strong>
-          <p>Net Benefit = Monetised Benefits – Total Training Cost. Benefits are based on the QALY gain, the number of trainees, and a value of $50,000 per QALY.</p>
+          <p>Net Benefit = Monetised Benefits – Total Training Cost. Benefits are calculated as (QALY Gain per Participant × Number of Trainees × $50,000).</p>
         </li>
         <li><strong>What do the info icons mean?</strong>
-          <p>Each round info icon provides a tooltip with emojis and a brief explanation to help you understand each option.</p>
+          <p>Each round info icon provides a tooltip explanation with illustrative emojis to help you understand the option.</p>
+        </li>
+        <li><strong>How is the Dashboard constructed?</strong>
+          <p>The Dashboard tab displays a Regional Enrollment bar chart and a Training Trend line chart. These charts are built with Chart.js using sample data (in a real system, they would link to live training data) to provide insight into regional performance and monthly trends.</p>
         </li>
       </ul>
     </div>
