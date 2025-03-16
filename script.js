@@ -1,9 +1,9 @@
 /****************************************************************************
  * SCRIPT.JS
  * 1) Tab switching, slider updates, and accordion toggling
- * 2) DCE model for FETP with attribute coefficients
+ * 2) DCE model for FETP with realistic attribute coefficients
  * 3) Chart rendering for Adoption Likelihood and Cost–Benefit analysis
- * 4) Integration with Leaflet for an interactive map & Chart.js for a dashboard
+ * 4) Integration with Leaflet for an interactive map & Chart.js for a cost distribution chart
  * 5) Scenario saving & PDF export
  * 6) Dynamic cost estimation in the Costs tab
  ****************************************************************************/
@@ -17,10 +17,6 @@ document.addEventListener("DOMContentLoaded", function() {
   for (var i = 0; i < tabs.length; i++) {
     tabs[i].addEventListener("click", function() {
       openTab(this.getAttribute("data-tab"), this);
-      if (this.getAttribute("data-tab") === "visualizationsTab") {
-        renderMap();
-        renderDashboard();
-      }
     });
   }
   openTab("introTab", tabs[0]);
@@ -38,9 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
 /* Open Tab Function */
 function openTab(tabId, clickedBtn) {
   var contents = document.getElementsByClassName("tabcontent");
-  for (var i = 0; i < contents.length; i++) {
-    contents[i].style.display = "none";
-  }
+  for (var i = 0; i < contents.length; i++) { contents[i].style.display = "none"; }
   var buttons = document.getElementsByClassName("tablink");
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].classList.remove("active");
@@ -84,9 +78,7 @@ function buildFETPScenario() {
   var feeSlider = document.getElementById("costSliderFETP");
   var fee = feeSlider ? parseInt(feeSlider.value, 10) : 2500;
   
-  if(!levelTraining || !trainingModel || !stipendAmount || !annualCapacity || !deliveryMethod || !trainingSites) {
-    return null;
-  }
+  if(!levelTraining || !trainingModel || !stipendAmount || !annualCapacity || !deliveryMethod || !trainingSites) return null;
   return {
     levelTraining: levelTraining,
     trainingModel: trainingModel,
@@ -101,27 +93,16 @@ function buildFETPScenario() {
 /* Compute Uptake */
 function computeFETPUptake(sc) {
   var U = mainCoefficients.ASC_mean;
-  
   if (sc.levelTraining === "frontline") U += mainCoefficients.training_frontline;
   else if (sc.levelTraining === "intermediate") U += mainCoefficients.training_intermediate;
   else if (sc.levelTraining === "advanced") U += mainCoefficients.training_advanced;
-  
   if (sc.trainingModel === "scholarship") U += mainCoefficients.trainingModel_scholarship;
-  
-  if (sc.stipendAmount in mainCoefficients.stipend_levels)
-    U += mainCoefficients.stipend_levels[sc.stipendAmount];
-  
-  if (sc.annualCapacity in mainCoefficients.capacity_levels)
-    U += mainCoefficients.capacity_levels[sc.annualCapacity];
-  
+  if (sc.stipendAmount in mainCoefficients.stipend_levels) U += mainCoefficients.stipend_levels[sc.stipendAmount];
+  if (sc.annualCapacity in mainCoefficients.capacity_levels) U += mainCoefficients.capacity_levels[sc.annualCapacity];
   if (sc.deliveryMethod === "inperson") U += mainCoefficients.delivery_inperson;
   else if (sc.deliveryMethod === "hybrid") U += mainCoefficients.delivery_hybrid;
-  
-  if (sc.trainingSites in mainCoefficients.trainingSites)
-    U += mainCoefficients.trainingSites[sc.trainingSites];
-  
+  if (sc.trainingSites in mainCoefficients.trainingSites) U += mainCoefficients.trainingSites[sc.trainingSites];
   U += mainCoefficients.cost * sc.fee;
-  
   var altExp = Math.exp(U);
   var optExp = Math.exp(mainCoefficients.ASC_optout);
   return altExp / (altExp + optExp);
@@ -130,28 +111,17 @@ function computeFETPUptake(sc) {
 /* Open Results Modal */
 function openFETPScenario() {
   var scenario = buildFETPScenario();
-  if (!scenario) {
-    alert("Please select all required fields before calculating.");
-    return;
-  }
+  if (!scenario) { alert("Please select all required fields before calculating."); return; }
   var fraction = computeFETPUptake(scenario);
   var pct = fraction * 100;
-  
-  var recommendation = "";
-  if (pct < 30) {
-    recommendation = "Uptake is low. Consider reducing the fee or revising programme features.";
-  } else if (pct < 70) {
-    recommendation = "Uptake is moderate. Small adjustments may further boost participation.";
-  } else {
-    recommendation = "Uptake is high. This configuration appears highly cost-effective.";
-  }
-  
+  var recommendation = (pct < 30) ? "Uptake is low. Consider reducing the fee or revising features." :
+                        (pct < 70) ? "Uptake is moderate. Small adjustments may boost participation." :
+                                     "Uptake is high. This configuration appears highly cost-effective.";
   var modalHTML = "<h4>Calculation Results</h4>" +
                   "<p><strong>Predicted Uptake:</strong> " + pct.toFixed(2) + "%</p>" +
                   "<p><em>Recommendation:</em> " + recommendation + "</p>";
   document.getElementById("modalResults").innerHTML = modalHTML;
   document.getElementById("resultModal").style.display = "block";
-  
   renderFETPProbChart();
   renderFETPCostsBenefits();
 }
@@ -165,34 +135,21 @@ function closeModal() {
 var probChartFETP = null;
 function renderFETPProbChart() {
   var scenario = buildFETPScenario();
-  if (!scenario) {
-    alert("Please select all required fields first.");
-    return;
-  }
+  if (!scenario) { alert("Please select all required fields first."); return; }
   var fraction = computeFETPUptake(scenario);
   var pct = fraction * 100;
-  
   var ctx = document.getElementById("probChartFETP").getContext("2d");
   if (probChartFETP) probChartFETP.destroy();
   probChartFETP = new Chart(ctx, {
     type: "doughnut",
     data: {
       labels: ["Uptake", "Non-uptake"],
-      datasets: [{
-        data: [pct, 100 - pct],
-        backgroundColor: ["#28a745", "#dc3545"]
-      }]
+      datasets: [{ data: [pct, 100 - pct], backgroundColor: ["#28a745", "#dc3545"] }]
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      plugins: {
-        title: {
-          display: true,
-          text: "Adoption Likelihood: " + pct.toFixed(2) + "%",
-          font: { size: 16 }
-        }
-      }
+      plugins: { title: { display: true, text: "Adoption Likelihood: " + pct.toFixed(2) + "%", font: { size: 16 } } }
     }
   });
 }
@@ -201,10 +158,7 @@ function renderFETPProbChart() {
 var cbaFETPChart = null;
 function renderFETPCostsBenefits() {
   var scenario = buildFETPScenario();
-  if (!scenario) {
-    document.getElementById("costsFETPResults").innerHTML = "<p>Please select all inputs before computing costs.</p>";
-    return;
-  }
+  if (!scenario) { document.getElementById("costsFETPResults").innerHTML = "<p>Please select all inputs before computing costs.</p>"; return; }
   
   var trainees = scenario.annualCapacity;
   var fixedCost = 35500 + (scenario.annualCapacity - 500) * 10;
@@ -215,29 +169,19 @@ function renderFETPCostsBenefits() {
   var totalCost = fixedCost + variableCost;
   
   var sel = document.getElementById("qalyFETPSelect");
-  var qVal = 0.05;
-  if (sel) {
-    if (sel.value === "low") qVal = 0.01;
-    else if (sel.value === "high") qVal = 0.08;
-  }
+  var qVal = (sel && sel.value === "low") ? 0.01 : (sel && sel.value === "high") ? 0.08 : 0.05;
   
   var totalQALY = trainees * qVal;
   var monetized = totalQALY * 50000;
   var netB = monetized - totalCost;
   
-  // Update dynamic estimated cost in Costs tab
+  // Update estimated cost display (Costs tab)
   document.getElementById("estimatedCostDisplay").innerHTML = "$" + totalCost.toLocaleString();
   
   var container = document.getElementById("costsFETPResults");
-  var econAdvice = "";
-  if (netB < 0) {
-    econAdvice = "The programme may not be cost-effective. Consider reducing the fee or revising features.";
-  } else if (netB < 50000) {
-    econAdvice = "This configuration shows modest benefits. Further improvements could enhance cost-effectiveness.";
-  } else {
-    econAdvice = "This configuration appears highly cost-effective.";
-  }
-  
+  var econAdvice = (netB < 0) ? "The programme may not be cost-effective. Consider revising features." :
+                    (netB < 50000) ? "This configuration shows modest benefits. Improvements could enhance cost-effectiveness." :
+                                     "This configuration appears highly cost-effective.";
   container.innerHTML = "<div class='calculation-info'>" +
                         "<p><strong>Predicted Uptake:</strong> " + (computeFETPUptake(scenario) * 100).toFixed(2) + "%</p>" +
                         "<p><strong>Number of Trainees:</strong> " + trainees + "</p>" +
@@ -256,20 +200,13 @@ function renderFETPCostsBenefits() {
     type: "doughnut",
     data: {
       labels: ["Fixed Costs", "Variable Costs"],
-      datasets: [{
-        data: [fixedCost, variableCost],
-        backgroundColor: ["#3498db", "#e74c3c"]
-      }]
+      datasets: [{ data: [fixedCost, variableCost], backgroundColor: ["#3498db", "#e74c3c"] }]
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
-        title: {
-          display: true,
-          text: "Cost Distribution",
-          font: { size: 16 }
-        },
+        title: { display: true, text: "Cost Distribution", font: { size: 16 } },
         legend: { position: "bottom" }
       }
     }
@@ -324,22 +261,13 @@ function renderDashboard() {
     type: 'doughnut',
     data: {
       labels: ['Fixed Costs', 'Variable Costs'],
-      datasets: [{
-        data: [fixedCost, variableCost],
-        backgroundColor: ['#3498db', '#e74c3c']
-      }]
+      datasets: [{ data: [fixedCost, variableCost], backgroundColor: ['#3498db', '#e74c3c'] }]
     },
     options: {
       responsive: true,
       plugins: {
-        title: {
-          display: true,
-          text: 'Cost Distribution',
-          font: { size: 16 }
-        },
-        legend: {
-          position: 'bottom'
-        }
+        title: { display: true, text: 'Cost Distribution', font: { size: 16 } },
+        legend: { position: 'bottom' }
       }
     }
   });
@@ -349,16 +277,12 @@ function renderDashboard() {
 var savedFETPScenarios = [];
 function saveFETPScenario() {
   var sc = buildFETPScenario();
-  if (!sc) {
-    alert("Please select all inputs before saving a scenario.");
-    return;
-  }
+  if (!sc) { alert("Please select all inputs before saving a scenario."); return; }
   var fraction = computeFETPUptake(sc);
   var pct = fraction * 100;
   sc.uptake = pct.toFixed(2);
   var netB = (pct * 1000).toFixed(2);
   sc.netBenefit = netB;
-  
   sc.name = "Scenario " + (savedFETPScenarios.length + 1);
   savedFETPScenarios.push(sc);
   
@@ -379,10 +303,7 @@ function saveFETPScenario() {
 }
 
 function exportFETPComparison() {
-  if (!savedFETPScenarios.length) {
-    alert("No saved scenarios available.");
-    return;
-  }
+  if (!savedFETPScenarios.length) { alert("No saved scenarios available."); return; }
   var jsPDF = window.jspdf.jsPDF;
   var doc = new jsPDF({ unit: "mm", format: "a4" });
   var yPos = 15;
@@ -406,7 +327,7 @@ function exportFETPComparison() {
     doc.text("Capacity: " + sc.annualCapacity, 15, yPos); yPos += 5;
     doc.text("Stipend: $" + sc.stipendAmount, 15, yPos); yPos += 5;
     doc.text("Fee: $" + sc.fee, 15, yPos); yPos += 5;
-    doc.text("Adoption Likelihood: " + sc.uptake + "%, Net Benefit: $" + sc.netBenefit, 15, yPos);
+    doc.text("Adoption: " + sc.uptake + "%, Net Benefit: $" + sc.netBenefit, 15, yPos);
     yPos += 10;
   });
   
