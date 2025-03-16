@@ -14,29 +14,27 @@ var leafletMap;
 /* Tab Switching */
 document.addEventListener("DOMContentLoaded", function() {
   var tabs = document.querySelectorAll(".tablink");
-  tabs.forEach(function(tab) {
-    tab.addEventListener("click", function() {
+  for (var i = 0; i < tabs.length; i++) {
+    tabs[i].addEventListener("click", function() {
       openTab(this.getAttribute("data-tab"), this);
     });
-  });
+  }
   openTab("introTab", tabs[0]);
   
   // Accordions
   var accordions = document.querySelectorAll(".accordion-item h3");
-  accordions.forEach(function(acc) {
-    acc.addEventListener("click", function() {
+  for (var j = 0; j < accordions.length; j++) {
+    accordions[j].addEventListener("click", function() {
       var content = this.nextElementSibling;
       content.style.display = (content.style.display === "block") ? "none" : "block";
     });
-  });
+  }
 });
 
 /* Open Tab Function */
 function openTab(tabId, clickedBtn) {
   var contents = document.getElementsByClassName("tabcontent");
-  for (var i = 0; i < contents.length; i++) {
-    contents[i].style.display = "none";
-  }
+  for (var i = 0; i < contents.length; i++) { contents[i].style.display = "none"; }
   var buttons = document.getElementsByClassName("tablink");
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].classList.remove("active");
@@ -79,7 +77,6 @@ function buildFETPScenario() {
   var trainingSites = document.querySelector('input[name="trainingSites"]:checked') ? document.querySelector('input[name="trainingSites"]:checked').value : null;
   var feeSlider = document.getElementById("costSliderFETP");
   var fee = feeSlider ? parseInt(feeSlider.value, 10) : 2500;
-  
   if(!levelTraining || !trainingModel || !stipendAmount || !annualCapacity || !deliveryMethod || !trainingSites) return null;
   return {
     levelTraining: levelTraining,
@@ -161,6 +158,7 @@ var cbaFETPChart = null;
 function renderFETPCostsBenefits() {
   var scenario = buildFETPScenario();
   if (!scenario) { document.getElementById("costsFETPResults").innerHTML = "<p>Please select all inputs before computing costs.</p>"; return; }
+  
   var trainees = scenario.annualCapacity;
   var fixedCost = 35500 + (scenario.annualCapacity - 500) * 10;
   if (scenario.deliveryMethod === "inperson") fixedCost += 5000;
@@ -171,11 +169,11 @@ function renderFETPCostsBenefits() {
   
   var sel = document.getElementById("qalyFETPSelect");
   var qVal = (sel && sel.value === "low") ? 0.01 : (sel && sel.value === "high") ? 0.08 : 0.05;
+  
   var totalQALY = trainees * qVal;
   var monetized = totalQALY * 50000;
   var netB = monetized - totalCost;
   
-  // Update dynamic estimated cost in Costs tab
   document.getElementById("estimatedCostDisplay").innerHTML = "$" + totalCost.toLocaleString();
   
   var container = document.getElementById("costsFETPResults");
@@ -254,9 +252,7 @@ function renderDashboard() {
   var variableCost = scenario.fee * trainees;
   
   var ctx = document.getElementById('dashboardChart').getContext('2d');
-  if (window.dashboardChartInstance) {
-    window.dashboardChartInstance.destroy();
-  }
+  if (window.dashboardChartInstance) { window.dashboardChartInstance.destroy(); }
   window.dashboardChartInstance = new Chart(ctx, {
     type: 'doughnut',
     data: {
@@ -265,10 +261,7 @@ function renderDashboard() {
     },
     options: {
       responsive: true,
-      plugins: {
-        title: { display: true, text: 'Cost Distribution', font: { size: 16 } },
-        legend: { position: 'bottom' }
-      }
+      plugins: { title: { display: true, text: 'Cost Distribution', font: { size: 16 } }, legend: { position: 'bottom' } }
     }
   });
 }
@@ -285,7 +278,6 @@ function saveFETPScenario() {
   sc.netBenefit = netB;
   sc.name = "Scenario " + (savedFETPScenarios.length + 1);
   savedFETPScenarios.push(sc);
-  
   var tb = document.querySelector("#FETPScenarioTable tbody");
   var row = document.createElement("tr");
   row.innerHTML = "<td>" + sc.name + "</td>" +
@@ -310,12 +302,8 @@ function exportFETPComparison() {
   doc.setFontSize(16);
   doc.text("FETP Scenarios Comparison", 105, yPos, { align: "center" });
   yPos += 10;
-  
   savedFETPScenarios.forEach(function(sc, idx) {
-    if (yPos + 60 > doc.internal.pageSize.getHeight() - 15) {
-      doc.addPage();
-      yPos = 15;
-    }
+    if (yPos + 60 > doc.internal.pageSize.getHeight() - 15) { doc.addPage(); yPos = 15; }
     doc.setFontSize(14);
     doc.text("Scenario " + (idx + 1) + ": " + sc.name, 15, yPos);
     yPos += 7;
@@ -330,6 +318,5 @@ function exportFETPComparison() {
     doc.text("Adoption: " + sc.uptake + "%, Net Benefit: $" + sc.netBenefit, 15, yPos);
     yPos += 10;
   });
-  
   doc.save("FETPScenarios_Comparison.pdf");
 }
