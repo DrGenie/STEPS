@@ -1,7 +1,7 @@
 /****************************************************************************
  * SCRIPT.JS
  * 1) Tab switching, slider updates, and accordion toggling
- * 2) DCE model for FETP with realistic attribute coefficients
+ * 2) DCE model for FETP with attribute coefficients
  * 3) Chart rendering for Adoption Likelihood and Cost–Benefit analysis
  * 4) Integration with Leaflet for an interactive map & Chart.js for a dashboard
  * 5) Scenario saving & PDF export
