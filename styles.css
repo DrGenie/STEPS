@@ -1,4 +1,4 @@
-/* RESETs & BASE */
+/* RESET & BASE */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -84,7 +84,7 @@ header p {
   line-height: 1.5em;
 }
 
-/* CALCULATION INFO BOX & Instructions */
+/* CALCULATION INFO BOX & INSTRUCTIONS */
 .calculation-info {
   background-color: #f2f7ff;
   border-left: 4px solid #003366;
@@ -130,14 +130,14 @@ header p {
 .input-level-card .reference {
   font-size: 0.8em;
   color: #777;
-  margin-left: 0px; /* Minimizing spacing further */
+  margin-left: 2px;
 }
 .input-level-card .options label {
   display: block;
   margin-bottom: 6px;
 }
 
-/* Info icons for inputs and attributes */
+/* Info icons */
 .info-icon-input, .info-icon {
   font-size: 14px;
   color: #003366;
@@ -150,11 +150,14 @@ header p {
   font-weight: 900;
 }
 
-/* Dynamic Cost Box in Inputs */
+/* Dynamic Cost Box in Costs Tab */
 #dynamicCostEstimate {
-  border: 1px dashed #777;
+  border: 1px solid #003366;
   border-radius: 6px;
   background-color: #f0f7fd;
+  padding: 10px;
+  margin-bottom: 15px;
+  text-align: center;
 }
 
 /* GRID LAYOUT for Attributes */
@@ -224,7 +227,7 @@ header p {
   height: 100%;
 }
 
-/* Results Modal */
+/* RESULTS MODAL */
 .modal {
   display: none;
   position: fixed;
@@ -265,7 +268,7 @@ header p {
   color: #000;
 }
 
-/* Visualizations Tab */
+/* VISUALIZATIONS */
 .visualizations-container {
   display: flex;
   flex-wrap: wrap;
@@ -286,7 +289,7 @@ header p {
   justify-content: center;
 }
 
-/* TABLE CONTAINER & SCENARIOS */
+/* SCENARIOS TABLE */
 .table-container {
   overflow-x: auto;
 }
@@ -333,7 +336,7 @@ header p {
   transform: translateY(-2px);
 }
 
-/* Cost Breakdown Cards */
+/* COST BREAKDOWN CARDS */
 .cost-breakdown-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -360,9 +363,7 @@ header p {
 
 /* RESPONSIVE */
 @media (max-width: 992px) {
-  .cost-card-detail {
-    width: 100%;
-  }
+  .cost-card-detail { width: 100%; }
 }
 @media (max-width: 768px) {
   .tabs {
