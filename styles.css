@@ -1,4 +1,4 @@
-/* RESEsT & BASE */
+/* RESET & BASE */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -130,7 +130,7 @@ header p {
 .input-level-card .reference {
   font-size: 0.8em;
   color: #777;
-  margin-left: 2px; /* Minimizing spacing further */
+  margin-left: 0px; /* Minimizing spacing further */
 }
 .input-level-card .options label {
   display: block;
@@ -148,6 +148,13 @@ header p {
   font-family: "Font Awesome 6 Free";
   content: "\f05a";
   font-weight: 900;
+}
+
+/* Dynamic Cost Box in Inputs */
+#dynamicCostEstimate {
+  border: 1px dashed #777;
+  border-radius: 6px;
+  background-color: #f0f7fd;
 }
 
 /* GRID LAYOUT for Attributes */
@@ -271,7 +278,7 @@ header p {
   border: 1px solid #ccd6e5;
   border-radius: 6px;
   padding: 15px;
-  min-height: 340px; /* Slightly bigger to better show placeholders */
+  min-height: 340px;
 }
 .dashboard-container {
   display: flex;
