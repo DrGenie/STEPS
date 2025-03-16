@@ -1,4 +1,4 @@
-/* RESET &h BASE */
+/* RESET & BASE */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -32,13 +32,23 @@ header p {
   max-width: 700px;
   margin: 0 auto 15px;
 }
+.faq-btn {
+  display: block;
+  margin: 10px auto 0;
+  background-color: #003366;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
 /* NAV TABS */
 .tabs {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 .tablink {
   background: #d9e4f5;
@@ -84,7 +94,7 @@ header p {
   line-height: 1.5em;
 }
 
-/* CALCULATION INFO BOX & INSTRUCTIONS */
+/* CALCULATION INFO & INSTRUCTIONS */
 .calculation-info {
   background-color: #f2f7ff;
   border-left: 4px solid #003366;
@@ -100,44 +110,37 @@ header p {
   border-radius: 8px;
 }
 
-/* INPUT CARDS */
-.input-card {
-  background-color: #f9fbfd;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 20px;
-}
-.input-cards {
-  display: flex;
-  flex-wrap: wrap;
+/* INPUTS SECTION - using grid for tight layout */
+.inputs-grid {
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 10px;
 }
-.input-level-card {
+.input-block {
   background-color: #fff;
   border: 1px solid #ccd6e5;
   border-radius: 8px;
   padding: 10px;
-  flex: 1 1 300px;
 }
-.input-level-card h3 {
-  margin-bottom: 6px;
-  font-size: 1.1em;
+.input-label {
+  font-size: 1em;
   color: #003366;
+  margin-bottom: 4px;
   display: flex;
   align-items: center;
   gap: 4px;
 }
-.input-level-card .reference {
+.input-label .reference {
   font-size: 0.8em;
   color: #777;
-  margin-left: 2px;
 }
-.input-level-card .options label {
-  display: block;
-  margin-bottom: 4px;
+.input-options {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-/* Info Icons - using round fa-info-circle */
+/* Info Icons */
 .info-icon-input, .info-icon {
   font-size: 14px;
   color: #003366;
@@ -158,11 +161,11 @@ header p {
   border-radius: 6px;
   background-color: #f0f7fd;
   padding: 10px;
-  margin-bottom: 15px;
+  margin: 15px 0;
   text-align: center;
 }
 
-/* GRID LAYOUT for Attributes */
+/* GRID for Attributes */
 .attributes-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -252,8 +255,8 @@ header p {
   animation: fadeIn 0.5s;
 }
 @keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 .close-button {
   color: #aaa;
@@ -267,6 +270,35 @@ header p {
 .close-button:hover,
 .close-button:focus {
   color: #000;
+}
+
+/* FAQ Overlay */
+.faq-overlay {
+  display: none;
+  position: fixed;
+  z-index: 300;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  overflow: auto;
+}
+.faq-content {
+  background: #fff;
+  margin: 5% auto;
+  padding: 20px 30px;
+  border-radius: 8px;
+  max-width: 600px;
+  position: relative;
+}
+.close-faq {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #333;
 }
 
 /* SCENARIOS TABLE */
@@ -349,5 +381,5 @@ header p {
   .tabs { flex-direction: column; align-items: center; }
   .tablink { width: 100%; text-align: left; border-radius: 0; }
   .chart-box { flex: 1 1 100%; height: 320px; }
-  .input-cards { flex-direction: column; }
+  .inputs-grid { grid-template-columns: 1fr; }
 }
