@@ -2,10 +2,10 @@
  * SCRIPT.JS
  * 1) Tab switching, slider updates, and accordion toggling
  * 2) DCE model for FETP with realistic attribute coefficients
- * 3) Chart rendering for Adoption Likelihood and Cost–Benefit analysis
- * 4) Integration with Leaflet for an interactive map & Chart.js for cost distribution
- * 5) Scenario saving & PDF export
- * 6) Dynamic cost estimation in the Costs tab
+ * 3) Chart rendering for Program Adoption Likelihood and dynamic cost–benefit analysis
+ * 4) Integration with Leaflet for an interactive map and Chart.js for cost distribution
+ * 5) Scenario saving & PDF export (overall and individual)
+ * 6) FAQ help overlay for computed metrics
  ****************************************************************************/
 
 /* Global variable for Leaflet map */
@@ -29,6 +29,9 @@ document.addEventListener("DOMContentLoaded", function() {
       content.style.display = (content.style.display === "block") ? "none" : "block";
     });
   }
+  
+  // FAQ overlay trigger
+  document.getElementById("faqBtn").addEventListener("click", toggleFAQ);
 });
 
 /* Open Tab Function */
@@ -130,7 +133,7 @@ function closeModal() {
   document.getElementById("resultModal").style.display = "none";
 }
 
-/* Render Adoption Likelihood (Doughnut Chart) */
+/* Render Program Adoption Likelihood (Doughnut Chart) */
 var probChartFETP = null;
 function renderFETPProbChart() {
   var scenario = buildFETPScenario();
@@ -148,7 +151,8 @@ function renderFETPProbChart() {
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      plugins: { title: { display: true, text: "Adoption Likelihood: " + pct.toFixed(2) + "%", font: { size: 16 } } }
+      animation: { animateScale: true, animateRotate: true },
+      plugins: { title: { display: true, text: "Program Adoption Likelihood: " + pct.toFixed(2) + "%", font: { size: 16 } } }
     }
   });
 }
@@ -203,10 +207,8 @@ function renderFETPCostsBenefits() {
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      plugins: {
-        title: { display: true, text: "Cost Distribution", font: { size: 16 } },
-        legend: { position: "bottom" }
-      }
+      animation: { animateScale: true, animateRotate: true },
+      plugins: { title: { display: true, text: "Cost Distribution", font: { size: 16 } }, legend: { position: "bottom" } }
     }
   });
 }
@@ -261,6 +263,7 @@ function renderDashboard() {
     },
     options: {
       responsive: true,
+      animation: { animateScale: true, animateRotate: true },
       plugins: { title: { display: true, text: 'Cost Distribution', font: { size: 16 } }, legend: { position: 'bottom' } }
     }
   });
@@ -319,4 +322,40 @@ function exportFETPComparison() {
     yPos += 10;
   });
   doc.save("FETPScenarios_Comparison.pdf");
+}
+
+/* Export Individual Scenario Details */
+function exportIndividualScenario() {
+  var index = prompt("Enter the scenario number to export:");
+  var scenario = savedFETPScenarios[index - 1];
+  if (!scenario) { alert("Scenario not found."); return; }
+  var jsPDF = window.jspdf.jsPDF;
+  var doc = new jsPDF({ unit: "mm", format: "a4" });
+  doc.setFontSize(16);
+  doc.text("Scenario " + index + ": " + scenario.name, 15, 20);
+  doc.setFontSize(12);
+  doc.text("Level: " + scenario.levelTraining, 15, 30);
+  doc.text("Model: " + scenario.trainingModel, 15, 40);
+  doc.text("Delivery: " + scenario.deliveryMethod, 15, 50);
+  doc.text("Sites: " + scenario.trainingSites, 15, 60);
+  doc.text("Capacity: " + scenario.annualCapacity, 15, 70);
+  doc.text("Stipend: $" + scenario.stipendAmount, 15, 80);
+  doc.text("Fee: $" + scenario.fee, 15, 90);
+  doc.text("Adoption Likelihood: " + scenario.uptake + "%", 15, 100);
+  doc.text("Net Benefit: $" + scenario.netBenefit, 15, 110);
+  doc.save("Scenario_" + index + ".pdf");
+}
+
+/* FAQ Help Overlay */
+function toggleFAQ() {
+  var overlay = document.getElementById("faqOverlay");
+  overlay.style.display = (overlay.style.display === "block") ? "none" : "block";
+}
+
+/* (Optional) Integration with Training Program Dashboard
+   Placeholder function – in a real system, this would pull live data.
+*/
+function loadTrainingDashboard() {
+  // Example: load and render dashboard charts with live data
+  console.log("Loading training program dashboard data...");
 }
