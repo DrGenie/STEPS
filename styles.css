@@ -130,20 +130,20 @@ header p {
 .input-level-card .reference {
   font-size: 0.8em;
   color: #777;
-  margin-left: 0; /* no extra spacing */
+  margin-left: 0; /* minimal spacing */
 }
 .input-level-card .options label {
   display: block;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
-/* Info Icons */
+/* Info Icons (round) */
 .info-icon-input, .info-icon {
   font-size: 14px;
   color: #003366;
   cursor: help;
-  border-radius: 50%;
   background-color: #fff;
+  border-radius: 50%;
   padding: 2px;
 }
 .info-icon-input:before, .info-icon:before {
@@ -152,7 +152,7 @@ header p {
   font-weight: 900;
 }
 
-/* Dynamic Cost Box (in Costs tab) */
+/* Dynamic Cost Box */
 #dynamicCostEstimate {
   border: 1px solid #003366;
   border-radius: 6px;
@@ -215,7 +215,6 @@ header p {
   background: #f2f7ff;
   border: 1px solid #ccd6e5;
   border-radius: 6px;
-  position: relative;
   overflow: hidden;
 }
 .chart-box h3 {
@@ -270,26 +269,7 @@ header p {
   color: #000;
 }
 
-/* VISUALIZATIONS */
-.visualizations-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin-top: 20px;
-}
-.map-container, .dashboard-container {
-  flex: 1 1 45%;
-  background-color: #f2f7ff;
-  border: 1px solid #ccd6e5;
-  border-radius: 6px;
-  padding: 15px;
-  min-height: 340px;
-}
-.dashboard-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+/* VISUALIZATIONS (dropped this tab; not used) */
 
 /* SCENARIOS TABLE */
 .table-container {
@@ -365,25 +345,11 @@ header p {
 
 /* RESPONSIVE */
 @media (max-width: 992px) {
-  .cost-card-detail {
-    width: 100%;
-  }
+  .cost-card-detail { width: 100%; }
 }
 @media (max-width: 768px) {
-  .tabs {
-    flex-direction: column;
-    align-items: center;
-  }
-  .tablink {
-    width: 100%;
-    text-align: left;
-    border-radius: 0;
-  }
-  .chart-box {
-    flex: 1 1 100%;
-    height: 320px;
-  }
-  .input-cards {
-    flex-direction: column;
-  }
+  .tabs { flex-direction: column; align-items: center; }
+  .tablink { width: 100%; text-align: left; border-radius: 0; }
+  .chart-box { flex: 1 1 100%; height: 320px; }
+  .input-cards { flex-direction: column; }
 }
