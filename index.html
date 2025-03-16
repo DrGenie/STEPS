@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>STEPS - Scalable Training Estimation and Planning System</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css"/>
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-papNMzNnQn5h+1G+FHu8SyuXHs6A1k+Ln7tK5qRo1l5eYm6Jzv+1pArJ7N4C9FfpRrmAgM3tYWd3FZ9jKz1Bw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        crossorigin="anonymous" referrerpolicy="no-referrer"/>
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <!-- jsPDF -->
@@ -60,16 +60,16 @@
     <div class="intro-box">
       <p>
         Field Epidemiology Training Programs (FETP) are essential to strengthening public health responses.
-        STEPS uses discrete choice experiment estimates to forecast programme uptake – the predicted percentage of decision makers endorsing a configuration.
-        This uptake is then factored into the cost–benefit analysis to estimate expected participation.
+        STEPS uses discrete choice experiment estimates to forecast programme uptake – meaning the predicted likelihood
+        that decision makers will endorse a given training configuration – and to assess cost–benefit tradeoffs.
       </p>
       <ul>
-        <li><strong>Instructions</strong> – A visually engaging guide.</li>
-        <li><strong>Attributes</strong> – Overview of key features with tooltips.</li>
-        <li><strong>Inputs</strong> – Configure your options using our smart form.</li>
-        <li><strong>Adoption Likelihood</strong> – View predicted decision maker support.</li>
-        <li><strong>Costs &amp; Benefits</strong> – See dynamic cost–benefit analysis including uptake effects.</li>
-        <li><strong>Saved Scenarios</strong> – Save and export configurations for comparison.</li>
+        <li><strong>Instructions</strong> – A visually engaging guide to using the tool.</li>
+        <li><strong>Attributes</strong> – An overview of key features with intuitive tooltips.</li>
+        <li><strong>Inputs</strong> – Configure your options using our streamlined form.</li>
+        <li><strong>Adoption Likelihood</strong> – See a donut chart showing predicted support.</li>
+        <li><strong>Costs &amp; Benefits</strong> – View a dynamic cost–benefit analysis with detailed breakdowns.</li>
+        <li><strong>Saved Scenarios</strong> – Save, compare, and export configurations for further analysis.</li>
       </ul>
     </div>
   </section>
@@ -79,13 +79,12 @@
     <div class="calculation-info instructions">
       <h4>How to Use STEPS</h4>
       <ol>
-        <li><strong>Review Attributes:</strong> Visit the Attributes tab to see each key feature explained with descriptive tooltips and emojis.</li>
-        <li><strong>Configure Inputs:</strong> In the Inputs tab, select your options. Reference values (in parentheses) guide your choices.</li>
-        <li><strong>Adoption Likelihood:</strong> The predicted uptake (shown in a donut chart) estimates the percentage of decision makers endorsing your configuration and is used in the cost–benefit analysis.</li>
-        <li><strong>Costs &amp; Benefits:</strong> View a real-time dynamic cost–benefit analysis with a breakdown of fixed and variable costs.</li>
-        <li><strong>Saved Scenarios:</strong> Save and export your configurations for side-by-side comparison.</li>
+        <li><strong>Review Attributes:</strong> The Attributes tab explains each feature with descriptive round info icons and emojis.</li>
+        <li><strong>Configure Inputs:</strong> Select your options in the Inputs tab. Reference values (in parentheses) guide your choices.</li>
+        <li><strong>Adoption Likelihood:</strong> Check the donut chart for the forecasted level of decision maker support.</li>
+        <li><strong>Costs &amp; Benefits:</strong> View the dynamic cost–benefit analysis where the Estimated Total Cost is updated based on your inputs. Predicted Uptake is used to gauge potential adoption, influencing cost–benefit outcomes.</li>
+        <li><strong>Saved Scenarios:</strong> Save and export your configurations for side-by-side comparisons.</li>
       </ol>
-      <p><em>Further improvements could include real-time regional cost data and enhanced simulation modules.</em></p>
     </div>
   </section>
 
@@ -97,7 +96,7 @@
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-user-graduate"></i>
-          <i class="fa-solid fa-info-circle info-icon" data-tooltip="Frontline📊, Intermediate📈, Advanced🚀 — each tier offers increasing depth of training."></i>
+          <i class="fa-solid fa-info-circle info-icon" data-tooltip="Frontline📊, Intermediate📈, Advanced🚀 — each tier offers increasing depth."></i>
         </div>
         <div class="attribute-content">
           <h4>Level of Training</h4>
@@ -219,7 +218,7 @@
           <div class="input-level-card">
             <h3>
               Number of Training Sites<span class="reference">(Ref: Multiple State Capitals)</span>
-              <i class="fa-solid fa-info-circle info-icon-input" data-tooltip="Options: Single Central📍, Multiple State Capitals📍📍, Zonal Regional Centers📍📍📍, Decentralized Local Sites📍📍📍📍."></i>
+              <i class="fa-solid fa-info-circle info-icon-input" data-tooltip="Single Central📍, State Capitals📍📍, Zonal Regional Centers📍📍📍, Decentralized Local Sites📍📍📍📍."></i>
             </h3>
             <div class="options">
               <label><input type="radio" name="trainingSites" value="centralized" /> Single Central Site📍</label>
@@ -232,7 +231,7 @@
           <div class="input-level-card">
             <h3>
               Annual Training Capacity<span class="reference">(Ref: 500 trainees)</span>
-              <i class="fa-solid fa-info-circle info-icon-input" data-tooltip="Options: 100, 500, 1000, 1500, 2000 trainees."></i>
+              <i class="fa-solid fa-info-circle info-icon-input" data-tooltip="Options: 100, 500, 1000, 1500, or 2000 trainees."></i>
             </h3>
             <div class="options">
               <label><input type="radio" name="annualCapacity" value="100" /> 100 trainees</label>
@@ -266,7 +265,7 @@
                 <i class="fa-solid fa-dollar-sign"></i>
                 <span id="costLabelFETP">2500</span>
               </label>
-              <!-- Fee slider now from 0 to 10,000 -->
+              <!-- Updated slider: 0 to 10,000 -->
               <input type="range" id="costSliderFETP" min="0" max="10000" step="100" value="2500"
                      oninput="updateFETPCostDisplay(this.value);"/>
             </div>
@@ -311,7 +310,8 @@
       <p>
         This section estimates the total programme cost and monetised benefits.<br/>
         <small>
-          Benefits = (QALY Gain per Participant × Number of Trainees × $50,000). The predicted uptake is used to estimate expected participation.
+          Benefits = (QALY Gain per Participant × Number of Trainees × $50,000).
+          This reflects the economic value of improved health outcomes.
         </small>
       </p>
       <!-- Dynamic Estimated Cost Display -->
@@ -331,7 +331,9 @@
       <div class="modelling-assumptions">
         <h3><i class="fa-solid fa-lightbulb"></i> Assumptions</h3>
         <p>
-          Cost estimates combine variable costs (fee × capacity) and fixed costs. Base fixed cost is $35,500, adjusted by $10 per trainee (above or below 500) plus extras for delivery method and advanced training.
+          Cost estimates combine variable costs (fee × capacity) and fixed costs.<br/>
+          The base fixed cost of $35,500 is adjusted by $10 per trainee (above or below 500) plus extras for delivery and advanced training.
+          Predicted Uptake is used to gauge potential adoption, affecting net benefit.
         </p>
       </div>
       <div class="cost-icons">
@@ -345,17 +347,17 @@
             <ul>
               <li><strong>Training &amp; Development:</strong>
                 <ul>
-                  <li>Venue rental for workshops & meetings</li>
-                  <li>Acquisition of training materials</li>
-                  <li>Compensation for trainers & speakers</li>
-                  <li>Content development & licensing fees</li>
+                  <li>Venue rental</li>
+                  <li>Training materials</li>
+                  <li>Trainer compensation</li>
+                  <li>Content development & licensing</li>
                 </ul>
               </li>
               <li><strong>Personnel Costs:</strong>
                 <ul>
-                  <li>Salaries for full-time staff</li>
+                  <li>Staff salaries</li>
                   <li>Consultant fees</li>
-                  <li>Employment benefits & taxes</li>
+                  <li>Benefits & taxes</li>
                 </ul>
               </li>
               <li><strong>Technology Costs:</strong>
@@ -367,15 +369,15 @@
               </li>
               <li><strong>Logistical Costs:</strong>
                 <ul>
-                  <li>Travel & accommodation expenses</li>
+                  <li>Travel & accommodation</li>
                   <li>Catering services</li>
                 </ul>
               </li>
-              <li><strong>Miscellaneous Costs:</strong>
+              <li><strong>Miscellaneous:</strong>
                 <ul>
                   <li>Printing & stationery</li>
                   <li>Communication expenses</li>
-                  <li>Insurance coverage</li>
+                  <li>Insurance</li>
                 </ul>
               </li>
             </ul>
@@ -387,20 +389,20 @@
             <ul>
               <li><strong>Opportunity Costs:</strong>
                 <ul>
-                  <li>Lost productivity due to training</li>
-                  <li>Hiring temporary replacements or overtime</li>
+                  <li>Lost productivity</li>
+                  <li>Temporary replacements/overtime</li>
                 </ul>
               </li>
-              <li><strong>Infrastructure Costs:</strong>
+              <li><strong>Infrastructure:</strong>
                 <ul>
-                  <li>Facility upgrades & modifications</li>
+                  <li>Facility upgrades</li>
                   <li>Equipment depreciation</li>
                 </ul>
               </li>
-              <li><strong>Administrative Costs:</strong>
+              <li><strong>Administrative:</strong>
                 <ul>
-                  <li>Office space & utilities</li>
-                  <li>Management & oversight time</li>
+                  <li>Overheads & utilities</li>
+                  <li>Management time</li>
                 </ul>
               </li>
             </ul>
@@ -412,8 +414,8 @@
             <ul>
               <li><strong>Maintenance & Upkeep:</strong>
                 <ul>
-                  <li>Regular updates to training materials</li>
-                  <li>Continuous trainer development</li>
+                  <li>Regular material updates</li>
+                  <li>Trainer development</li>
                   <li>Software/license renewals</li>
                 </ul>
               </li>
@@ -425,8 +427,7 @@
         <div class="cost-card">
           <h4><i class="fa-solid fa-hand-holding-dollar"></i> QALY Benefits</h4>
           <p>
-            Benefits = (QALY Gain per Participant × Number of Trainees × $50,000).
-            This represents the economic value of improved health outcomes.
+            Benefits = (QALY Gain × Trainees × $50,000). Predicted Uptake informs adoption and net benefit.
           </p>
         </div>
       </div>
