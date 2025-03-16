@@ -26,7 +26,7 @@
   <header>
     <h1>STEPS Decision Aid Tool</h1>
     <p>
-      STEPS helps policy makers in India plan and scale Field Epidemiology Training Programs by predicting programme uptake,
+      STEPS helps policy makers in India plan and scale Field Epidemiology Training Programs by forecasting programme uptake,
       evaluating economic tradeoffs, and comparing key programme features.
     </p>
   </header>
@@ -50,9 +50,6 @@
     <button class="tablink" data-tab="costsTab" aria-selected="false">
       <i class="fa-solid fa-calculator"></i><span> Costs &amp; Benefits</span>
     </button>
-    <button class="tablink" data-tab="visualizationsTab" aria-selected="false">
-      <i class="fa-solid fa-map"></i><span> Visualizations</span>
-    </button>
     <button class="tablink" data-tab="scenariosTab" aria-selected="false">
       <i class="fa-solid fa-folder-open"></i><span> Saved Scenarios</span>
     </button>
@@ -69,11 +66,10 @@
       <ul>
         <li><strong>Instructions</strong> – A visually engaging guide to using the tool.</li>
         <li><strong>Attributes</strong> – An overview of key features with intuitive tooltips.</li>
-        <li><strong>Inputs</strong> – Configure your options using interactive controls.</li>
-        <li><strong>Adoption Likelihood</strong> – View forecasted decision maker support.</li>
+        <li><strong>Inputs</strong> – Configure your options with our interactive form.</li>
+        <li><strong>Adoption Likelihood</strong> – View a donut chart showing predicted support.</li>
         <li><strong>Costs &amp; Benefits</strong> – See a dynamic cost–benefit analysis and cost breakdown.</li>
-        <li><strong>Visualizations</strong> – Interact with a live map and cost distribution chart.</li>
-        <li><strong>Saved Scenarios</strong> – Save, compare, and export your configurations.</li>
+        <li><strong>Saved Scenarios</strong> – Save and export your configurations for comparison.</li>
       </ul>
     </div>
   </section>
@@ -83,12 +79,11 @@
     <div class="calculation-info instructions">
       <h4>How to Use STEPS</h4>
       <ol>
-        <li><strong>Review Attributes:</strong> See the Attributes tab to understand each key feature via detailed tooltips.</li>
-        <li><strong>Configure Inputs:</strong> Select your options in the Inputs tab. Reference values (in parentheses) guide your choices.</li>
-        <li><strong>Adoption Likelihood:</strong> Check the donut chart for predicted decision maker support.</li>
-        <li><strong>Costs &amp; Benefits:</strong> View a dynamic cost–benefit analysis with an updated estimated cost and breakdown.</li>
-        <li><strong>Visualizations:</strong> Explore the live map and cost distribution chart based on your inputs.</li>
-        <li><strong>Saved Scenarios:</strong> Save and export your configurations for comparison.</li>
+        <li><strong>Review Attributes:</strong> Visit the Attributes tab to see each feature explained with hover tooltips and emojis.</li>
+        <li><strong>Configure Inputs:</strong> In the Inputs tab, select your options. Reference values (in parentheses) help guide your selections.</li>
+        <li><strong>Adoption Likelihood:</strong> Check the donut chart for the forecasted level of decision maker support.</li>
+        <li><strong>Costs &amp; Benefits:</strong> See a real-time dynamic cost–benefit analysis including a cost breakdown chart.</li>
+        <li><strong>Saved Scenarios:</strong> Save your configurations and export them as a PDF for side-by-side comparisons.</li>
       </ol>
     </div>
   </section>
@@ -101,7 +96,7 @@
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-user-graduate"></i>
-          <i class="fa-solid fa-info-circle info-icon" data-tooltip="Frontline📊, Intermediate📈, Advanced🚀 — each tier offers increasing depth of training."></i>
+          <i class="fa-solid fa-info-circle info-icon" data-tooltip="Frontline📊, Intermediate📈, Advanced🚀 – each tier offers increasing depth of training."></i>
         </div>
         <div class="attribute-content">
           <h4>Level of Training</h4>
@@ -138,14 +133,14 @@
         </div>
         <div class="attribute-content">
           <h4>Number of Training Sites</h4>
-          <p>Single, Multiple, Zonal, Decentralized.</p>
+          <p>Single, Multiple, Zonal, or Decentralized.</p>
         </div>
       </div>
       <!-- 5) Annual Training Capacity -->
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-people-group"></i>
-          <i class="fa-solid fa-info-circle info-icon" data-tooltip="100, 500 (ref), 1000, 1500, or 2000 trainees."></i>
+          <i class="fa-solid fa-info-circle info-icon" data-tooltip="Options: 100, 500 (ref), 1000, 1500, 2000 trainees."></i>
         </div>
         <div class="attribute-content">
           <h4>Annual Training Capacity</h4>
@@ -167,7 +162,7 @@
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-file-invoice-dollar"></i>
-          <i class="fa-solid fa-info-circle info-icon" data-tooltip="This fee (USD) is charged upon training completion."></i>
+          <i class="fa-solid fa-info-circle info-icon" data-tooltip="The fee charged upon training completion."></i>
         </div>
         <div class="attribute-content">
           <h4>Fee per Completion</h4>
@@ -188,7 +183,7 @@
           <div class="input-level-card">
             <h3>
               Level of Training<span class="reference">(Ref: Frontline)</span>
-              <i class="fa-solid fa-user-graduate info-icon-input" data-tooltip="Frontline📊 (3 mo, ref), Intermediate📈 (12 mo), Advanced🚀 (24 mo)."></i>
+              <i class="fa-solid fa-info-circle info-icon-input" data-tooltip="Frontline📊 (3 mo, ref), Intermediate📈 (12 mo), Advanced🚀 (24 mo)."></i>
             </h3>
             <div class="options">
               <label><input type="radio" name="levelTraining" value="frontline" checked /> Frontline📊 (3 mo)</label>
@@ -200,7 +195,7 @@
           <div class="input-level-card">
             <h3>
               Training Model<span class="reference">(Ref: In-service)</span>
-              <i class="fa-solid fa-user-tie info-icon-input" data-tooltip="In-service🧑‍💻 (ref) or Scholarship-based🎓."></i>
+              <i class="fa-solid fa-info-circle info-icon-input" data-tooltip="In-service🧑‍💻 (ref) or Scholarship-based🎓."></i>
             </h3>
             <div class="options">
               <label><input type="radio" name="trainingModel" value="inservice" checked /> In-service🧑‍💻</label>
@@ -211,7 +206,7 @@
           <div class="input-level-card">
             <h3>
               Delivery Method<span class="reference">(Ref: Online)</span>
-              <i class="fa-solid fa-laptop info-icon-input" data-tooltip="In-person🏫, Hybrid💻🏫, Fully Online💻."></i>
+              <i class="fa-solid fa-info-circle info-icon-input" data-tooltip="In-person🏫, Hybrid💻🏫, Fully Online💻."></i>
             </h3>
             <div class="options">
               <label><input type="radio" name="deliveryMethod" value="inperson" /> In-person🏫</label>
@@ -223,7 +218,7 @@
           <div class="input-level-card">
             <h3>
               Number of Training Sites<span class="reference">(Ref: Multiple State Capitals)</span>
-              <i class="fa-solid fa-map-location-dot info-icon-input" data-tooltip="Single📍, State Capitals📍📍, Zonal Regional Centers📍📍📍, Decentralized Local Sites📍📍📍📍."></i>
+              <i class="fa-solid fa-info-circle info-icon-input" data-tooltip="Single Central📍, State Capitals📍📍, Zonal Regional Centers📍📍📍, Decentralized Local Sites📍📍📍📍."></i>
             </h3>
             <div class="options">
               <label><input type="radio" name="trainingSites" value="centralized" /> Single Central Site📍</label>
@@ -236,7 +231,7 @@
           <div class="input-level-card">
             <h3>
               Annual Training Capacity<span class="reference">(Ref: 500 trainees)</span>
-              <i class="fa-solid fa-people-group info-icon-input" data-tooltip="Options: 100, 500, 1000, 1500, 2000 trainees."></i>
+              <i class="fa-solid fa-info-circle info-icon-input" data-tooltip="Options: 100, 500, 1000, 1500, or 2000 trainees."></i>
             </h3>
             <div class="options">
               <label><input type="radio" name="annualCapacity" value="100" /> 100 trainees</label>
@@ -250,7 +245,7 @@
           <div class="input-level-card">
             <h3>
               Stipend Amount<span class="reference">(Ref: $200)</span>
-              <i class="fa-solid fa-hand-holding-dollar info-icon-input" data-tooltip="$200–$800 to offset costs."></i>
+              <i class="fa-solid fa-info-circle info-icon-input" data-tooltip="$200–$800 to offset costs."></i>
             </h3>
             <div class="options">
               <label><input type="radio" name="stipendAmount" value="200" checked /> $200</label>
@@ -263,14 +258,14 @@
           <div class="input-level-card">
             <h3>
               Fee per Training Completion (USD)
-              <i class="fa-solid fa-money-bill-wave info-icon-input" data-tooltip="Set fee using the slider."></i>
+              <i class="fa-solid fa-info-circle info-icon-input" data-tooltip="Use the slider below."></i>
             </h3>
             <div class="options slider-option">
               <label for="costSliderFETP">
                 <i class="fa-solid fa-dollar-sign"></i>
                 <span id="costLabelFETP">2500</span>
               </label>
-              <!-- Changed min to 0, max to 10000 -->
+              <!-- Fee slider now from 0 to 10,000 -->
               <input type="range" id="costSliderFETP" min="0" max="10000" step="100" value="2500"
                      oninput="updateFETPCostDisplay(this.value);"/>
             </div>
@@ -295,7 +290,7 @@
   <section id="probTab" class="tabcontent" tabindex="0">
     <div class="calculation-info">
       <h4>Adoption Likelihood</h4>
-      <p>Click “Show Probability Plot” to view the forecasted decision maker support.</p>
+      <p>Click “Show Probability Plot” to view forecasted decision maker support.</p>
       <div class="buttons-row">
         <button onclick="renderFETPProbChart()">Show Probability Plot</button>
       </div>
@@ -319,7 +314,7 @@
           This reflects the economic value of improved health outcomes.
         </small>
       </p>
-      <!-- Dynamic Estimated Cost now moved here -->
+      <!-- Dynamic Estimated Cost Display -->
       <div class="calculation-info" id="dynamicCostEstimate">
         <h4>Estimated Total Cost</h4>
         <p id="estimatedCostDisplay">Calculate to update cost.</p>
@@ -336,8 +331,8 @@
       <div class="modelling-assumptions">
         <h3><i class="fa-solid fa-lightbulb"></i> Assumptions</h3>
         <p>
-          Cost estimates combine variable costs (fee per participant × capacity) and fixed costs.<br/>
-          Base fixed cost is $35,500 (adjusted by $10 per trainee above or below 500 plus extra for delivery method and advanced training).
+          Cost estimates combine variable costs (fee × capacity) and fixed costs.<br/>
+          Base fixed cost is $35,500, adjusted by $10 per trainee (above or below 500) plus extras for delivery method and advanced training.
         </p>
       </div>
       <div class="cost-icons">
@@ -393,20 +388,20 @@
             <ul>
               <li><strong>Opportunity Costs:</strong>
                 <ul>
-                  <li>Lost productivity from training participation</li>
-                  <li>Hiring temporary replacements or overtime</li>
+                  <li>Lost productivity due to training</li>
+                  <li>Temporary replacements or overtime</li>
                 </ul>
               </li>
               <li><strong>Infrastructure Costs:</strong>
                 <ul>
                   <li>Facility upgrades & modifications</li>
-                  <li>Depreciation of equipment</li>
+                  <li>Equipment depreciation</li>
                 </ul>
               </li>
               <li><strong>Administrative Costs:</strong>
                 <ul>
                   <li>Office space & utilities</li>
-                  <li>Management & oversight time</li>
+                  <li>Management time</li>
                 </ul>
               </li>
             </ul>
@@ -420,7 +415,7 @@
                 <ul>
                   <li>Regular updates to training materials</li>
                   <li>Continuous trainer development</li>
-                  <li>Renewal fees for software/licenses</li>
+                  <li>Software/license renewals</li>
                 </ul>
               </li>
             </ul>
@@ -432,20 +427,9 @@
           <h4><i class="fa-solid fa-hand-holding-dollar"></i> QALY Benefits</h4>
           <p>
             Benefits = (QALY Gain per Participant × Number of Trainees × $50,000).
-            This reflects the economic value of improved health outcomes.
+            This represents the economic value of improved health outcomes.
           </p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Visualizations Tab -->
-  <section id="visualizationsTab" class="tabcontent" tabindex="0">
-    <h2>Interactive Visualizations</h2>
-    <div class="visualizations-container">
-      <div id="mapContainer" class="map-container"></div>
-      <div id="dashboardContainer" class="dashboard-container">
-        <canvas id="dashboardChart"></canvas>
       </div>
     </div>
   </section>
