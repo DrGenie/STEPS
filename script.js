@@ -3,8 +3,8 @@
  * 1) Tab switching, slider updates, and accordion toggling
  * 2) DCE model for FETP with realistic attribute coefficients
  * 3) Chart rendering for Adoption Likelihood and Cost–Benefit analysis
- * 4) Integration with Leaflet for an interactive map and Chart.js for a dashboard chart
- * 5) Scenario saving and PDF export
+ * 4) Integration with Leaflet for an interactive map & Chart.js for a dashboard
+ * 5) Scenario saving & PDF export
  ****************************************************************************/
 
 /* Global variable for Leaflet map */
@@ -204,7 +204,11 @@ function renderFETPProbChart() {
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
-        title: { display: true, text: "Adoption Likelihood: " + pct.toFixed(2) + "%", font: { size: 16 } }
+        title: {
+          display: true,
+          text: "Adoption Likelihood: " + pct.toFixed(2) + "%",
+          font: { size: 16 }
+        }
       }
     }
   });
@@ -239,7 +243,7 @@ function renderFETPCostsBenefits() {
   if (netB < 0) {
     econAdvice = "The programme may not be cost-effective. Consider reducing the fee or revising programme features.";
   } else if (netB < 50000) {
-    econAdvice = "The configuration shows modest benefits. Further improvements could enhance cost-effectiveness.";
+    econAdvice = "This configuration shows modest benefits. Further improvements could enhance cost-effectiveness.";
   } else {
     econAdvice = "This configuration appears highly cost-effective.";
   }
@@ -273,7 +277,11 @@ function renderFETPCostsBenefits() {
       maintainAspectRatio: false,
       scales: { y: { beginAtZero: false } },
       plugins: {
-        title: { display: true, text: "Cost-Benefit Analysis (FETP)", font: { size: 16 } },
+        title: {
+          display: true,
+          text: "Cost-Benefit Analysis (FETP)",
+          font: { size: 16 }
+        },
         legend: { display: false }
       }
     }
@@ -300,10 +308,13 @@ function renderMap() {
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(leafletMap);
-    L.marker([28.6139, 77.2090]).addTo(leafletMap).bindPopup('New Delhi - Multiple State Capitals');
+
+    // Sample markers with popups
+    L.marker([28.6139, 77.2090]).addTo(leafletMap).bindPopup('New Delhi - State Capital');
     L.marker([19.0760, 72.8777]).addTo(leafletMap).bindPopup('Mumbai - Single Centralized Hub');
     L.marker([13.0827, 80.2707]).addTo(leafletMap).bindPopup('Chennai - Zonal Regional Center');
     L.marker([22.5726, 88.3639]).addTo(leafletMap).bindPopup('Kolkata - Decentralized Rural Node');
+    L.marker([17.3850, 78.4867]).addTo(leafletMap).bindPopup('Hyderabad - Additional Sample Marker');
   } else {
     leafletMap.invalidateSize();
   }
@@ -315,13 +326,14 @@ function renderDashboard() {
   if (window.dashboardChartInstance) {
     window.dashboardChartInstance.destroy();
   }
+  // Sample data for demonstration
   window.dashboardChartInstance = new Chart(ctx, {
     type: 'pie',
     data: {
-      labels: ['Direct Costs', 'Indirect Costs', 'Recurring Costs'],
+      labels: ['Admin/Overheads', 'Training Logistics', 'Miscellaneous'],
       datasets: [{
-        data: [50, 30, 20],
-        backgroundColor: ['#c0392b', '#27ae60', '#f1c40f']
+        data: [40, 40, 20],
+        backgroundColor: ['#3498db', '#f1c40f', '#e74c3c']
       }]
     },
     options: {
@@ -329,7 +341,7 @@ function renderDashboard() {
       plugins: {
         title: {
           display: true,
-          text: 'Cost Distribution'
+          text: 'Sample Cost Distribution'
         },
         legend: {
           position: 'bottom'
