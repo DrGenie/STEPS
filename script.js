@@ -5,7 +5,7 @@
  * 3) Chart rendering for Adoption Likelihood and Cost–Benefit analysis
  * 4) Integration with Leaflet for an interactive map & Chart.js for a dashboard
  * 5) Scenario saving & PDF export
- * 6) Dynamic cost estimation (moved to Costs tab)
+ * 6) Dynamic cost estimation in the Costs tab
  ****************************************************************************/
 
 /* Global variable for Leaflet map */
@@ -225,7 +225,7 @@ function renderFETPCostsBenefits() {
   var monetized = totalQALY * 50000;
   var netB = monetized - totalCost;
   
-  // Update estimated cost display (moved from inputs tab)
+  // Update dynamic estimated cost in Costs tab
   document.getElementById("estimatedCostDisplay").innerHTML = "$" + totalCost.toLocaleString();
   
   var container = document.getElementById("costsFETPResults");
@@ -308,12 +308,12 @@ function renderMap() {
 /* Render Dashboard Chart for Cost Distribution */
 function renderDashboard() {
   var scenario = buildFETPScenario();
-  if(!scenario) return;
+  if (!scenario) return;
   var trainees = scenario.annualCapacity;
   var fixedCost = 35500 + (scenario.annualCapacity - 500) * 10;
-  if(scenario.deliveryMethod === "inperson") fixedCost += 5000;
-  else if(scenario.deliveryMethod === "hybrid") fixedCost += 2500;
-  if(scenario.levelTraining === "advanced") fixedCost += 3000;
+  if (scenario.deliveryMethod === "inperson") fixedCost += 5000;
+  else if (scenario.deliveryMethod === "hybrid") fixedCost += 2500;
+  if (scenario.levelTraining === "advanced") fixedCost += 3000;
   var variableCost = scenario.fee * trainees;
   
   var ctx = document.getElementById('dashboardChart').getContext('2d');
