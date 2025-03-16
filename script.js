@@ -5,7 +5,7 @@
  * 3) Chart rendering for Adoption Likelihood and Cost–Benefit analysis
  * 4) Integration with Leaflet for an interactive map & Chart.js for a dashboard
  * 5) Scenario saving & PDF export
- * 6) Dynamic cost estimation in the Inputs tab
+ * 6) Dynamic cost estimation (moved to Costs tab)
  ****************************************************************************/
 
 /* Global variable for Leaflet map */
@@ -33,12 +33,6 @@ document.addEventListener("DOMContentLoaded", function() {
       content.style.display = (content.style.display === "block") ? "none" : "block";
     });
   }
-
-  // Whenever inputs change, update estimated cost
-  var inputElements = document.querySelectorAll('input[name="levelTraining"], input[name="trainingModel"], input[name="stipendAmount"], input[name="deliveryMethod"], input[name="trainingSites"], input[name="annualCapacity"], #costSliderFETP');
-  inputElements.forEach(function(el) {
-    el.addEventListener("change", updateEstimatedCost);
-  });
 });
 
 /* Open Tab Function */
@@ -70,29 +64,13 @@ var mainCoefficients = {
   training_intermediate: 0.300,
   training_advanced: 0.700,
   trainingModel_scholarship: 0.300,
-  stipend_levels: {
-    200: 0,
-    400: 0.10,
-    600: 0.20,
-    800: 0.30
-  },
-  capacity_levels: {
-    100: 0,
-    500: 0.300,
-    1000: 0.600,
-    1500: 0.900,
-    2000: 1.200
-  },
+  stipend_levels: { 200: 0, 400: 0.10, 600: 0.20, 800: 0.30 },
+  capacity_levels: { 100: 0, 500: 0.300, 1000: 0.600, 1500: 0.900, 2000: 1.200 },
   cost: -0.0001,
   delivery_online: 0,
   delivery_inperson: 0.426,
   delivery_hybrid: 0.189,
-  trainingSites: {
-    centralized: -0.100,
-    stateCapitals: 0,
-    zonalCenters: 0.200,
-    decentralized: 0.300
-  }
+  trainingSites: { centralized: -0.100, stateCapitals: 0, zonalCenters: 0.200, decentralized: 0.300 }
 };
 
 /* Build Scenario */
@@ -105,7 +83,7 @@ function buildFETPScenario() {
   var trainingSites = document.querySelector('input[name="trainingSites"]:checked') ? document.querySelector('input[name="trainingSites"]:checked').value : null;
   var feeSlider = document.getElementById("costSliderFETP");
   var fee = feeSlider ? parseInt(feeSlider.value, 10) : 2500;
-
+  
   if(!levelTraining || !trainingModel || !stipendAmount || !annualCapacity || !deliveryMethod || !trainingSites) {
     return null;
   }
@@ -120,7 +98,7 @@ function buildFETPScenario() {
   };
 }
 
-/* Compute Uptake using the model */
+/* Compute Uptake */
 function computeFETPUptake(sc) {
   var U = mainCoefficients.ASC_mean;
   
@@ -187,7 +165,7 @@ function closeModal() {
 var probChartFETP = null;
 function renderFETPProbChart() {
   var scenario = buildFETPScenario();
-  if(!scenario) {
+  if (!scenario) {
     alert("Please select all required fields first.");
     return;
   }
@@ -219,17 +197,22 @@ function renderFETPProbChart() {
   });
 }
 
-/* Render Cost–Benefit Chart */
+/* Render Cost–Benefit Chart & Dynamic Cost Estimation */
 var cbaFETPChart = null;
 function renderFETPCostsBenefits() {
   var scenario = buildFETPScenario();
-  if(!scenario) {
+  if (!scenario) {
     document.getElementById("costsFETPResults").innerHTML = "<p>Please select all inputs before computing costs.</p>";
     return;
   }
-  var fraction = computeFETPUptake(scenario);
-  var pct = fraction * 100;
+  
   var trainees = scenario.annualCapacity;
+  var fixedCost = 35500 + (scenario.annualCapacity - 500) * 10;
+  if (scenario.deliveryMethod === "inperson") fixedCost += 5000;
+  else if (scenario.deliveryMethod === "hybrid") fixedCost += 2500;
+  if (scenario.levelTraining === "advanced") fixedCost += 3000;
+  var variableCost = scenario.fee * trainees;
+  var totalCost = fixedCost + variableCost;
   
   var sel = document.getElementById("qalyFETPSelect");
   var qVal = 0.05;
@@ -238,18 +221,17 @@ function renderFETPCostsBenefits() {
     else if (sel.value === "high") qVal = 0.08;
   }
   
-  // Sample cost formula
-  var fixedCost = 35500 + (scenario.annualCapacity - 500) * 10;
-  var totalCost = scenario.fee * trainees + fixedCost;
-  
   var totalQALY = trainees * qVal;
   var monetized = totalQALY * 50000;
   var netB = monetized - totalCost;
   
+  // Update estimated cost display (moved from inputs tab)
+  document.getElementById("estimatedCostDisplay").innerHTML = "$" + totalCost.toLocaleString();
+  
   var container = document.getElementById("costsFETPResults");
   var econAdvice = "";
   if (netB < 0) {
-    econAdvice = "The programme may not be cost-effective. Consider reducing the fee or revising programme features.";
+    econAdvice = "The programme may not be cost-effective. Consider reducing the fee or revising features.";
   } else if (netB < 50000) {
     econAdvice = "This configuration shows modest benefits. Further improvements could enhance cost-effectiveness.";
   } else {
@@ -257,7 +239,7 @@ function renderFETPCostsBenefits() {
   }
   
   container.innerHTML = "<div class='calculation-info'>" +
-                        "<p><strong>Predicted Uptake:</strong> " + pct.toFixed(2) + "%</p>" +
+                        "<p><strong>Predicted Uptake:</strong> " + (computeFETPUptake(scenario) * 100).toFixed(2) + "%</p>" +
                         "<p><strong>Number of Trainees:</strong> " + trainees + "</p>" +
                         "<p><strong>Total Training Cost:</strong> $" + totalCost.toFixed(2) + "</p>" +
                         "<p><strong>Monetised Benefits:</strong> $" + monetized.toLocaleString() + "</p>" +
@@ -265,32 +247,30 @@ function renderFETPCostsBenefits() {
                         "<p><em>Policy Recommendation:</em> " + econAdvice + "</p>" +
                         "</div>" +
                         "<div class='chart-box' style='height:350px;'>" +
-                        "<h3>Cost-Benefit Analysis</h3>" +
+                        "<h3>Cost Distribution</h3>" +
                         "<canvas id='cbaFETPChart'></canvas>" +
                         "</div>";
   var ctx = document.getElementById("cbaFETPChart").getContext("2d");
   if (cbaFETPChart) cbaFETPChart.destroy();
   cbaFETPChart = new Chart(ctx, {
-    type: "bar",
+    type: "doughnut",
     data: {
-      labels: ["Total Cost", "Monetised Benefits", "Net Benefit"],
+      labels: ["Fixed Costs", "Variable Costs"],
       datasets: [{
-        label: "USD",
-        data: [totalCost, monetized, netB],
-        backgroundColor: ["#c0392b", "#27ae60", "#f1c40f"]
+        data: [fixedCost, variableCost],
+        backgroundColor: ["#3498db", "#e74c3c"]
       }]
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      scales: { y: { beginAtZero: false } },
       plugins: {
         title: {
           display: true,
-          text: "Cost-Benefit Analysis (FETP)",
+          text: "Cost Distribution",
           font: { size: 16 }
         },
-        legend: { display: false }
+        legend: { position: "bottom" }
       }
     }
   });
@@ -305,20 +285,18 @@ function toggleCostAccordion() {
 /* Toggle Benefits Explanation */
 function toggleFETPBenefitsAnalysis() {
   var box = document.getElementById("detailedFETPBenefitsAnalysis");
-  if(!box) return;
+  if (!box) return;
   box.style.display = (box.style.display === "flex") ? "none" : "flex";
 }
 
-/* Leaflet Map */
+/* Render Leaflet Map */
 function renderMap() {
   if (!leafletMap) {
     leafletMap = L.map('mapContainer').setView([20.5937, 78.9629], 5);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(leafletMap);
-
-    // Some sample markers with popups
-    L.marker([28.6139, 77.2090]).addTo(leafletMap).bindPopup('New Delhi - Example State Capital');
+    L.marker([28.6139, 77.2090]).addTo(leafletMap).bindPopup('New Delhi - State Capital');
     L.marker([19.0760, 72.8777]).addTo(leafletMap).bindPopup('Mumbai - Single Central Hub');
     L.marker([13.0827, 80.2707]).addTo(leafletMap).bindPopup('Chennai - Zonal Regional Center');
     L.marker([22.5726, 88.3639]).addTo(leafletMap).bindPopup('Kolkata - Decentralized Site');
@@ -327,20 +305,28 @@ function renderMap() {
   }
 }
 
-/* Dashboard Chart */
+/* Render Dashboard Chart for Cost Distribution */
 function renderDashboard() {
+  var scenario = buildFETPScenario();
+  if(!scenario) return;
+  var trainees = scenario.annualCapacity;
+  var fixedCost = 35500 + (scenario.annualCapacity - 500) * 10;
+  if(scenario.deliveryMethod === "inperson") fixedCost += 5000;
+  else if(scenario.deliveryMethod === "hybrid") fixedCost += 2500;
+  if(scenario.levelTraining === "advanced") fixedCost += 3000;
+  var variableCost = scenario.fee * trainees;
+  
   var ctx = document.getElementById('dashboardChart').getContext('2d');
   if (window.dashboardChartInstance) {
     window.dashboardChartInstance.destroy();
   }
-  // Sample distribution
   window.dashboardChartInstance = new Chart(ctx, {
     type: 'doughnut',
     data: {
-      labels: ['Administration', 'Logistics', 'Other'],
+      labels: ['Fixed Costs', 'Variable Costs'],
       datasets: [{
-        data: [50, 30, 20],
-        backgroundColor: ['#3498db', '#f1c40f', '#e74c3c']
+        data: [fixedCost, variableCost],
+        backgroundColor: ['#3498db', '#e74c3c']
       }]
     },
     options: {
@@ -348,7 +334,8 @@ function renderDashboard() {
       plugins: {
         title: {
           display: true,
-          text: 'Sample Distribution (Illustrative)'
+          text: 'Cost Distribution',
+          font: { size: 16 }
         },
         legend: {
           position: 'bottom'
@@ -358,32 +345,11 @@ function renderDashboard() {
   });
 }
 
-/* Dynamic Cost in Inputs Tab */
-function updateEstimatedCost() {
-  var scenario = buildFETPScenario();
-  var costBox = document.getElementById("estimatedCostDisplay");
-  if(!scenario) {
-    costBox.innerHTML = "Select all inputs to estimate total training cost.";
-    return;
-  }
-  // Example formula: base 35,500 + (capacity - 500)*10 + cost factor for in-person or hybrid
-  var localFixed = 35500;
-  var capacityDiff = scenario.annualCapacity - 500;
-  localFixed += (capacityDiff * 10);
-
-  if(scenario.deliveryMethod === "inperson") localFixed += 5000; // example extra cost for in-person
-  if(scenario.deliveryMethod === "hybrid") localFixed += 2500; // example cost for hybrid
-  if(scenario.levelTraining === "advanced") localFixed += 3000; // example cost for advanced track
-
-  var totalCost = localFixed + (scenario.fee * scenario.annualCapacity);
-  costBox.innerHTML = "Estimated Total Cost: $" + totalCost.toLocaleString();
-}
-
 /* Scenario Saving & PDF Export */
 var savedFETPScenarios = [];
 function saveFETPScenario() {
   var sc = buildFETPScenario();
-  if(!sc) {
+  if (!sc) {
     alert("Please select all inputs before saving a scenario.");
     return;
   }
@@ -399,13 +365,13 @@ function saveFETPScenario() {
   var tb = document.querySelector("#FETPScenarioTable tbody");
   var row = document.createElement("tr");
   row.innerHTML = "<td>" + sc.name + "</td>" +
-                  "<td>$" + sc.fee + "</td>" +
                   "<td>" + sc.levelTraining + "</td>" +
                   "<td>" + sc.trainingModel + "</td>" +
-                  "<td>$" + sc.stipendAmount + "</td>" +
-                  "<td>" + sc.annualCapacity + "</td>" +
                   "<td>" + sc.deliveryMethod + "</td>" +
                   "<td>" + sc.trainingSites + "</td>" +
+                  "<td>" + sc.annualCapacity + "</td>" +
+                  "<td>$" + sc.stipendAmount + "</td>" +
+                  "<td>$" + sc.fee + "</td>" +
                   "<td>" + sc.uptake + "%</td>" +
                   "<td>$" + sc.netBenefit + "</td>";
   tb.appendChild(row);
@@ -413,7 +379,7 @@ function saveFETPScenario() {
 }
 
 function exportFETPComparison() {
-  if(!savedFETPScenarios.length) {
+  if (!savedFETPScenarios.length) {
     alert("No saved scenarios available.");
     return;
   }
@@ -425,7 +391,7 @@ function exportFETPComparison() {
   yPos += 10;
   
   savedFETPScenarios.forEach(function(sc, idx) {
-    if(yPos + 60 > doc.internal.pageSize.getHeight() - 15) {
+    if (yPos + 60 > doc.internal.pageSize.getHeight() - 15) {
       doc.addPage();
       yPos = 15;
     }
@@ -433,14 +399,14 @@ function exportFETPComparison() {
     doc.text("Scenario " + (idx + 1) + ": " + sc.name, 15, yPos);
     yPos += 7;
     doc.setFontSize(12);
-    doc.text("Fee: $" + sc.fee, 15, yPos); yPos += 5;
     doc.text("Level: " + sc.levelTraining, 15, yPos); yPos += 5;
     doc.text("Model: " + sc.trainingModel, 15, yPos); yPos += 5;
-    doc.text("Stipend: $" + sc.stipendAmount, 15, yPos); yPos += 5;
-    doc.text("Capacity: " + sc.annualCapacity, 15, yPos); yPos += 5;
     doc.text("Delivery: " + sc.deliveryMethod, 15, yPos); yPos += 5;
     doc.text("Sites: " + sc.trainingSites, 15, yPos); yPos += 5;
-    doc.text("Uptake: " + sc.uptake + "%, Net Benefit: $" + sc.netBenefit, 15, yPos);
+    doc.text("Capacity: " + sc.annualCapacity, 15, yPos); yPos += 5;
+    doc.text("Stipend: $" + sc.stipendAmount, 15, yPos); yPos += 5;
+    doc.text("Fee: $" + sc.fee, 15, yPos); yPos += 5;
+    doc.text("Adoption Likelihood: " + sc.uptake + "%, Net Benefit: $" + sc.netBenefit, 15, yPos);
     yPos += 10;
   });
   
