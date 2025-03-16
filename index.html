@@ -71,8 +71,8 @@
         <li><strong>Attributes</strong> – An overview of key features with intuitive tooltips.</li>
         <li><strong>Inputs</strong> – Configure your options using interactive controls.</li>
         <li><strong>Adoption Likelihood</strong> – View forecasted decision maker support.</li>
-        <li><strong>Costs &amp; Benefits</strong> – See a dynamic economic summary and cost breakdown.</li>
-        <li><strong>Visualizations</strong> – Explore a live map and cost distribution chart.</li>
+        <li><strong>Costs &amp; Benefits</strong> – See a dynamic cost–benefit analysis and cost breakdown.</li>
+        <li><strong>Visualizations</strong> – Interact with a live map and cost distribution chart.</li>
         <li><strong>Saved Scenarios</strong> – Save, compare, and export your configurations.</li>
       </ul>
     </div>
@@ -83,11 +83,11 @@
     <div class="calculation-info instructions">
       <h4>How to Use STEPS</h4>
       <ol>
-        <li><strong>Review Attributes:</strong> Click the Attributes tab to see each key feature with descriptive tooltips.</li>
+        <li><strong>Review Attributes:</strong> See the Attributes tab to understand each key feature via detailed tooltips.</li>
         <li><strong>Configure Inputs:</strong> Select your options in the Inputs tab. Reference values (in parentheses) guide your choices.</li>
-        <li><strong>Adoption Likelihood:</strong> Check the Adoption Likelihood tab for a donut chart showing forecasted support.</li>
-        <li><strong>Costs &amp; Benefits:</strong> View a dynamic cost–benefit analysis with a breakdown of cost components and an estimated total cost.</li>
-        <li><strong>Visualizations:</strong> Interact with the live map and the cost distribution chart showing real computed values.</li>
+        <li><strong>Adoption Likelihood:</strong> Check the donut chart for predicted decision maker support.</li>
+        <li><strong>Costs &amp; Benefits:</strong> View a dynamic cost–benefit analysis with an updated estimated cost and breakdown.</li>
+        <li><strong>Visualizations:</strong> Explore the live map and cost distribution chart based on your inputs.</li>
         <li><strong>Saved Scenarios:</strong> Save and export your configurations for comparison.</li>
       </ol>
     </div>
@@ -123,7 +123,7 @@
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-chalkboard"></i>
-          <i class="fa-solid fa-info-circle info-icon" data-tooltip="In-person🏫, Hybrid💻🏫, or Fully Online💻."></i>
+          <i class="fa-solid fa-info-circle info-icon" data-tooltip="In-person🏫, Hybrid💻🏫, Fully Online💻."></i>
         </div>
         <div class="attribute-content">
           <h4>Delivery Method</h4>
@@ -134,18 +134,18 @@
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-map-location-dot"></i>
-          <i class="fa-solid fa-info-circle info-icon" data-tooltip="Single Central Site📍, Multiple State Capitals📍📍, Zonal Centers📍📍📍, Decentralized Sites📍📍📍📍."></i>
+          <i class="fa-solid fa-info-circle info-icon" data-tooltip="Single Central📍, Multiple State Capitals📍📍, Zonal Regional Centers📍📍📍, Decentralized Sites📍📍📍📍."></i>
         </div>
         <div class="attribute-content">
           <h4>Number of Training Sites</h4>
-          <p>Single, Multiple, Zonal, or Decentralized.</p>
+          <p>Single, Multiple, Zonal, Decentralized.</p>
         </div>
       </div>
       <!-- 5) Annual Training Capacity -->
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-people-group"></i>
-          <i class="fa-solid fa-info-circle info-icon" data-tooltip="100, 500 (ref), 1000, 1500, 2000 trainees."></i>
+          <i class="fa-solid fa-info-circle info-icon" data-tooltip="100, 500 (ref), 1000, 1500, or 2000 trainees."></i>
         </div>
         <div class="attribute-content">
           <h4>Annual Training Capacity</h4>
@@ -167,7 +167,7 @@
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-file-invoice-dollar"></i>
-          <i class="fa-solid fa-info-circle info-icon" data-tooltip="The fee charged upon training completion."></i>
+          <i class="fa-solid fa-info-circle info-icon" data-tooltip="This fee (USD) is charged upon training completion."></i>
         </div>
         <div class="attribute-content">
           <h4>Fee per Completion</h4>
@@ -223,7 +223,7 @@
           <div class="input-level-card">
             <h3>
               Number of Training Sites<span class="reference">(Ref: Multiple State Capitals)</span>
-              <i class="fa-solid fa-map-location-dot info-icon-input" data-tooltip="Single📍, State Capitals📍📍, Zonal📍📍📍, Decentralized📍📍📍📍."></i>
+              <i class="fa-solid fa-map-location-dot info-icon-input" data-tooltip="Single📍, State Capitals📍📍, Zonal Regional Centers📍📍📍, Decentralized Local Sites📍📍📍📍."></i>
             </h3>
             <div class="options">
               <label><input type="radio" name="trainingSites" value="centralized" /> Single Central Site📍</label>
@@ -236,7 +236,7 @@
           <div class="input-level-card">
             <h3>
               Annual Training Capacity<span class="reference">(Ref: 500 trainees)</span>
-              <i class="fa-solid fa-people-group info-icon-input" data-tooltip="100, 500, 1000, 1500, or 2000 trainees."></i>
+              <i class="fa-solid fa-people-group info-icon-input" data-tooltip="Options: 100, 500, 1000, 1500, 2000 trainees."></i>
             </h3>
             <div class="options">
               <label><input type="radio" name="annualCapacity" value="100" /> 100 trainees</label>
@@ -250,7 +250,7 @@
           <div class="input-level-card">
             <h3>
               Stipend Amount<span class="reference">(Ref: $200)</span>
-              <i class="fa-solid fa-hand-holding-dollar info-icon-input" data-tooltip="$200–$800 to offset living costs."></i>
+              <i class="fa-solid fa-hand-holding-dollar info-icon-input" data-tooltip="$200–$800 to offset costs."></i>
             </h3>
             <div class="options">
               <label><input type="radio" name="stipendAmount" value="200" checked /> $200</label>
@@ -263,14 +263,15 @@
           <div class="input-level-card">
             <h3>
               Fee per Training Completion (USD)
-              <i class="fa-solid fa-money-bill-wave info-icon-input" data-tooltip="Set the final fee using the slider."></i>
+              <i class="fa-solid fa-money-bill-wave info-icon-input" data-tooltip="Set fee using the slider."></i>
             </h3>
             <div class="options slider-option">
               <label for="costSliderFETP">
                 <i class="fa-solid fa-dollar-sign"></i>
                 <span id="costLabelFETP">2500</span>
               </label>
-              <input type="range" id="costSliderFETP" min="500" max="5000" step="100" value="2500"
+              <!-- Changed min to 0, max to 10000 -->
+              <input type="range" id="costSliderFETP" min="0" max="10000" step="100" value="2500"
                      oninput="updateFETPCostDisplay(this.value);"/>
             </div>
           </div>
@@ -312,16 +313,16 @@
     <div class="calculation-info">
       <h4>Costs &amp; Benefits Analysis</h4>
       <p>
-        This section estimates the total programme cost and monetised benefits.<br />
+        This section estimates the total programme cost and monetised benefits.<br/>
         <small>
           Benefits = (QALY Gain per Participant × Number of Trainees × $50,000).
           This reflects the economic value of improved health outcomes.
         </small>
       </p>
-      <!-- Dynamic cost estimation now shown here -->
+      <!-- Dynamic Estimated Cost now moved here -->
       <div class="calculation-info" id="dynamicCostEstimate">
         <h4>Estimated Total Cost</h4>
-        <p id="estimatedCostDisplay">Please calculate to update cost.</p>
+        <p id="estimatedCostDisplay">Calculate to update cost.</p>
       </div>
       <div class="qaly-selector">
         <label for="qalyFETPSelect">Select QALY Gain per Participant:</label>
@@ -335,8 +336,8 @@
       <div class="modelling-assumptions">
         <h3><i class="fa-solid fa-lightbulb"></i> Assumptions</h3>
         <p>
-          Cost estimates combine variable costs (fee per participant × capacity) and fixed costs.<br>
-          Base fixed cost is $35,500, adjusted by $10 per trainee above or below 500 plus extra for delivery method.
+          Cost estimates combine variable costs (fee per participant × capacity) and fixed costs.<br/>
+          Base fixed cost is $35,500 (adjusted by $10 per trainee above or below 500 plus extra for delivery method and advanced training).
         </p>
       </div>
       <div class="cost-icons">
@@ -431,7 +432,7 @@
           <h4><i class="fa-solid fa-hand-holding-dollar"></i> QALY Benefits</h4>
           <p>
             Benefits = (QALY Gain per Participant × Number of Trainees × $50,000).
-            This represents the economic value of improved health outcomes.
+            This reflects the economic value of improved health outcomes.
           </p>
         </div>
       </div>
@@ -442,11 +443,8 @@
   <section id="visualizationsTab" class="tabcontent" tabindex="0">
     <h2>Interactive Visualizations</h2>
     <div class="visualizations-container">
-      <div id="mapContainer" class="map-container">
-        <!-- The Leaflet map will be rendered here -->
-      </div>
+      <div id="mapContainer" class="map-container"></div>
       <div id="dashboardContainer" class="dashboard-container">
-        <!-- The cost distribution chart will be rendered here -->
         <canvas id="dashboardChart"></canvas>
       </div>
     </div>
@@ -457,12 +455,12 @@
     <div class="calculation-info">
       <h4>Saved Scenarios</h4>
       <p>
-        Each scenario includes your chosen options along with computed Adoption Likelihood and Net Benefit.
+        Each scenario shows your selected options along with the computed Adoption Likelihood and Net Benefit.
         Compare and export scenarios as a PDF.
       </p>
       <div class="buttons-row">
         <button onclick="saveFETPScenario()">Save Current Scenario</button>
-        <button onclick="exportFETPComparison()">Compare &amp; Export PDF</button>
+        <button onclick="exportFETPComparison()">Compare & Export PDF</button>
       </div>
       <div class="table-container">
         <table id="FETPScenarioTable">
