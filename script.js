@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
   for (var i = 0; i < tabs.length; i++) {
     tabs[i].addEventListener("click", function() {
       openTab(this.getAttribute("data-tab"), this);
-      if(this.getAttribute("data-tab") === "dashboardTab") {
+      if (this.getAttribute("data-tab") === "dashboardTab") {
         renderDashboardData();
       }
     });
@@ -329,9 +329,13 @@ function exportFETPComparison() {
 }
 
 function exportIndividualScenario() {
-  var index = prompt("Enter the scenario number to export:");
+  var input = prompt("Enter the scenario number to export:");
+  var index = parseInt(input, 10);
+  if (isNaN(index) || index < 1 || index > savedFETPScenarios.length) {
+    alert("Invalid scenario number.");
+    return;
+  }
   var scenario = savedFETPScenarios[index - 1];
-  if (!scenario) { alert("Scenario not found."); return; }
   var jsPDF = window.jspdf.jsPDF;
   var doc = new jsPDF({ unit: "mm", format: "a4" });
   doc.setFontSize(16);
@@ -347,6 +351,12 @@ function exportIndividualScenario() {
   doc.text("Adoption Likelihood: " + scenario.uptake + "%", 15, 100);
   doc.text("Net Benefit: $" + scenario.netBenefit, 15, 110);
   doc.save("Scenario_" + index + ".pdf");
+}
+
+/* FAQ Help Overlay */
+function toggleFAQ() {
+  var overlay = document.getElementById("faqOverlay");
+  overlay.style.display = (overlay.style.display === "block") ? "none" : "block";
 }
 
 /* Render Real Dashboard Data */
@@ -393,20 +403,4 @@ function renderDashboardData() {
       plugins: { title: { display: true, text: "Training Trend (Last 12 Months)", font: { size: 16 } } }
     }
   });
-}
-
-/* Render Leaflet Map */
-function renderMap() {
-  if (!leafletMap) {
-    leafletMap = L.map('mapContainer').setView([20.5937, 78.9629], 5);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(leafletMap);
-    L.marker([28.6139, 77.2090]).addTo(leafletMap).bindPopup('New Delhi - State Capital');
-    L.marker([19.0760, 72.8777]).addTo(leafletMap).bindPopup('Mumbai - Single Central Hub');
-    L.marker([13.0827, 80.2707]).addTo(leafletMap).bindPopup('Chennai - Zonal Regional Center');
-    L.marker([22.5726, 88.3639]).addTo(leafletMap).bindPopup('Kolkata - Decentralized Site');
-  } else {
-    leafletMap.invalidateSize();
-  }
 }
