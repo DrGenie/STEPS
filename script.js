@@ -3,7 +3,7 @@
  * 1) Tab switching, slider updates, and accordion toggling
  * 2) DCE model for FETP with realistic attribute coefficients
  * 3) Chart rendering for Adoption Likelihood and Cost–Benefit analysis
- * 4) Integration with Leaflet for an interactive map & Chart.js for a cost distribution chart
+ * 4) Integration with Leaflet for an interactive map & Chart.js for cost distribution
  * 5) Scenario saving & PDF export
  * 6) Dynamic cost estimation in the Costs tab
  ****************************************************************************/
@@ -14,27 +14,29 @@ var leafletMap;
 /* Tab Switching */
 document.addEventListener("DOMContentLoaded", function() {
   var tabs = document.querySelectorAll(".tablink");
-  for (var i = 0; i < tabs.length; i++) {
-    tabs[i].addEventListener("click", function() {
+  tabs.forEach(function(tab) {
+    tab.addEventListener("click", function() {
       openTab(this.getAttribute("data-tab"), this);
     });
-  }
+  });
   openTab("introTab", tabs[0]);
   
   // Accordions
   var accordions = document.querySelectorAll(".accordion-item h3");
-  for (var j = 0; j < accordions.length; j++) {
-    accordions[j].addEventListener("click", function() {
+  accordions.forEach(function(acc) {
+    acc.addEventListener("click", function() {
       var content = this.nextElementSibling;
       content.style.display = (content.style.display === "block") ? "none" : "block";
     });
-  }
+  });
 });
 
 /* Open Tab Function */
 function openTab(tabId, clickedBtn) {
   var contents = document.getElementsByClassName("tabcontent");
-  for (var i = 0; i < contents.length; i++) { contents[i].style.display = "none"; }
+  for (var i = 0; i < contents.length; i++) {
+    contents[i].style.display = "none";
+  }
   var buttons = document.getElementsByClassName("tablink");
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].classList.remove("active");
@@ -159,7 +161,6 @@ var cbaFETPChart = null;
 function renderFETPCostsBenefits() {
   var scenario = buildFETPScenario();
   if (!scenario) { document.getElementById("costsFETPResults").innerHTML = "<p>Please select all inputs before computing costs.</p>"; return; }
-  
   var trainees = scenario.annualCapacity;
   var fixedCost = 35500 + (scenario.annualCapacity - 500) * 10;
   if (scenario.deliveryMethod === "inperson") fixedCost += 5000;
@@ -170,12 +171,11 @@ function renderFETPCostsBenefits() {
   
   var sel = document.getElementById("qalyFETPSelect");
   var qVal = (sel && sel.value === "low") ? 0.01 : (sel && sel.value === "high") ? 0.08 : 0.05;
-  
   var totalQALY = trainees * qVal;
   var monetized = totalQALY * 50000;
   var netB = monetized - totalCost;
   
-  // Update estimated cost display (Costs tab)
+  // Update dynamic estimated cost in Costs tab
   document.getElementById("estimatedCostDisplay").innerHTML = "$" + totalCost.toLocaleString();
   
   var container = document.getElementById("costsFETPResults");
