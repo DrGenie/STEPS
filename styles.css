@@ -110,7 +110,7 @@ header p {
   border-radius: 8px;
 }
 
-/* INPUTS SECTION - grid layout for tight grouping */
+/* INPUTS SECTION - grid layout */
 .inputs-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -244,6 +244,12 @@ header p {
   border-radius: 6px;
   padding: 10px;
   min-height: 300px;
+}
+.dashboard-description {
+  text-align: center;
+  font-size: 0.95em;
+  margin-bottom: 10px;
+  color: #555;
 }
 
 /* RESULTS MODAL */
