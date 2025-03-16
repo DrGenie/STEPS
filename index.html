@@ -26,7 +26,7 @@
   <header>
     <h1>STEPS Decision Aid Tool</h1>
     <p>
-      STEPS helps policy makers in India plan and scale Field Epidemiology Training Programs by predcting programme uptake,
+      STEPS helps policy makers in India plan and scale Field Epidemiology Training Programs by forecasting programme uptake,
       evaluating economic tradeoffs, and comparing key programme features.
     </p>
     <button id="faqBtn" class="faq-btn"><i class="fa-solid fa-question-circle"></i> FAQ</button>
@@ -51,6 +51,9 @@
     <button class="tablink" data-tab="costsTab" aria-selected="false">
       <i class="fa-solid fa-calculator"></i><span> Costs &amp; Benefits</span>
     </button>
+    <button class="tablink" data-tab="dashboardTab" aria-selected="false">
+      <i class="fa-solid fa-tachometer-alt"></i><span> Dashboard</span>
+    </button>
     <button class="tablink" data-tab="scenariosTab" aria-selected="false">
       <i class="fa-solid fa-folder-open"></i><span> Saved Scenarios</span>
     </button>
@@ -64,12 +67,13 @@
         STEPS uses discrete choice experiment estimates to forecast programme uptake – the probability that policy makers will endorse your chosen configuration – and to assess cost–benefit tradeoffs.
       </p>
       <ul>
-        <li><strong>Instructions</strong>: A guide to using the tool.</li>
-        <li><strong>Attributes</strong>: Overview of key features with descriptive tooltips.</li>
-        <li><strong>Inputs</strong>: Configure your options with our streamlined, grid‐based form.</li>
+        <li><strong>Instructions</strong>: A visually engaging guide to using the tool.</li>
+        <li><strong>Attributes</strong>: Overview of key features with descriptive, round info icons.</li>
+        <li><strong>Inputs</strong>: Configure your options using our streamlined grid‐based form.</li>
         <li><strong>Program Adoption Likelihood</strong>: View a donut chart showing forecasted support.</li>
-        <li><strong>Costs &amp; Benefits</strong>: See a dynamic cost–benefit analysis, including how predicted uptake affects net benefit.</li>
-        <li><strong>Saved Scenarios</strong>: Save, compare, and export configurations (individual scenario export is now available).</li>
+        <li><strong>Costs &amp; Benefits</strong>: See a dynamic cost–benefit analysis with a breakdown chart and explanation of how higher predicted uptake drives net benefit.</li>
+        <li><strong>Dashboard</strong>: Explore live training program data via real charts and maps.</li>
+        <li><strong>Saved Scenarios</strong>: Save, compare, and export configurations individually or as an overall PDF.</li>
       </ul>
     </div>
   </section>
@@ -79,11 +83,12 @@
     <div class="calculation-info instructions">
       <h4>How to Use STEPS</h4>
       <ol>
-        <li><strong>Review Attributes:</strong> Visit the Attributes tab to see detailed explanations with round info icons and emojis.</li>
-        <li><strong>Configure Inputs:</strong> In the Inputs tab, select your options from each grouped block. Reference values guide your selections.</li>
-        <li><strong>Program Adoption Likelihood:</strong> Check the donut chart for the forecasted probability that policy makers endorse the configuration.</li>
-        <li><strong>Costs &amp; Benefits:</strong> View the dynamic cost–benefit analysis; note that higher predicted uptake (more endorsement) increases net benefit due to higher expected enrollment.</li>
-        <li><strong>Saved Scenarios:</strong> Save your configurations and export individual scenario details or an overall PDF for comparison.</li>
+        <li><strong>Review Attributes:</strong> The Attributes tab explains each key feature using round info icons and illustrative emojis.</li>
+        <li><strong>Configure Inputs:</strong> In the Inputs tab, choose options from each grouped block. Reference values (in parentheses) guide your selections.</li>
+        <li><strong>Program Adoption Likelihood:</strong> See a donut chart forecasting the likelihood that policy makers will adopt your configuration.</li>
+        <li><strong>Costs &amp; Benefits:</strong> View a dynamic cost–benefit analysis. Note that higher Predicted Uptake means more expected enrollment, which increases monetised benefits and net benefit.</li>
+        <li><strong>Dashboard:</strong> Explore live training program data with integrated charts and maps showing regional enrollment and trend data.</li>
+        <li><strong>Saved Scenarios:</strong> Save and export individual scenario details or a full comparison PDF.</li>
       </ol>
     </div>
   </section>
@@ -162,7 +167,7 @@
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-file-invoice-dollar"></i>
-          <i class="fa-solid fa-info-circle info-icon" data-tooltip="This fee (USD) is charged upon training completion."></i>
+          <i class="fa-solid fa-info-circle info-icon" data-tooltip="The fee charged upon training completion."></i>
         </div>
         <div class="attribute-content">
           <h4>Fee per Completion</h4>
@@ -179,7 +184,6 @@
       <p>Select your options below. All fields are required. <em>(Reference values in parentheses)</em></p>
       <form onsubmit="event.preventDefault();">
         <div class="inputs-grid">
-          <!-- Each block is grouped in a flex container -->
           <!-- Level of Training -->
           <div class="input-block">
             <label class="input-label">
@@ -290,7 +294,7 @@
   <section id="probTab" class="tabcontent" tabindex="0">
     <div class="calculation-info">
       <h4>Program Adoption Likelihood</h4>
-      <p>Click “Show Probability Plot” to view the forecasted support from decision makers.</p>
+      <p>Click “Show Probability Plot” to view forecasted support from decision makers.</p>
       <div class="buttons-row">
         <button onclick="renderFETPProbChart()">Show Probability Plot</button>
       </div>
@@ -310,7 +314,7 @@
       <p>
         This section estimates the total programme cost and monetised benefits.<br/>
         <small>
-          Benefits = (QALY Gain per Participant × Number of Trainees × $50,000). Higher predicted uptake means more expected participants, which increases net benefit.
+          Benefits = (QALY Gain per Participant × Number of Trainees × $50,000). Higher predicted uptake increases enrollment and, in turn, net benefit.
         </small>
       </p>
       <div class="calculation-info" id="dynamicCostEstimate">
@@ -330,8 +334,8 @@
         <h3><i class="fa-solid fa-lightbulb"></i> Assumptions</h3>
         <p>
           Cost estimates combine variable costs (fee per participant × capacity) and fixed costs.
-          The base fixed cost is $35,500, adjusted by $10 per trainee (above or below 500) plus extras for in-person/hybrid delivery and advanced training.
-          Predicted Uptake represents the likelihood that decision makers endorse the configuration; higher uptake increases enrollment and thus net benefit.
+          The base fixed cost of $35,500 is adjusted by $10 per trainee (above or below 500) plus extras for in‑person/hybrid delivery and advanced training.
+          Predicted Uptake is used to gauge potential enrollment—thus, a higher uptake increases monetised benefits and net benefit.
         </p>
       </div>
       <div class="cost-icons">
@@ -426,9 +430,26 @@
         <div class="cost-card">
           <h4><i class="fa-solid fa-hand-holding-dollar"></i> QALY Benefits</h4>
           <p>
-            Benefits = (QALY Gain × Trainees × $50,000). Higher predicted uptake drives more enrollment, thereby increasing net benefit.
+            Benefits = (QALY Gain × Trainees × $50,000). Higher predicted uptake means more enrollment, increasing net benefit.
           </p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dashboard Tab (Real Data Integration) -->
+  <section id="dashboardTab" class="tabcontent" tabindex="0">
+    <h2>Training Program Dashboard</h2>
+    <div class="dashboard-grid">
+      <!-- Regional Enrollment Chart -->
+      <div class="dashboard-chart">
+        <h3>Regional Enrollment</h3>
+        <canvas id="regionalEnrollmentChart"></canvas>
+      </div>
+      <!-- Training Trend Chart -->
+      <div class="dashboard-chart">
+        <h3>Training Trend (Last 12 Months)</h3>
+        <canvas id="trainingTrendChart"></canvas>
       </div>
     </div>
   </section>
@@ -467,20 +488,20 @@
     </div>
   </section>
 
-  <!-- FAQ Help Overlay -->
+  <!-- FAQ Overlay -->
   <div id="faqOverlay" class="faq-overlay">
     <div class="faq-content">
       <span class="close-faq" onclick="toggleFAQ()">&times;</span>
       <h2>Frequently Asked Questions</h2>
       <ul>
         <li><strong>What is Predicted Uptake?</strong>
-          <p>It is the forecasted probability that policy makers will endorse the selected training configuration. Higher uptake implies more expected enrollment, which in turn improves the net benefit.</p>
+          <p>It is the forecasted probability that policy makers will endorse the chosen training configuration. A higher predicted uptake means more expected enrollment, which increases monetised benefits and net benefit.</p>
         </li>
         <li><strong>How is Net Benefit Calculated?</strong>
-          <p>Net Benefit is computed by subtracting the Total Training Cost from the Monetised Benefits, where benefits are based on the QALY gain, number of trainees, and a $50,000 per QALY value.</p>
+          <p>Net Benefit = Monetised Benefits – Total Training Cost. Benefits are based on the QALY gain, the number of trainees, and a value of $50,000 per QALY.</p>
         </li>
         <li><strong>What do the info icons mean?</strong>
-          <p>Each round info icon provides a tooltip explanation with emojis to help you understand the option’s context.</p>
+          <p>Each round info icon provides a tooltip with emojis and a brief explanation to help you understand each option.</p>
         </li>
       </ul>
     </div>
