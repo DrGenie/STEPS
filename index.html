@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>STEPS - Scalable Training Estimation and Planning System</title>
-  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="styles.css" />
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-papNMzNnQn5h+1G+FHu8SyuXHs6A1k+Ln7tK5qRo1l5eYm6Jzv+1pArJ7N4C9FfpRrmAgM3tYWd3FZ9jKz1Bw=="
@@ -29,6 +29,7 @@
       STEPS helps policy makers in India plan and scale Field Epidemiology Training Programs by forecasting programme uptake,
       evaluating economic tradeoffs, and comparing key programme features.
     </p>
+    <button id="faqBtn" class="faq-btn"><i class="fa-solid fa-question-circle"></i> FAQ</button>
   </header>
 
   <nav class="tabs" role="tablist">
@@ -45,7 +46,7 @@
       <i class="fa-solid fa-sliders"></i><span> Inputs</span>
     </button>
     <button class="tablink" data-tab="probTab" aria-selected="false">
-      <i class="fa-solid fa-chart-pie"></i><span> Adoption Likelihood</span>
+      <i class="fa-solid fa-chart-pie"></i><span> Program Adoption Likelihood</span>
     </button>
     <button class="tablink" data-tab="costsTab" aria-selected="false">
       <i class="fa-solid fa-calculator"></i><span> Costs &amp; Benefits</span>
@@ -59,17 +60,16 @@
   <section id="introTab" class="tabcontent" tabindex="0" style="display: block;">
     <div class="intro-box">
       <p>
-        Field Epidemiology Training Programs (FETP) are essential to strengthening public health responses.
-        STEPS uses discrete choice experiment estimates to forecast programme uptake – meaning the predicted likelihood
-        that decision makers will endorse a given training configuration – and to assess cost–benefit tradeoffs.
+        Field Epidemiology Training Programs (FETP) are essential for strengthening public health responses.
+        STEPS uses discrete choice experiment estimates to forecast programme uptake – the probability that policy makers will endorse your chosen configuration – and to assess cost–benefit tradeoffs.
       </p>
       <ul>
-        <li><strong>Instructions</strong> – A visually engaging guide to using the tool.</li>
-        <li><strong>Attributes</strong> – An overview of key features with intuitive tooltips.</li>
-        <li><strong>Inputs</strong> – Configure your options using our streamlined form.</li>
-        <li><strong>Adoption Likelihood</strong> – See a donut chart showing predicted support.</li>
-        <li><strong>Costs &amp; Benefits</strong> – View a dynamic cost–benefit analysis with detailed breakdowns.</li>
-        <li><strong>Saved Scenarios</strong> – Save, compare, and export configurations for further analysis.</li>
+        <li><strong>Instructions</strong>: A visually engaging guide to using the tool.</li>
+        <li><strong>Attributes</strong>: Overview of key features with descriptive tooltips.</li>
+        <li><strong>Inputs</strong>: Configure your options with our streamlined, grid‐based form.</li>
+        <li><strong>Program Adoption Likelihood</strong>: View a donut chart showing forecasted support.</li>
+        <li><strong>Costs &amp; Benefits</strong>: See a dynamic cost–benefit analysis, including how predicted uptake affects net benefit.</li>
+        <li><strong>Saved Scenarios</strong>: Save, compare, and export configurations (individual scenario export is now available).</li>
       </ul>
     </div>
   </section>
@@ -79,11 +79,11 @@
     <div class="calculation-info instructions">
       <h4>How to Use STEPS</h4>
       <ol>
-        <li><strong>Review Attributes:</strong> The Attributes tab explains each feature with descriptive round info icons and emojis.</li>
-        <li><strong>Configure Inputs:</strong> Select your options in the Inputs tab. Reference values (in parentheses) guide your choices.</li>
-        <li><strong>Adoption Likelihood:</strong> Check the donut chart for the forecasted level of decision maker support.</li>
-        <li><strong>Costs &amp; Benefits:</strong> View the dynamic cost–benefit analysis where the Estimated Total Cost is updated based on your inputs. Predicted Uptake is used to gauge potential adoption, influencing cost–benefit outcomes.</li>
-        <li><strong>Saved Scenarios:</strong> Save and export your configurations for side-by-side comparisons.</li>
+        <li><strong>Review Attributes:</strong> Visit the Attributes tab to see detailed explanations with round info icons and emojis.</li>
+        <li><strong>Configure Inputs:</strong> In the Inputs tab, select your options from each grouped block. Reference values guide your selections.</li>
+        <li><strong>Program Adoption Likelihood:</strong> Check the donut chart for the forecasted probability that policy makers endorse the configuration.</li>
+        <li><strong>Costs &amp; Benefits:</strong> View the dynamic cost–benefit analysis; note that higher predicted uptake (more endorsement) increases net benefit due to higher expected enrollment.</li>
+        <li><strong>Saved Scenarios:</strong> Save your configurations and export individual scenario details or an overall PDF for comparison.</li>
       </ol>
     </div>
   </section>
@@ -96,7 +96,7 @@
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-user-graduate"></i>
-          <i class="fa-solid fa-info-circle info-icon" data-tooltip="Frontline📊, Intermediate📈, Advanced🚀 — each tier offers increasing depth."></i>
+          <i class="fa-solid fa-info-circle info-icon" data-tooltip="Frontline📊, Intermediate📈, Advanced🚀 – each tier offers increasing training depth."></i>
         </div>
         <div class="attribute-content">
           <h4>Level of Training</h4>
@@ -162,7 +162,7 @@
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-file-invoice-dollar"></i>
-          <i class="fa-solid fa-info-circle info-icon" data-tooltip="The fee charged upon training completion."></i>
+          <i class="fa-solid fa-info-circle info-icon" data-tooltip="This fee (USD) is charged upon training completion."></i>
         </div>
         <div class="attribute-content">
           <h4>Fee per Completion</h4>
@@ -178,62 +178,63 @@
       <h2>Configure Programme Options <i class="fa-solid fa-info-circle info-icon-input" data-tooltip="Hover each icon for details."></i></h2>
       <p>Select your options below. All fields are required. <em>(Reference values in parentheses)</em></p>
       <form onsubmit="event.preventDefault();">
-        <div class="input-cards">
-          <!-- 1) Level of Training -->
-          <div class="input-level-card">
-            <h3>
-              Level of Training<span class="reference">(Ref: Frontline)</span>
+        <div class="inputs-grid">
+          <!-- Each block is grouped in a flex container -->
+          <!-- Level of Training -->
+          <div class="input-block">
+            <label class="input-label">
+              Level of Training <span class="reference">(Ref: Frontline)</span>
               <i class="fa-solid fa-info-circle info-icon-input" data-tooltip="Frontline📊 (3 mo, ref), Intermediate📈 (12 mo), Advanced🚀 (24 mo)."></i>
-            </h3>
-            <div class="options">
+            </label>
+            <div class="input-options">
               <label><input type="radio" name="levelTraining" value="frontline" checked /> Frontline📊 (3 mo)</label>
               <label><input type="radio" name="levelTraining" value="intermediate" /> Intermediate📈 (12 mo)</label>
               <label><input type="radio" name="levelTraining" value="advanced" /> Advanced🚀 (24 mo)</label>
             </div>
           </div>
-          <!-- 2) Training Model -->
-          <div class="input-level-card">
-            <h3>
-              Training Model<span class="reference">(Ref: In-service)</span>
+          <!-- Training Model -->
+          <div class="input-block">
+            <label class="input-label">
+              Training Model <span class="reference">(Ref: In-service)</span>
               <i class="fa-solid fa-info-circle info-icon-input" data-tooltip="In-service🧑‍💻 (ref) or Scholarship-based🎓."></i>
-            </h3>
-            <div class="options">
+            </label>
+            <div class="input-options">
               <label><input type="radio" name="trainingModel" value="inservice" checked /> In-service🧑‍💻</label>
               <label><input type="radio" name="trainingModel" value="scholarship" /> Scholarship-based🎓</label>
             </div>
           </div>
-          <!-- 3) Delivery Method -->
-          <div class="input-level-card">
-            <h3>
-              Delivery Method<span class="reference">(Ref: Online)</span>
+          <!-- Delivery Method -->
+          <div class="input-block">
+            <label class="input-label">
+              Delivery Method <span class="reference">(Ref: Online)</span>
               <i class="fa-solid fa-info-circle info-icon-input" data-tooltip="In-person🏫, Hybrid💻🏫, Fully Online💻."></i>
-            </h3>
-            <div class="options">
+            </label>
+            <div class="input-options">
               <label><input type="radio" name="deliveryMethod" value="inperson" /> In-person🏫</label>
               <label><input type="radio" name="deliveryMethod" value="hybrid" /> Hybrid💻🏫</label>
               <label><input type="radio" name="deliveryMethod" value="online" checked /> Fully Online💻</label>
             </div>
           </div>
-          <!-- 4) Number of Training Sites -->
-          <div class="input-level-card">
-            <h3>
-              Number of Training Sites<span class="reference">(Ref: Multiple State Capitals)</span>
+          <!-- Number of Training Sites -->
+          <div class="input-block">
+            <label class="input-label">
+              Number of Training Sites <span class="reference">(Ref: Multiple State Capitals)</span>
               <i class="fa-solid fa-info-circle info-icon-input" data-tooltip="Single Central📍, State Capitals📍📍, Zonal Regional Centers📍📍📍, Decentralized Local Sites📍📍📍📍."></i>
-            </h3>
-            <div class="options">
+            </label>
+            <div class="input-options">
               <label><input type="radio" name="trainingSites" value="centralized" /> Single Central Site📍</label>
               <label><input type="radio" name="trainingSites" value="stateCapitals" checked /> Multiple State Capitals📍📍</label>
               <label><input type="radio" name="trainingSites" value="zonalCenters" /> Zonal Regional Centers📍📍📍</label>
               <label><input type="radio" name="trainingSites" value="decentralized" /> Decentralized Local Sites📍📍📍📍</label>
             </div>
           </div>
-          <!-- 5) Annual Training Capacity -->
-          <div class="input-level-card">
-            <h3>
-              Annual Training Capacity<span class="reference">(Ref: 500 trainees)</span>
+          <!-- Annual Training Capacity -->
+          <div class="input-block">
+            <label class="input-label">
+              Annual Training Capacity <span class="reference">(Ref: 500 trainees)</span>
               <i class="fa-solid fa-info-circle info-icon-input" data-tooltip="Options: 100, 500, 1000, 1500, or 2000 trainees."></i>
-            </h3>
-            <div class="options">
+            </label>
+            <div class="input-options">
               <label><input type="radio" name="annualCapacity" value="100" /> 100 trainees</label>
               <label><input type="radio" name="annualCapacity" value="500" checked /> 500 trainees</label>
               <label><input type="radio" name="annualCapacity" value="1000" /> 1000 trainees</label>
@@ -241,31 +242,30 @@
               <label><input type="radio" name="annualCapacity" value="2000" /> 2000 trainees</label>
             </div>
           </div>
-          <!-- 6) Stipend Amount -->
-          <div class="input-level-card">
-            <h3>
-              Stipend Amount<span class="reference">(Ref: $200)</span>
+          <!-- Stipend Amount -->
+          <div class="input-block">
+            <label class="input-label">
+              Stipend Amount <span class="reference">(Ref: $200)</span>
               <i class="fa-solid fa-info-circle info-icon-input" data-tooltip="$200–$800 to offset costs."></i>
-            </h3>
-            <div class="options">
+            </label>
+            <div class="input-options">
               <label><input type="radio" name="stipendAmount" value="200" checked /> $200</label>
               <label><input type="radio" name="stipendAmount" value="400" /> $400</label>
               <label><input type="radio" name="stipendAmount" value="600" /> $600</label>
               <label><input type="radio" name="stipendAmount" value="800" /> $800</label>
             </div>
           </div>
-          <!-- 7) Fee per Training Completion -->
-          <div class="input-level-card">
-            <h3>
+          <!-- Fee per Training Completion -->
+          <div class="input-block">
+            <label class="input-label">
               Fee per Training Completion (USD)
               <i class="fa-solid fa-info-circle info-icon-input" data-tooltip="Set the fee using the slider."></i>
-            </h3>
-            <div class="options slider-option">
+            </label>
+            <div class="input-options slider-option">
               <label for="costSliderFETP">
                 <i class="fa-solid fa-dollar-sign"></i>
                 <span id="costLabelFETP">2500</span>
               </label>
-              <!-- Updated slider: 0 to 10,000 -->
               <input type="range" id="costSliderFETP" min="0" max="10000" step="100" value="2500"
                      oninput="updateFETPCostDisplay(this.value);"/>
             </div>
@@ -286,17 +286,17 @@
     </div>
   </div>
 
-  <!-- Adoption Likelihood Tab -->
+  <!-- Program Adoption Likelihood Tab -->
   <section id="probTab" class="tabcontent" tabindex="0">
     <div class="calculation-info">
-      <h4>Adoption Likelihood</h4>
-      <p>Click “Show Probability Plot” to view forecasted decision maker support.</p>
+      <h4>Program Adoption Likelihood</h4>
+      <p>Click “Show Probability Plot” to view the forecasted support from decision makers.</p>
       <div class="buttons-row">
         <button onclick="renderFETPProbChart()">Show Probability Plot</button>
       </div>
       <div class="chart-grid">
         <div class="chart-box" style="height:350px; overflow:hidden;">
-          <h3>Adoption Likelihood</h3>
+          <h3>Program Adoption Likelihood</h3>
           <canvas id="probChartFETP"></canvas>
         </div>
       </div>
@@ -310,11 +310,9 @@
       <p>
         This section estimates the total programme cost and monetised benefits.<br/>
         <small>
-          Benefits = (QALY Gain per Participant × Number of Trainees × $50,000).
-          This reflects the economic value of improved health outcomes.
+          Benefits = (QALY Gain per Participant × Number of Trainees × $50,000). Higher predicted uptake means more expected participants, which increases net benefit.
         </small>
       </p>
-      <!-- Dynamic Estimated Cost Display -->
       <div class="calculation-info" id="dynamicCostEstimate">
         <h4>Estimated Total Cost</h4>
         <p id="estimatedCostDisplay">Calculate to update cost.</p>
@@ -331,14 +329,15 @@
       <div class="modelling-assumptions">
         <h3><i class="fa-solid fa-lightbulb"></i> Assumptions</h3>
         <p>
-          Cost estimates combine variable costs (fee × capacity) and fixed costs.<br/>
-          The base fixed cost of $35,500 is adjusted by $10 per trainee (above or below 500) plus extras for delivery and advanced training.
-          Predicted Uptake is used to gauge potential adoption, affecting net benefit.
+          Cost estimates combine variable costs (fee per participant × capacity) and fixed costs.
+          The base fixed cost is $35,500, adjusted by $10 per trainee (above or below 500) plus extras for in-person/hybrid delivery and advanced training.
+          Predicted Uptake represents the likelihood that decision makers endorse the configuration; higher uptake increases enrollment and thus net benefit.
         </p>
       </div>
       <div class="cost-icons">
         <button class="buttons-row" onclick="toggleCostAccordion()">Cost Breakdown</button>
         <button class="buttons-row" onclick="toggleFETPBenefitsAnalysis()">Benefits Explanation</button>
+        <button class="buttons-row" onclick="exportIndividualScenario()">Export Selected Scenario</button>
       </div>
       <div id="detailedCostBreakdown" style="display:none;">
         <div class="accordion-item">
@@ -414,7 +413,7 @@
             <ul>
               <li><strong>Maintenance & Upkeep:</strong>
                 <ul>
-                  <li>Regular material updates</li>
+                  <li>Material updates</li>
                   <li>Trainer development</li>
                   <li>Software/license renewals</li>
                 </ul>
@@ -427,7 +426,7 @@
         <div class="cost-card">
           <h4><i class="fa-solid fa-hand-holding-dollar"></i> QALY Benefits</h4>
           <p>
-            Benefits = (QALY Gain × Trainees × $50,000). Predicted Uptake informs adoption and net benefit.
+            Benefits = (QALY Gain × Trainees × $50,000). Higher predicted uptake drives more enrollment, thereby increasing net benefit.
           </p>
         </div>
       </div>
@@ -439,12 +438,12 @@
     <div class="calculation-info">
       <h4>Saved Scenarios</h4>
       <p>
-        Each scenario shows your selected options along with the computed Adoption Likelihood and Net Benefit.
-        Compare and export scenarios as a PDF.
+        Each scenario displays your selected options along with the computed Program Adoption Likelihood and Net Benefit.
+        You can export individual scenario details or an overall PDF comparison.
       </p>
       <div class="buttons-row">
         <button onclick="saveFETPScenario()">Save Current Scenario</button>
-        <button onclick="exportFETPComparison()">Compare & Export PDF</button>
+        <button onclick="exportFETPComparison()">Export Overall PDF</button>
       </div>
       <div class="table-container">
         <table id="FETPScenarioTable">
@@ -467,6 +466,25 @@
       </div>
     </div>
   </section>
+
+  <!-- FAQ Help Overlay -->
+  <div id="faqOverlay" class="faq-overlay">
+    <div class="faq-content">
+      <span class="close-faq" onclick="toggleFAQ()">&times;</span>
+      <h2>Frequently Asked Questions</h2>
+      <ul>
+        <li><strong>What is Predicted Uptake?</strong>
+          <p>It is the forecasted probability that policy makers will endorse the selected training configuration. Higher uptake implies more expected enrollment, which in turn improves the net benefit.</p>
+        </li>
+        <li><strong>How is Net Benefit Calculated?</strong>
+          <p>Net Benefit is computed by subtracting the Total Training Cost from the Monetised Benefits, where benefits are based on the QALY gain, number of trainees, and a $50,000 per QALY value.</p>
+        </li>
+        <li><strong>What do the info icons mean?</strong>
+          <p>Each round info icon provides a tooltip explanation with emojis to help you understand the option’s context.</p>
+        </li>
+      </ul>
+    </div>
+  </div>
 
   <footer>
     <p>&copy; 2025 STEPS Decision Aid. All Rights Reserved.<br/>Mesfin Genie, Newcastle Business School, The University of Newcastle, Australia</p>
