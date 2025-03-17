@@ -1,7 +1,7 @@
 /****************************************************************************
  * SCRIPT.JS
  * 1) Tab switching, slider updates, and accordion toggling
- * 2) DCE model for FETP with attribute coefficients
+ * 2) DCE model for FETP with realistic attribute coefficients
  * 3) Chart rendering for Program Adoption Likelihood, dynamic cost–benefit analysis, and a Cost-Benefit Analysis chart
  * 4) Integration with Leaflet for an interactive map & Chart.js for cost distribution
  * 5) Scenario saving & PDF export (overall and individual)
@@ -330,4 +330,60 @@ function exportIndividualScenario() {
   doc.text("Adoption Likelihood: " + scenario.uptake + "%", 15, 100);
   doc.text("Net Benefit: $" + scenario.netBenefit, 15, 110);
   doc.save("Scenario_" + index + ".pdf");
+}
+
+/* Toggle Cost Breakdown */
+function toggleCostAccordion() {
+  var elem = document.getElementById("detailedCostBreakdown");
+  elem.style.display = (elem.style.display === "block") ? "none" : "block";
+}
+
+/* Toggle Benefits Explanation */
+function toggleFETPBenefitsAnalysis() {
+  var elem = document.getElementById("detailedFETPBenefitsAnalysis");
+  elem.style.display = (elem.style.display === "block") ? "none" : "block";
+}
+
+/* Render Cost-Benefit Analysis Chart */
+var costBenefitChart = null;
+function renderCostBenefitChart() {
+  var scenario = buildFETPScenario();
+  if (!scenario) return;
+  var trainees = scenario.annualCapacity;
+  var effectiveEnrollment = trainees * computeFETPUptake(scenario);
+  var fixedCost = 35500 + (scenario.annualCapacity - 500) * 10;
+  if (scenario.deliveryMethod === "inperson") fixedCost += 5000;
+  else if (scenario.deliveryMethod === "hybrid") fixedCost += 2500;
+  if (scenario.levelTraining === "advanced") fixedCost += 3000;
+  var variableCost = scenario.fee * trainees;
+  var totalCost = fixedCost + variableCost;
+  var sel = document.getElementById("qalyFETPSelect");
+  var qVal = (sel && sel.value === "low") ? 0.01 : (sel && sel.value === "high") ? 0.08 : 0.05;
+  var monetizedEffective = effectiveEnrollment * qVal * 50000;
+  var netBEffective = monetizedEffective - totalCost;
+  var ctx = document.getElementById("costBenefitChart").getContext("2d");
+  if (costBenefitChart) costBenefitChart.destroy();
+  costBenefitChart = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: ["Total Cost", "Monetised Benefits (Effective)", "Net Benefit (Effective)"],
+      datasets: [{
+        label: "USD",
+        data: [totalCost, monetizedEffective, netBEffective],
+        backgroundColor: ["#e74c3c", "#27ae60", "#f1c40f"]
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: { duration: 1000 },
+      plugins: { 
+        title: { display: true, text: "Cost-Benefit Analysis", font: { size: 16 } },
+        legend: { display: false }
+      },
+      scales: {
+        y: { beginAtZero: true }
+      }
+    }
+  });
 }
