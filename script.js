@@ -2,15 +2,15 @@
  * SCRIPT.JS
  * 1) Tab switching, slider updates, and accordion toggling
  * 2) DCE model for FETP with realistic attribute coefficients
- * 3) Chart rendering for Program Adoption Likelihood and dynamic cost–benefit analysis
+ * 3) Chart rendering for Program Adoption Likelihood, dynamic cost–benefit analysis, and Cost-Benefit Analysis chart
  * 4) Integration with Leaflet for an interactive map & Chart.js for cost distribution
  * 5) Scenario saving & PDF export (overall and individual)
- * 6) FAQ overlay for computed metrics
+ * 6) FAQ overlay for computed metrics with detailed explanations and examples
  ****************************************************************************/
 
 /* Global variables */
 var leafletMap;
-var regionalChart, trendChart;
+var regionalChart, trendChart, costBenefitChart;
 
 /* Tab Switching */
 document.addEventListener("DOMContentLoaded", function() {
@@ -124,6 +124,7 @@ function openFETPScenario() {
   document.getElementById("resultModal").style.display = "block";
   renderFETPProbChart();
   renderFETPCostsBenefits();
+  renderCostBenefitChart();
 }
 
 /* Close Modal */
@@ -184,24 +185,48 @@ function renderFETPCostsBenefits() {
                         "<p><strong>Monetised Benefits:</strong> $" + monetized.toLocaleString() + "</p>" +
                         "<p><strong>Net Benefit:</strong> $" + netB.toLocaleString() + "</p>" +
                         "<p><em>Policy Recommendation:</em> " + econAdvice + "</p>" +
-                        "</div>" +
-                        "<div class='chart-box' style='height:350px;'>" +
-                        "<h3>Cost Distribution</h3>" +
-                        "<canvas id='cbaFETPChart'></canvas>" +
                         "</div>";
-  var ctx = document.getElementById("cbaFETPChart").getContext("2d");
-  if (cbaFETPChart) cbaFETPChart.destroy();
-  cbaFETPChart = new Chart(ctx, {
-    type: "doughnut",
+}
+
+/* Render Cost-Benefit Analysis Chart */
+function renderCostBenefitChart() {
+  var scenario = buildFETPScenario();
+  if (!scenario) return;
+  var trainees = scenario.annualCapacity;
+  var fixedCost = 35500 + (scenario.annualCapacity - 500) * 10;
+  if (scenario.deliveryMethod === "inperson") fixedCost += 5000;
+  else if (scenario.deliveryMethod === "hybrid") fixedCost += 2500;
+  if (scenario.levelTraining === "advanced") fixedCost += 3000;
+  var variableCost = scenario.fee * trainees;
+  var totalCost = fixedCost + variableCost;
+  var sel = document.getElementById("qalyFETPSelect");
+  var qVal = (sel && sel.value === "low") ? 0.01 : (sel && sel.value === "high") ? 0.08 : 0.05;
+  var totalQALY = trainees * qVal;
+  var monetized = totalQALY * 50000;
+  var netB = monetized - totalCost;
+  var ctx = document.getElementById("costBenefitChart").getContext("2d");
+  if (costBenefitChart) costBenefitChart.destroy();
+  costBenefitChart = new Chart(ctx, {
+    type: "bar",
     data: {
-      labels: ["Fixed Costs", "Variable Costs"],
-      datasets: [{ data: [fixedCost, variableCost], backgroundColor: ["#3498db", "#e74c3c"] }]
+      labels: ["Total Cost", "Monetised Benefits", "Net Benefit"],
+      datasets: [{
+        label: "USD",
+        data: [totalCost, monetized, netB],
+        backgroundColor: ["#e74c3c", "#27ae60", "#f1c40f"]
+      }]
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      animation: { animateScale: true, animateRotate: true },
-      plugins: { title: { display: true, text: "Cost Distribution", font: { size: 16 } }, legend: { position: "bottom" } }
+      animation: { duration: 1000 },
+      plugins: { 
+        title: { display: true, text: "Cost-Benefit Analysis", font: { size: 16 } },
+        legend: { display: false }
+      },
+      scales: {
+        y: { beginAtZero: true }
+      }
     }
   });
 }
@@ -300,10 +325,4 @@ function exportIndividualScenario() {
   doc.text("Adoption Likelihood: " + scenario.uptake + "%", 15, 100);
   doc.text("Net Benefit: $" + scenario.netBenefit, 15, 110);
   doc.save("Scenario_" + index + ".pdf");
-}
-
-/* FAQ Help Overlay */
-function toggleFAQ() {
-  var overlay = document.getElementById("faqOverlay");
-  overlay.style.display = (overlay.style.display === "block") ? "none" : "block";
 }
