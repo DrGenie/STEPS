@@ -3,13 +3,14 @@
  * 1) Tab switching, slider updates, and accordion toggling
  * 2) DCE model for FETP with realistic attribute coefficients
  * 3) Chart rendering for Program Adoption Likelihood and dynamic cost–benefit analysis
- * 4) Integration with Leaflet for an interactive map & Chart.js for cost distribution and dashboard charts
+ * 4) Integration with Leaflet for an interactive map & Chart.js for cost distribution and live dashboard charts
  * 5) Scenario saving & PDF export (overall and individual)
  * 6) FAQ overlay for computed metrics
  ****************************************************************************/
 
-/* Global variable for Leaflet map */
+/* Global variables */
 var leafletMap;
+var regionalChart, trendChart;
 
 /* Tab Switching */
 document.addEventListener("DOMContentLoaded", function() {
@@ -213,9 +214,10 @@ function renderFETPCostsBenefits() {
 
 /* Render Real Dashboard Data */
 function renderDashboardData() {
-  // Regional Enrollment Bar Chart
+  // Regional Enrollment Bar Chart (updates dynamically)
   var ctx1 = document.getElementById("regionalEnrollmentChart").getContext("2d");
-  var regionalData = {
+  if (regionalChart) regionalChart.destroy();
+  var data1 = {
     labels: ["North", "South", "East", "West"],
     datasets: [{
       label: "Enrolled Trainees",
@@ -223,20 +225,20 @@ function renderDashboardData() {
       backgroundColor: ["#1abc9c", "#3498db", "#9b59b6", "#e67e22"]
     }]
   };
-  new Chart(ctx1, {
+  regionalChart = new Chart(ctx1, {
     type: "bar",
-    data: regionalData,
+    data: data1,
     options: {
       responsive: true,
       animation: { duration: 1000 },
       plugins: { title: { display: true, text: "Regional Enrollment", font: { size: 16 } }, legend: { display: false } }
     }
   });
-  
-  // Training Trend Line Chart (Last 12 Months)
+  // Training Trend Line Chart (Last 12 Months, updates dynamically)
   var ctx2 = document.getElementById("trainingTrendChart").getContext("2d");
+  if (trendChart) trendChart.destroy();
   var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  var trendData = {
+  var data2 = {
     labels: months,
     datasets: [{
       label: "Trainees Enrolled",
@@ -246,15 +248,31 @@ function renderDashboardData() {
       tension: 0.1
     }]
   };
-  new Chart(ctx2, {
+  trendChart = new Chart(ctx2, {
     type: "line",
-    data: trendData,
+    data: data2,
     options: {
       responsive: true,
       animation: { duration: 1000 },
       plugins: { title: { display: true, text: "Training Trend (Last 12 Months)", font: { size: 16 } } }
     }
   });
+  // Simulate dynamic updates every 5 seconds
+  setInterval(function() {
+    // Update Regional Enrollment with random data
+    regionalChart.data.datasets[0].data = [
+      100 + Math.floor(Math.random()*100),
+      150 + Math.floor(Math.random()*100),
+      80 + Math.floor(Math.random()*100),
+      120 + Math.floor(Math.random()*100)
+    ];
+    regionalChart.update();
+    // Update Training Trend with random fluctuations
+    trendChart.data.datasets[0].data = trendChart.data.datasets[0].data.map(function(val) {
+      return val + Math.floor(Math.random()*20 - 10);
+    });
+    trendChart.update();
+  }, 5000);
 }
 
 /* Render Leaflet Map */
@@ -357,50 +375,4 @@ function exportIndividualScenario() {
 function toggleFAQ() {
   var overlay = document.getElementById("faqOverlay");
   overlay.style.display = (overlay.style.display === "block") ? "none" : "block";
-}
-
-/* Render Real Dashboard Data */
-function renderDashboardData() {
-  // Regional Enrollment Bar Chart
-  var ctx1 = document.getElementById("regionalEnrollmentChart").getContext("2d");
-  var regionalData = {
-    labels: ["North", "South", "East", "West"],
-    datasets: [{
-      label: "Enrolled Trainees",
-      data: [150, 200, 130, 170],
-      backgroundColor: ["#1abc9c", "#3498db", "#9b59b6", "#e67e22"]
-    }]
-  };
-  new Chart(ctx1, {
-    type: "bar",
-    data: regionalData,
-    options: {
-      responsive: true,
-      animation: { duration: 1000 },
-      plugins: { title: { display: true, text: "Regional Enrollment", font: { size: 16 } }, legend: { display: false } }
-    }
-  });
-  
-  // Training Trend Line Chart (Last 12 Months)
-  var ctx2 = document.getElementById("trainingTrendChart").getContext("2d");
-  var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  var trendData = {
-    labels: months,
-    datasets: [{
-      label: "Trainees Enrolled",
-      data: [80, 95, 110, 100, 120, 130, 125, 140, 135, 150, 145, 160],
-      fill: false,
-      borderColor: "#e74c3c",
-      tension: 0.1
-    }]
-  };
-  new Chart(ctx2, {
-    type: "line",
-    data: trendData,
-    options: {
-      responsive: true,
-      animation: { duration: 1000 },
-      plugins: { title: { display: true, text: "Training Trend (Last 12 Months)", font: { size: 16 } } }
-    }
-  });
 }
