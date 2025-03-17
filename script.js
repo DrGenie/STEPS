@@ -3,7 +3,7 @@
  * 1) Tab switching, slider updates, and accordion toggling
  * 2) DCE model for FETP with realistic attribute coefficients
  * 3) Chart rendering for Program Adoption Likelihood and dynamic cost–benefit analysis
- * 4) Integration with Leaflet for an interactive map & Chart.js for cost distribution and live dashboard charts
+ * 4) Integration with Leaflet for an interactive map & Chart.js for cost distribution
  * 5) Scenario saving & PDF export (overall and individual)
  * 6) FAQ overlay for computed metrics
  ****************************************************************************/
@@ -31,8 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
   
-  // FAQ overlay trigger
-  document.getElementById("faqBtn").addEventListener("click", toggleFAQ);
+  // FAQ overlay trigger (now also handled via onclick in index.html)
 });
 
 /* Open Tab Function */
@@ -303,4 +302,10 @@ function exportIndividualScenario() {
   doc.text("Adoption Likelihood: " + scenario.uptake + "%", 15, 100);
   doc.text("Net Benefit: $" + scenario.netBenefit, 15, 110);
   doc.save("Scenario_" + index + ".pdf");
+}
+
+/* FAQ Help Overlay */
+function toggleFAQ() {
+  var overlay = document.getElementById("faqOverlay");
+  overlay.style.display = (overlay.style.display === "block") ? "none" : "block";
 }
