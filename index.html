@@ -68,7 +68,7 @@
         <li><strong>Attributes</strong>: Overview of key features with descriptive info icons.</li>
         <li><strong>Inputs</strong>: Configure your options using our streamlined grid‑based form.</li>
         <li><strong>Program Adoption Likelihood</strong>: View a donut chart showing forecasted support.</li>
-        <li><strong>Costs &amp; Benefits</strong>: See a dynamic analysis including a Cost-Benefit chart, cost breakdown cards, and detailed explanations of the cost and benefits computations.</li>
+        <li><strong>Costs &amp; Benefits</strong>: See a dynamic analysis including a Cost-Benefit chart, cost breakdown cards, and detailed explanations of cost and benefit computations.</li>
         <li><strong>Saved Scenarios</strong>: Save, compare, and export configurations individually or as an overall PDF.</li>
       </ul>
     </div>
@@ -82,7 +82,7 @@
         <li><strong>Review Attributes:</strong> The Attributes tab explains each key feature using visually appealing info icons with detailed descriptions.</li>
         <li><strong>Configure Inputs:</strong> In the Inputs tab, select options from each compact block. Reference values (in parentheses) guide your selections.</li>
         <li><strong>Program Adoption Likelihood:</strong> View the donut chart which forecasts the probability that policy makers endorse your configuration.</li>
-        <li><strong>Costs &amp; Benefits:</strong> The analysis displays the Total Training Cost, Monetised Benefits, and Net Benefit. For example, if Predicted Uptake is 70%, benefits are computed on 70% of the Annual Training Capacity.</li>
+        <li><strong>Costs &amp; Benefits:</strong> The analysis displays the Total Training Cost, Monetised Benefits, Net Benefit, and also shows the full capacity versus the Potential Effective Enrollment (i.e. capacity adjusted by the Predicted Uptake). For example, if capacity is 500 and uptake is 70%, effective enrollment is 350.</li>
         <li><strong>Saved Scenarios:</strong> Save and export scenario details individually or as an overall PDF for side-by-side comparisons.</li>
       </ol>
     </div>
@@ -96,7 +96,7 @@
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-user-graduate"></i>
-          <i class="fa-solid fa-info-circle alternative-info" data-tooltip="This refers to the depth and complexity of the epidemiology training program provided to trainees. Options: Frontline📊 (3 mo, ref), Intermediate📈 (12 mo), Advanced🚀 (24 mo)."></i>
+          <i class="fa-solid fa-info-circle alternative-info" data-tooltip="This refers to the depth and complexity of the training program provided to trainees. Options: Frontline📊 (3 mo, ref), Intermediate📈 (12 mo), Advanced🚀 (24 mo)."></i>
         </div>
         <div class="attribute-content">
           <h4>Level of Training</h4>
@@ -107,7 +107,7 @@
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-user-tie"></i>
-          <i class="fa-solid fa-info-circle alternative-info" data-tooltip="This indicates whether trainees can continue working during training or if they dedicate full-time hours with financial support (scholarship). Options: In-service🧑‍💻 (ref), Scholarship-based🎓."></i>
+          <i class="fa-solid fa-info-circle alternative-info" data-tooltip="This indicates whether trainees can continue working or study full time with a scholarship. Options: In-service🧑‍💻 (ref), Scholarship-based🎓."></i>
         </div>
         <div class="attribute-content">
           <h4>Training Model</h4>
@@ -118,7 +118,7 @@
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-chalkboard"></i>
-          <i class="fa-solid fa-info-circle alternative-info" data-tooltip="This attribute indicates the mode by which the FETP training is delivered. Options: In-person🏫, Hybrid💻🏫, Fully Online💻."></i>
+          <i class="fa-solid fa-info-circle alternative-info" data-tooltip="This indicates the mode of training delivery. Options: In-person🏫, Hybrid💻🏫, Fully Online💻."></i>
         </div>
         <div class="attribute-content">
           <h4>Delivery Method</h4>
@@ -129,7 +129,7 @@
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-map-location-dot"></i>
-          <i class="fa-solid fa-info-circle alternative-info" data-tooltip="This refers to the geographic distribution of training facilities. Options: Single Central📍, Multiple State Capitals📍📍, Zonal Regional Centers📍📍📍, Decentralized Local Sites📍📍📍📍."></i>
+          <i class="fa-solid fa-info-circle alternative-info" data-tooltip="This refers to the geographic spread of facilities. Options: Single Central📍, Multiple State Capitals📍📍, Zonal Regional Centers📍📍📍, Decentralized Local Sites📍📍📍📍."></i>
         </div>
         <div class="attribute-content">
           <h4>Number of Training Sites</h4>
@@ -140,7 +140,7 @@
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-people-group"></i>
-          <i class="fa-solid fa-info-circle alternative-info" data-tooltip="This refers to the number of trainees that can be enrolled each year. Options: 100, 500 (ref), 1000, 1500, 2000 trainees."></i>
+          <i class="fa-solid fa-info-circle alternative-info" data-tooltip="This refers to the number of trainees enrolled each year. Options: 100, 500 (ref), 1000, 1500, 2000 trainees."></i>
         </div>
         <div class="attribute-content">
           <h4>Annual Training Capacity</h4>
@@ -151,7 +151,7 @@
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-hand-holding-dollar"></i>
-          <i class="fa-solid fa-info-circle alternative-info" data-tooltip="This refers to the financial assistance provided monthly to support trainees. Options: $200, $400, $600, $800."></i>
+          <i class="fa-solid fa-info-circle alternative-info" data-tooltip="This is the monthly financial assistance provided to trainees. Options: $200, $400, $600, $800."></i>
         </div>
         <div class="attribute-content">
           <h4>Stipend Amount</h4>
@@ -162,7 +162,7 @@
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-file-invoice-dollar"></i>
-          <i class="fa-solid fa-info-circle alternative-info" data-tooltip="This refers to the monthly fee paid by participants upon completion of the training. Adjustable using the slider."></i>
+          <i class="fa-solid fa-info-circle alternative-info" data-tooltip="This is the monthly fee paid by participants upon training completion. Adjustable using the slider."></i>
         </div>
         <div class="attribute-content">
           <h4>Fee per Completion</h4>
@@ -231,7 +231,7 @@
           <div class="input-block">
             <label class="input-label">
               Annual Training Capacity <span class="reference">(Ref: 500 trainees)</span>
-              <i class="fa-solid fa-info-circle alternative-info" data-tooltip="This refers to the number of trainees enrolled each year. Options: 100, 500, 1000, 1500, or 2000 trainees."></i>
+              <i class="fa-solid fa-info-circle alternative-info" data-tooltip="This refers to the number of trainees enrolled each year. Options: 100, 500, 1000, 1500, 2000 trainees."></i>
             </label>
             <div class="input-options">
               <label><input type="radio" name="annualCapacity" value="100" /> 100 trainees</label>
@@ -312,9 +312,10 @@
     <div class="calculation-info">
       <h4>Costs &amp; Benefits Analysis</h4>
       <p>
-        This section estimates the total programme cost and monetised benefits.<br/>
-        <small>
-          Benefits = (QALY Gain per Participant × Number of Trainees × $50,000). For example, if the QALY gain is 0.05 and capacity is 500 trainees, then monetised benefits equal 0.05 × 500 × $50,000. Higher Predicted Uptake adjusts the effective enrollment.
+        This section estimates the total programme cost and monetised benefits.
+        <br/><small>
+          Benefits = (QALY Gain per Participant × Enrollment × $50,000). The effective enrollment is adjusted by the Predicted Uptake.
+          For example, if Annual Capacity is 500 and Predicted Uptake is 70%, then Effective Enrollment is 350.
         </small>
       </p>
       <div class="calculation-info" id="dynamicCostEstimate">
@@ -333,10 +334,12 @@
       <div class="modelling-assumptions">
         <h3><i class="fa-solid fa-lightbulb"></i> Assumptions &amp; Explanations</h3>
         <p>
-          <strong>Total Cost Calculation:</strong> Fixed Costs + (Fee per Training Completion × Annual Training Capacity). Fixed Costs start at $35,500 with a $10 adjustment per trainee difference from 500, plus additional costs for in‑person/hybrid delivery and advanced training.
+          <strong>Total Cost Calculation:</strong> Total Cost = Fixed Costs + (Fee per Training Completion × Annual Capacity). Fixed Costs begin at $35,500 with a $10 adjustment per trainee difference from 500, plus additional costs based on delivery method and training level.
         </p>
         <p>
-          <strong>Benefits Calculation:</strong> Monetised Benefits = (QALY Gain per Participant × Annual Training Capacity × $50,000). For example, with a QALY gain of 0.05 and 500 trainees, benefits equal 0.05 × 500 × $50,000 = $1,250,000. Predicted Uptake is then applied to adjust the effective enrollment.
+          <strong>Benefits Calculation:</strong> Monetised Benefits = (QALY Gain per Participant × Enrollment × $50,000). 
+          <br/>For example, if QALY Gain is 0.05 and Annual Capacity is 500, then without uptake adjustment benefits equal 0.05 × 500 × $50,000 = $1,250,000.
+          <br/>With a Predicted Uptake of 70%, Effective Enrollment is 350 and benefits become 0.05 × 350 × $50,000 = $875,000.
         </p>
       </div>
       <div class="cost-icons">
@@ -367,21 +370,29 @@
           </div>
         </div>
         <div class="accordion-item">
-          <h3>Indirect & Recurring Costs</h3>
+          <h3>Indirect &amp; Recurring Costs</h3>
           <div class="accordion-content">
             <div class="cost-card-detail">
               <i class="fa-solid fa-clock"></i>
-              <p><strong>Lost Productivity</strong><br/>Estimated Cost: $300 per trainee</p>
+              <p><strong>Lost Productivity</strong><br/>Estimated: $300 per trainee</p>
             </div>
             <div class="cost-card-detail">
               <i class="fa-solid fa-tools"></i>
-              <p><strong>Facility Upgrades</strong><br/>Estimated Cost: $1,000</p>
+              <p><strong>Facility Upgrades</strong><br/>Estimated: $1,000</p>
             </div>
             <div class="cost-card-detail">
               <i class="fa-solid fa-sync-alt"></i>
-              <p><strong>Maintenance & Upkeep</strong><br/>Estimated Cost: $500 per month</p>
+              <p><strong>Maintenance &amp; Upkeep</strong><br/>Estimated: $500 per month</p>
             </div>
           </div>
+        </div>
+      </div>
+      <div id="detailedFETPBenefitsAnalysis" class="cost-cards" style="display:none;">
+        <div class="cost-card">
+          <h4><i class="fa-solid fa-hand-holding-dollar"></i> QALY Benefits</h4>
+          <p>
+            Benefits = (QALY Gain × Enrollment × $50,000). Compare full capacity with effective enrollment (capacity adjusted by Predicted Uptake).
+          </p>
         </div>
       </div>
     </div>
@@ -428,15 +439,16 @@
       <h2>Frequently Asked Questions</h2>
       <ul>
         <li><strong>What is Predicted Uptake?</strong>
-          <p>It is the forecasted probability that policy makers will endorse your chosen configuration. Higher predicted uptake implies more enrollment, which increases monetised benefits and net benefit.</p>
+          <p>It is the forecasted probability that policy makers will endorse your configuration. For example, a 70% uptake means that, out of a 500 trainee capacity, only 350 may effectively enroll.</p>
         </li>
         <li><strong>How is Total Training Cost Calculated?</strong>
-          <p>Total Cost = Fixed Costs + (Fee per Training Completion × Annual Training Capacity). For example, with a base fixed cost of $35,500 adjusted by $10 per trainee difference from 500 and a fee of $2,500 for 500 trainees, the total cost is computed accordingly.</p>
+          <p>Total Cost = Fixed Costs + (Fee per Training Completion × Annual Training Capacity). Fixed Costs begin at $35,500 with a $10 adjustment per trainee difference from 500, plus additional costs based on delivery method and training level.</p>
         </li>
         <li><strong>How are Benefits Computed?</strong>
-          <p>Monetised Benefits = (QALY Gain per Participant × Annual Training Capacity × $50,000). For instance, if the QALY gain is 0.05 and capacity is 500 trainees, benefits equal 0.05 × 500 × $50,000 = $1,250,000. Predicted Uptake (e.g., 70%) then adjusts the effective enrollment.</p>
+          <p>Monetised Benefits = (QALY Gain per Participant × Enrollment × $50,000). For example, with a QALY gain of 0.05 and 500 trainees, benefits equal 0.05 × 500 × $50,000 = $1,250,000. If Predicted Uptake is 70%, the effective enrollment is 350, yielding benefits of 0.05 × 350 × $50,000 = $875,000.</p>
         </li>
       </ul>
+      <p><em>Further improvements could include real-time data integration and enhanced export options.</em></p>
     </div>
   </div>
 
