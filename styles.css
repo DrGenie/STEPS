@@ -231,26 +231,7 @@ header p {
   height: 100%;
 }
 
-/* DASHBOARD SECTION */
-.dashboard-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-top: 15px;
-}
-.dashboard-chart {
-  background-color: #f2f7ff;
-  border: 1px solid #ccd6e5;
-  border-radius: 6px;
-  padding: 10px;
-  min-height: 300px;
-}
-.dashboard-description {
-  text-align: center;
-  font-size: 0.95em;
-  margin-bottom: 10px;
-  color: #555;
-}
+/* DASHBOARD SECTION - removed */
 
 /* RESULTS MODAL */
 .modal {
@@ -401,6 +382,6 @@ header p {
 @media (max-width: 768px) {
   .tabs { flex-direction: column; align-items: center; }
   .tablink { width: 100%; text-align: left; border-radius: 0; }
-  .chart-box, .dashboard-chart { flex: 1 1 100%; height: 320px; }
+  .chart-box { flex: 1 1 100%; height: 320px; }
   .inputs-grid { grid-template-columns: 1fr; }
 }
