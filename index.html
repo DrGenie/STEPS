@@ -26,10 +26,9 @@
   <header>
     <h1>STEPS Decision Aid Tool</h1>
     <p>
-      STEPS helps policy makers in India plan and scale Field Epidemiology Training Programs by predicting programme uptake,
+      STEPS helps policy makers in India plan and scale Field Epidemiology Training Programs by forecasting programme uptake,
       evaluating economic tradeoffs, and comparing key programme features.
     </p>
-    <!-- Added onclick to ensure toggleFAQ is called -->
     <button id="faqBtn" class="faq-btn" onclick="toggleFAQ()"><i class="fa-solid fa-question-circle"></i> FAQ</button>
   </header>
 
@@ -62,14 +61,14 @@
     <div class="intro-box">
       <p>
         Field Epidemiology Training Programs (FETP) are essential for strengthening public health responses.
-        STEPS uses discrete choice experiment estimates to predict programme uptake – the probability that policy makers will endorse a chosen training configuration – and to assess cost–benefit analysis.
+        STEPS uses discrete choice experiment estimates to forecast programme uptake – the probability that policy makers will endorse your chosen configuration – and to assess cost–benefit tradeoffs.
       </p>
       <ul>
-        <li><strong>Instructions</strong>: A guide to using the tool.</li>
-        <li><strong>Attributes</strong>: Overview of key features.</li>
-        <li><strong>Inputs</strong>: Configure your options using our streamlined grid‐based form.</li>
+        <li><strong>Instructions</strong>: A visually engaging guide to using the tool.</li>
+        <li><strong>Attributes</strong>: Overview of key features with descriptive info icons.</li>
+        <li><strong>Inputs</strong>: Configure your options using our streamlined grid‑based form.</li>
         <li><strong>Program Adoption Likelihood</strong>: View a donut chart showing forecasted support.</li>
-        <li><strong>Costs &amp; Benefits</strong>: See a dynamic cost–benefit analysis.</li>
+        <li><strong>Costs &amp; Benefits</strong>: See a dynamic cost–benefit analysis with an explanation of how higher predicted uptake drives net benefit.</li>
         <li><strong>Saved Scenarios</strong>: Save, compare, and export configurations individually or as an overall PDF.</li>
       </ul>
     </div>
@@ -80,9 +79,9 @@
     <div class="calculation-info instructions">
       <h4>How to Use STEPS</h4>
       <ol>
-        <li><strong>Review Attributes:</strong> The Attributes tab explains each key feature.</li>
+        <li><strong>Review Attributes:</strong> The Attributes tab explains each key feature using visually appealing info icons and illustrative emojis.</li>
         <li><strong>Configure Inputs:</strong> In the Inputs tab, choose options from each grouped block. Reference values (in parentheses) guide your selections.</li>
-        <li><strong>Program Adoption Likelihood:</strong> See the chart forecasting the probability that policy makers endorse your configuration.</li>
+        <li><strong>Program Adoption Likelihood:</strong> View the donut chart forecasting the probability that policy makers endorse your configuration.</li>
         <li><strong>Costs &amp; Benefits:</strong> The analysis shows total cost and monetised benefits. Higher Predicted Uptake implies greater enrollment, increasing net benefit.</li>
         <li><strong>Saved Scenarios:</strong> Save and export individual scenario details or an overall PDF comparison.</li>
       </ol>
@@ -97,7 +96,7 @@
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-user-graduate"></i>
-          <i class="fa-solid fa-info-circle info-icon" data-tooltip="Frontline📊, Intermediate📈, Advanced🚀 – each tier offers increasing training depth."></i>
+          <i class="fa-solid fa-info-circle alternative-info" data-tooltip="Frontline📊, Intermediate📈, Advanced🚀 – each tier offers increasing training depth."></i>
         </div>
         <div class="attribute-content">
           <h4>Level of Training</h4>
@@ -108,7 +107,7 @@
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-user-tie"></i>
-          <i class="fa-solid fa-info-circle info-icon" data-tooltip="In-service🧑‍💻 (ref) or Scholarship-based🎓."></i>
+          <i class="fa-solid fa-info-circle alternative-info" data-tooltip="In-service🧑‍💻 (ref) or Scholarship-based🎓."></i>
         </div>
         <div class="attribute-content">
           <h4>Training Model</h4>
@@ -119,7 +118,7 @@
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-chalkboard"></i>
-          <i class="fa-solid fa-info-circle info-icon" data-tooltip="In-person🏫, Hybrid💻🏫, Fully Online💻."></i>
+          <i class="fa-solid fa-info-circle alternative-info" data-tooltip="In-person🏫, Hybrid💻🏫, Fully Online💻."></i>
         </div>
         <div class="attribute-content">
           <h4>Delivery Method</h4>
@@ -130,7 +129,7 @@
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-map-location-dot"></i>
-          <i class="fa-solid fa-info-circle info-icon" data-tooltip="Single Central📍, Multiple State Capitals📍📍, Zonal Regional Centers📍📍📍, Decentralized Sites📍📍📍📍."></i>
+          <i class="fa-solid fa-info-circle alternative-info" data-tooltip="Single Central📍, Multiple State Capitals📍📍, Zonal Regional Centers📍📍📍, Decentralized Sites📍📍📍📍."></i>
         </div>
         <div class="attribute-content">
           <h4>Number of Training Sites</h4>
@@ -141,7 +140,7 @@
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-people-group"></i>
-          <i class="fa-solid fa-info-circle info-icon" data-tooltip="Options: 100, 500 (ref), 1000, 1500, 2000 trainees."></i>
+          <i class="fa-solid fa-info-circle alternative-info" data-tooltip="Options: 100, 500 (ref), 1000, 1500, 2000 trainees."></i>
         </div>
         <div class="attribute-content">
           <h4>Annual Training Capacity</h4>
@@ -152,7 +151,7 @@
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-hand-holding-dollar"></i>
-          <i class="fa-solid fa-info-circle info-icon" data-tooltip="$200, $400, $600, or $800."></i>
+          <i class="fa-solid fa-info-circle alternative-info" data-tooltip="$200, $400, $600, or $800."></i>
         </div>
         <div class="attribute-content">
           <h4>Stipend Amount</h4>
@@ -163,7 +162,7 @@
       <div class="attribute-card">
         <div class="attribute-icon">
           <i class="fa-solid fa-file-invoice-dollar"></i>
-          <i class="fa-solid fa-info-circle info-icon" data-tooltip="The fee (USD) charged upon training completion."></i>
+          <i class="fa-solid fa-info-circle alternative-info" data-tooltip="The fee (USD) charged upon training completion."></i>
         </div>
         <div class="attribute-content">
           <h4>Fee per Completion</h4>
@@ -176,7 +175,7 @@
   <!-- Inputs Tab -->
   <section id="inputsTab" class="tabcontent" tabindex="0">
     <div class="input-card">
-      <h2>Configure Programme Options <i class="fa-solid fa-info-circle info-icon-input" data-tooltip="Hover over each icon for details."></i></h2>
+      <h2>Configure Programme Options <i class="fa-solid fa-info-circle alternative-info" data-tooltip="Hover over each icon for details."></i></h2>
       <p>Select your options below. All fields are required. <em>(Reference values in parentheses)</em></p>
       <form onsubmit="event.preventDefault();">
         <div class="inputs-grid">
@@ -184,7 +183,7 @@
           <div class="input-block">
             <label class="input-label">
               Level of Training <span class="reference">(Ref: Frontline)</span>
-              <i class="fa-solid fa-info-circle info-icon-input" data-tooltip="Frontline📊 (3 mo, ref), Intermediate📈 (12 mo), Advanced🚀 (24 mo)."></i>
+              <i class="fa-solid fa-info-circle alternative-info" data-tooltip="Frontline📊 (3 mo, ref), Intermediate📈 (12 mo), Advanced🚀 (24 mo)."></i>
             </label>
             <div class="input-options">
               <label><input type="radio" name="levelTraining" value="frontline" checked /> Frontline📊 (3 mo)</label>
@@ -196,7 +195,7 @@
           <div class="input-block">
             <label class="input-label">
               Training Model <span class="reference">(Ref: In-service)</span>
-              <i class="fa-solid fa-info-circle info-icon-input" data-tooltip="In-service🧑‍💻 (ref) or Scholarship-based🎓."></i>
+              <i class="fa-solid fa-info-circle alternative-info" data-tooltip="In-service🧑‍💻 (ref) or Scholarship-based🎓."></i>
             </label>
             <div class="input-options">
               <label><input type="radio" name="trainingModel" value="inservice" checked /> In-service🧑‍💻</label>
@@ -207,7 +206,7 @@
           <div class="input-block">
             <label class="input-label">
               Delivery Method <span class="reference">(Ref: Online)</span>
-              <i class="fa-solid fa-info-circle info-icon-input" data-tooltip="In-person🏫, Hybrid💻🏫, Fully Online💻."></i>
+              <i class="fa-solid fa-info-circle alternative-info" data-tooltip="In-person🏫, Hybrid💻🏫, Fully Online💻."></i>
             </label>
             <div class="input-options">
               <label><input type="radio" name="deliveryMethod" value="inperson" /> In-person🏫</label>
@@ -219,7 +218,7 @@
           <div class="input-block">
             <label class="input-label">
               Number of Training Sites <span class="reference">(Ref: Multiple State Capitals)</span>
-              <i class="fa-solid fa-info-circle info-icon-input" data-tooltip="Single Central📍, State Capitals📍📍, Zonal Regional Centers📍📍📍, Decentralized Local Sites📍📍📍📍."></i>
+              <i class="fa-solid fa-info-circle alternative-info" data-tooltip="Single Central📍, Multiple State Capitals📍📍, Zonal Regional Centers📍📍📍, Decentralized Local Sites📍📍📍📍."></i>
             </label>
             <div class="input-options">
               <label><input type="radio" name="trainingSites" value="centralized" /> Single Central Site📍</label>
@@ -232,7 +231,7 @@
           <div class="input-block">
             <label class="input-label">
               Annual Training Capacity <span class="reference">(Ref: 500 trainees)</span>
-              <i class="fa-solid fa-info-circle info-icon-input" data-tooltip="Options: 100, 500, 1000, 1500, or 2000 trainees."></i>
+              <i class="fa-solid fa-info-circle alternative-info" data-tooltip="Options: 100, 500, 1000, 1500, or 2000 trainees."></i>
             </label>
             <div class="input-options">
               <label><input type="radio" name="annualCapacity" value="100" /> 100 trainees</label>
@@ -246,7 +245,7 @@
           <div class="input-block">
             <label class="input-label">
               Stipend Amount <span class="reference">(Ref: $200)</span>
-              <i class="fa-solid fa-info-circle info-icon-input" data-tooltip="$200–$800 to offset costs."></i>
+              <i class="fa-solid fa-info-circle alternative-info" data-tooltip="$200–$800 to offset costs."></i>
             </label>
             <div class="input-options">
               <label><input type="radio" name="stipendAmount" value="200" checked /> $200</label>
@@ -259,7 +258,7 @@
           <div class="input-block">
             <label class="input-label">
               Fee per Training Completion (USD)
-              <i class="fa-solid fa-info-circle info-icon-input" data-tooltip="Set the fee using the slider."></i>
+              <i class="fa-solid fa-info-circle alternative-info" data-tooltip="Set the fee using the slider."></i>
             </label>
             <div class="input-options slider-option">
               <label for="costSliderFETP">
@@ -479,21 +478,12 @@
         <li><strong>How is Net Benefit Calculated?</strong>
           <p>Net Benefit = Monetised Benefits – Total Training Cost. Benefits are calculated as (QALY Gain per Participant × Number of Trainees × $50,000).</p>
         </li>
-        <li><strong>What do the info icons mean?</strong>
-          <p>Each round info icon provides a tooltip explanation with illustrative emojis to help you understand each option.</p>
-        </li>
-        <li><strong>How are the charts constructed?</strong>
-          <p>
-            The Regional Enrollment bar chart shows sample enrollment data by region and the Training Trend line chart displays monthly enrollment trends for the last 12 months.
-            In a real deployment, these charts would pull live data from training program systems.
-          </p>
-        </li>
       </ul>
     </div>
   </div>
 
   <footer>
-    <p>&copy; 2025 STEPS Decision Aid. All Rights Reserved.<br/>Mesfin Genie, Newcastle Business School, The University of Newcastle, Australia</p>
+    <p>&copy; 2025 STEPS Decision Aid. All Rights Reserved.</p>
   </footer>
 </div>
 <script src="script.js"></script>
