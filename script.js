@@ -18,9 +18,6 @@ document.addEventListener("DOMContentLoaded", function() {
   for (var i = 0; i < tabs.length; i++) {
     tabs[i].addEventListener("click", function() {
       openTab(this.getAttribute("data-tab"), this);
-      if (this.getAttribute("data-tab") === "dashboardTab") {
-        renderDashboardData();
-      }
     });
   }
   openTab("introTab", tabs[0]);
@@ -212,69 +209,6 @@ function renderFETPCostsBenefits() {
   });
 }
 
-/* Render Real Dashboard Data */
-function renderDashboardData() {
-  // Regional Enrollment Bar Chart (updates dynamically)
-  var ctx1 = document.getElementById("regionalEnrollmentChart").getContext("2d");
-  if (regionalChart) regionalChart.destroy();
-  var data1 = {
-    labels: ["North", "South", "East", "West"],
-    datasets: [{
-      label: "Enrolled Trainees",
-      data: [150, 200, 130, 170],
-      backgroundColor: ["#1abc9c", "#3498db", "#9b59b6", "#e67e22"]
-    }]
-  };
-  regionalChart = new Chart(ctx1, {
-    type: "bar",
-    data: data1,
-    options: {
-      responsive: true,
-      animation: { duration: 1000 },
-      plugins: { title: { display: true, text: "Regional Enrollment", font: { size: 16 } }, legend: { display: false } }
-    }
-  });
-  // Training Trend Line Chart (Last 12 Months, updates dynamically)
-  var ctx2 = document.getElementById("trainingTrendChart").getContext("2d");
-  if (trendChart) trendChart.destroy();
-  var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  var data2 = {
-    labels: months,
-    datasets: [{
-      label: "Trainees Enrolled",
-      data: [80, 95, 110, 100, 120, 130, 125, 140, 135, 150, 145, 160],
-      fill: false,
-      borderColor: "#e74c3c",
-      tension: 0.1
-    }]
-  };
-  trendChart = new Chart(ctx2, {
-    type: "line",
-    data: data2,
-    options: {
-      responsive: true,
-      animation: { duration: 1000 },
-      plugins: { title: { display: true, text: "Training Trend (Last 12 Months)", font: { size: 16 } } }
-    }
-  });
-  // Simulate dynamic updates every 5 seconds
-  setInterval(function() {
-    // Update Regional Enrollment with random data
-    regionalChart.data.datasets[0].data = [
-      100 + Math.floor(Math.random()*100),
-      150 + Math.floor(Math.random()*100),
-      80 + Math.floor(Math.random()*100),
-      120 + Math.floor(Math.random()*100)
-    ];
-    regionalChart.update();
-    // Update Training Trend with random fluctuations
-    trendChart.data.datasets[0].data = trendChart.data.datasets[0].data.map(function(val) {
-      return val + Math.floor(Math.random()*20 - 10);
-    });
-    trendChart.update();
-  }, 5000);
-}
-
 /* Render Leaflet Map */
 function renderMap() {
   if (!leafletMap) {
@@ -369,10 +303,4 @@ function exportIndividualScenario() {
   doc.text("Adoption Likelihood: " + scenario.uptake + "%", 15, 100);
   doc.text("Net Benefit: $" + scenario.netBenefit, 15, 110);
   doc.save("Scenario_" + index + ".pdf");
-}
-
-/* FAQ Help Overlay */
-function toggleFAQ() {
-  var overlay = document.getElementById("faqOverlay");
-  overlay.style.display = (overlay.style.display === "block") ? "none" : "block";
 }
