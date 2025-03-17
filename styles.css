@@ -1,4 +1,4 @@
-/* RsESET & BASE */
+/* RESET & BASE */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -140,16 +140,17 @@ header p {
   gap: 4px;
 }
 
-/* Info Icons (round) */
-.info-icon-input, .info-icon {
+/* Alternative Info Icons */
+.alternative-info, .alternative-info-input {
   font-size: 14px;
-  color: #003366;
+  color: #007bff;
   cursor: help;
-  background-color: #fff;
-  border-radius: 50%;
-  padding: 3px;
+  background-color: transparent;
+  border: 1px solid #007bff;
+  padding: 2px 4px;
+  border-radius: 4px;
 }
-.info-icon-input:before, .info-icon:before {
+.alternative-info:before, .alternative-info-input:before {
   font-family: "Font Awesome 6 Free";
   content: "\f05a";
   font-weight: 900;
