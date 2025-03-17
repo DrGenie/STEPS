@@ -30,8 +30,6 @@ document.addEventListener("DOMContentLoaded", function() {
       content.style.display = (content.style.display === "block") ? "none" : "block";
     });
   }
-  
-  // FAQ overlay trigger (now also handled via onclick in index.html)
 });
 
 /* Open Tab Function */
