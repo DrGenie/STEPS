@@ -1,4 +1,4 @@
-/* RESgET & BASE */
+/* RESET & BASE */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -140,7 +140,7 @@ header p {
   gap: 4px;
 }
 
-/* Alternative Info Icons */
+/* Alternative Info Icons (Square style) */
 .alternative-info, .alternative-info-input {
   font-size: 14px;
   color: #007bff;
