@@ -26,10 +26,11 @@
   <header>
     <h1>STEPS Decision Aid Tool</h1>
     <p>
-      STEPS helps policy makers in India plan and scale Field Epidemiology Training Programs by predicting programme uptake,
+      STEPS helps policy makers in India plan and scale Field Epidemiology Training Programs by forecasting programme uptake,
       evaluating economic tradeoffs, and comparing key programme features.
     </p>
-    <button id="faqBtn" class="faq-btn"><i class="fa-solid fa-question-circle"></i> FAQ</button>
+    <!-- Added onclick to ensure toggleFAQ is called -->
+    <button id="faqBtn" class="faq-btn" onclick="toggleFAQ()"><i class="fa-solid fa-question-circle"></i> FAQ</button>
   </header>
 
   <nav class="tabs" role="tablist">
@@ -64,11 +65,11 @@
         STEPS uses discrete choice experiment estimates to forecast programme uptake – the probability that policy makers will endorse your chosen configuration – and to assess cost–benefit tradeoffs.
       </p>
       <ul>
-        <li><strong>Instructions</strong>: A guide to using the tool.</li>
-        <li><strong>Attributes</strong>: Overview of key features.</li>
-        <li><strong>Inputs</strong>: Configure your options.</li>
-        <li><strong>Program Adoption Likelihood</strong>: View a chart showing forecasted support.</li>
-        <li><strong>Costs &amp; Benefits</strong>: See a dynamic cost–benefit analysis.</li>
+        <li><strong>Instructions</strong>: A visually engaging guide to using the tool.</li>
+        <li><strong>Attributes</strong>: Overview of key features with descriptive, round info icons.</li>
+        <li><strong>Inputs</strong>: Configure your options using our streamlined grid‐based form.</li>
+        <li><strong>Program Adoption Likelihood</strong>: View a donut chart showing forecasted support.</li>
+        <li><strong>Costs &amp; Benefits</strong>: See a dynamic cost–benefit analysis with an explanation of how higher predicted uptake drives net benefit.</li>
         <li><strong>Saved Scenarios</strong>: Save, compare, and export configurations individually or as an overall PDF.</li>
       </ul>
     </div>
@@ -79,7 +80,7 @@
     <div class="calculation-info instructions">
       <h4>How to Use STEPS</h4>
       <ol>
-        <li><strong>Review Attributes:</strong> The Attributes tab explains each key feature.</li>
+        <li><strong>Review Attributes:</strong> The Attributes tab explains each key feature using round info icons and illustrative emojis.</li>
         <li><strong>Configure Inputs:</strong> In the Inputs tab, choose options from each grouped block. Reference values (in parentheses) guide your selections.</li>
         <li><strong>Program Adoption Likelihood:</strong> See the donut chart forecasting the probability that policy makers endorse your configuration.</li>
         <li><strong>Costs &amp; Benefits:</strong> The analysis shows total cost and monetised benefits. Higher Predicted Uptake implies greater enrollment, increasing net benefit.</li>
@@ -484,7 +485,7 @@
         <li><strong>How are the charts constructed?</strong>
           <p>
             The Regional Enrollment bar chart shows sample enrollment data by region and the Training Trend line chart displays monthly enrollment trends for the last 12 months.
-            In a real deployment, these charts would be dynamically linked to live training program systems.
+            In a real deployment, these charts would pull live data from training program systems.
           </p>
         </li>
       </ul>
