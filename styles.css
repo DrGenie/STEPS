@@ -1,4 +1,4 @@
-/* RESET & BaASE */
+/* RESET & BASE */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -110,7 +110,7 @@ header p {
   border-radius: 8px;
 }
 
-/* INPUTS SECTION - grid layout */
+/* INPUTS SECTION */
 .inputs-grid {
   display: grid;
   grid-template-columns: 1fr;
